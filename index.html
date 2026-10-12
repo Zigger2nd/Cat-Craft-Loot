@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cat-craft-loot</title>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+
+<body>
+  <section>
+    <div class="main">
+      <div class="left">
+        <h3>Treats: <span class="treats-count">0</span></h3>
+        <button id="clickBtn">
+          <img src="/skins/cutecat.png" alt="Cat" class="cat-image" draggable="false">
+        </button>
+      </div>
+      <div class="right">
+        <button id="buyClickBtn">
+          <div class="upgrade">
+            <div class="left-section">
+              <img src="/skins/click.png" alt="" class="upgrade-img">
+            </div>
+            <div class="mid-section">
+              <span class="upgrade-title">Clicker</span>
+              <div class="cost-info">
+                <span>Cost: <span class="clicker-cost">10</span></span>
+                <img src="/skins/cutecat.png" alt="" class="ct-image">
+              </div>
+            </div>
+            <div class="right-section">
+              Level: <span class="click-level">0</span>
+            </div>
+            <div class="next-level-info">
+              <p>
+                <span class="click-power">0</span> gems <br /> per click
+              </p>
+            </div>
+          </div>
+        </button>
+
+        <div id="generatorList" class="generator-list"></div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

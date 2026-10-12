@@ -1,0 +1,155 @@
+body{
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #222;
+  color: white;
+  user-select: none;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.main{
+  display: flex;
+  gap: 200px;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;          
+}
+
+.left h3{
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 50px;
+  margin-left: 45px;
+}
+
+.cat-image{
+  width: 300px;
+}
+
+.cat-image:hover{
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.cat-image:active{
+  opacity: 0.8;
+  transform: scale(1.02);
+}
+
+.upgrade{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 330px;
+  height: 60px;
+  border: 4px solid white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.mid-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+}
+
+.mid-section .upgrade-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px; 
+}
+
+.upgrade-img{
+  width: 55px;
+}
+
+.ct-image{
+  width: 20px;
+  height: 20px;
+}
+
+.cost-info{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+#buyClickBtn:hover .upgrade { 
+  background: #333; 
+}
+#buyClickBtn:active .upgrade { 
+  transform: scale(0.98); 
+}
+#buyClickBtn:disabled .upgrade { 
+  opacity: 0.5; 
+}
+#buyClickBtn:disabled { 
+  cursor: not-allowed; 
+}
+
+.next-level-info{
+  position: absolute;
+  right: -100px;
+  background-color: rgb(90,89,90);
+  height: 80px;
+  width: 100px;
+  text-align:center;
+  display: none;
+}
+
+.upgrade:hover .next-level-info{
+  display:block;
+}
+
+
+.generator-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+#generatorList button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 330px;
+  height: 60px;
+  border: 4px solid white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background: none;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+}
+
+#generatorList button:hover {
+  background: #333;
+}
+
+#generatorList button:active {
+  transform: scale(0.98);
+}
+
+#generatorList button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
