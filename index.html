@@ -12,10 +12,12 @@
 
 <body>
 
+      <button type="button" id="openSkinsBtn" class="skins-button">
+          My Skins
+      </button>
     <section class="game">
 
         <div class="main">
-
             <div class="left">
 
                 <h3>
@@ -44,7 +46,7 @@
                     <div class="left-section">
 
                         <img
-                            src="./public/skins/click.png"
+                            src="/skins/click.png"
                             alt="Clicker"
                             class="clicker-img"
                         >
@@ -63,8 +65,8 @@
                                     <span class="clicker-cost">10</span>
                                 </p>
 
-                <img
-                                    src="./public/skins/food.png"
+                                <img
+                                    src="/skins/food.png"
                                     alt="Treats"
                                     class="food-img"
                                 >
@@ -106,7 +108,7 @@
 
                     <h3>Cat generators</h3>
 
-                    <div id="generatorList"></div>
+                     <div id="generatorList"></div>
 
                 </div>
 
@@ -116,10 +118,32 @@
 
     </section>
 
-     <span class="energy-count">0</span> energy amount <br /> 
+  <div id="skinsModal" class="skins-modal" aria-hidden="true">
+    <div class="skins-modal-content"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="skinsModalTitle">
+
+        <div class="skins-modal-header">
+
+            <h2 id="skinsModalTitle">My Skins</h2>
+
+            <button type="button" id="closeSkinsBtn" class="close-skins-btn" aria-label="Close skins">
+                &times;
+            </button>
+
+        </div>
+
+        <div id="ownedSkinsList" class="owned-skins-list"></div>
+
+    </div>
+  </div>
+
+        <span class="energy-count">0</span> energy amount <br /> 
          <span class="dust-count">0</span> dust amount <br /> 
                      <button id="openBoxBtn" ></button>
          <p id="lootResult"></p>
+
 
     <script type="module" src="./src/main.js"></script>
 

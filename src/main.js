@@ -7,6 +7,7 @@ import { updateEnergy } from './loot/energy.js';
 import { openBox } from './loot/lootBox.js';
 import { SKINS } from './config/skins.js';
 import { initCatAnimation } from './ui/catAnimation.js';
+import { initSkinsModal } from './ui/skinsModal.js';
 load();
 updateEnergy();
 render();
@@ -42,6 +43,8 @@ document.getElementById('openBoxBtn').addEventListener('click', ()=>{
 initGenerators(render);
 
 initCatAnimation();
+
+initSkinsModal();
 
 let last = Date.now();
 
