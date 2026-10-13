@@ -1,11 +1,7 @@
 import { state } from '../core/state.js';
-
-import {
-    getClickCost,
-    getClickPower
-} from '../core/economy.js';
-
-import { renderGenerators } from './generators.js';
+import { getClickCost, getClickPower } from '../core/economy.js';
+import { renderGenerators } from '../ui/generators.js';
+import { LOOTBOX, ENERGY } from '../config/balance.js';
 
 
 export function render() {
@@ -14,10 +10,8 @@ export function render() {
         Math.floor(state.treats);
 
 
-    const clickCost = getClickCost();
-
     document.querySelector('.clicker-cost').textContent =
-        clickCost;
+        getClickCost();
 
 
     document.querySelector('.click-level').textContent =
@@ -31,8 +25,17 @@ export function render() {
     });
 
     document.getElementById('buyClickBtn').disabled =
-        state.treats < clickCost;
+        state.treats < getClickCost();
 
+
+  document.querySelector('.energy-count').textContent = 
+  `${state.energy}/${ENERGY.max}`;
+
+    document.querySelector('.dust-count').textContent = 
+    state.dust;
+
+  document.getElementById('openBoxBtn').disabled = 
+  state.energy < LOOTBOX.energyCost;
 
     renderGenerators();
 
