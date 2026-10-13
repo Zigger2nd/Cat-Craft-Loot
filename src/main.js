@@ -6,19 +6,28 @@ import {initGenerators} from './ui/generators.js';
 import { updateEnergy } from './loot/energy.js';
 import { openBox } from './loot/lootBox.js';
 import { SKINS } from './config/skins.js';
+import { initCatAnimation } from './ui/catAnimation.js';
 load();
 updateEnergy();
 render();
 
+
 document.getElementById('clickBtn').addEventListener('click', () => {
-  clickCat();
-  render();
+
+    clickCat();
+
+    render();
+
 });
 
-document.getElementById('buyClickBtn').addEventListener('click', ()=>{
-  buyClick();
-  render();
-})
+
+document.getElementById('buyClickBtn').addEventListener('click', () => {
+
+    buyClick();
+
+    render();
+
+});
 
 document.getElementById('openBoxBtn').addEventListener('click', ()=>{
   const res = openBox();
@@ -32,14 +41,28 @@ document.getElementById('openBoxBtn').addEventListener('click', ()=>{
 
 initGenerators(render);
 
+initCatAnimation();
+
 let last = Date.now();
+
 setInterval(() => {
-  const now = Date.now();
-  state.treats += getCps() * (now - last) / 1000;
-  last = now;
-  updateEnergy();
-  render();
+    const now = Date.now();
+    const elapsed = (now - last) / 1000;
+    state.treats += getCps() * elapsed;
+    last = now;
+    updateEnergy();
+    render();
 }, 200);
 
+
 setInterval(save, 5000);
-document.addEventListener('visibilitychange', save);
+
+document.addEventListener('visibilitychange', () => {
+
+    if (document.visibilityState === 'hidden') {
+        save();
+    }
+
+});
+
+window.addEventListener('beforeunload', save);
