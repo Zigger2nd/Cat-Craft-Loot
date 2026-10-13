@@ -7,5 +7,6 @@ export const state = {
     generators: {toy : 0, bowl : 0},
     ownedSkins : ['default'],
     equippedSkin : 'default',
-    lastSeen : Date.now()
+    lastSeen : Date.now(),
+    energyUpdatedAt: Date.now(),
 };
