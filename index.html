@@ -1,152 +1,146 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Cat Clicker</title>
 
-    <link rel="stylesheet" href="./src/style.css">
-</head>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
 
-<body>
-
-      <button type="button" id="openSkinsBtn" class="skins-button">
-          My Skins
-      </button>
+  <body>
+    <button type="button" id="openSkinsBtn" class="skins-button">
+      My Skins
+    </button>
     <section class="game">
+      <div class="main">
+        <div class="left">
+          <h3>
+            Treats:
+            <span class="treats-count">0</span>
+          </h3>
 
-        <div class="main">
-            <div class="left">
+          <div class="cat-container">
+            <div class="sprite" id="clickBtn"></div>
+          </div>
 
-                <h3>
-                    Treats:
-                    <span class="treats-count">0</span>
-                </h3>
-
-                <div class="cat-container">
-
-                    <div class="sprite" id="clickBtn"></div>
-
-                </div>
-
-                <p>
-                    Treats per click:
-                    <span class="click-power">1</span>
-                </p>
-
-            </div>
-
-
-            <div class="right">
-
-                <div class="upgrade">
-
-                    <div class="left-section">
-
-                        <img
-                            src="/skins/click.png"
-                            alt="Clicker"
-                            class="clicker-img"
-                        >
-
-                    </div>
-
-                    <div class="mid-section">
-
-                        <h4>
-                            Clicker
-
-                            <div class="cost-info">
-
-                                <p>
-                                    Cost:
-                                    <span class="clicker-cost">10</span>
-                                </p>
-
-                                <img
-                                    src="/skins/food.png"
-                                    alt="Treats"
-                                    class="food-img"
-                                >
-
-                            </div>
-                        </h4>
-
-                    </div>
-
-                    <div class="right-section">
-
-                        Level
-                        <span class="click-level">0</span>
-
-                    </div>
-
-                    <div class="next-level-info">
-
-                        <p>
-                            +<span class="click-power">1</span> food
-                            <br>
-                            per click
-                        </p>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        id="buyClickBtn"
-                        class="upgrade-button"
-                    >
-                        Buy upgrade
-                    </button>
-
-                </div>
-
-
-                <div class="generator-section">
-
-                    <h3>Cat generators</h3>
-
-                     <div id="generatorList"></div>
-
-                </div>
-
-            </div>
-
+          <p>
+            Treats per click:
+            <span class="click-power">1</span>
+          </p>
         </div>
 
+        <div class="right">
+          <div class="upgrade">
+            <div class="left-section">
+              <img src="/skins/click.png" alt="Clicker" class="clicker-img" />
+            </div>
+
+            <div class="mid-section">
+              <h4>
+                Clicker
+
+                <div class="cost-info">
+                  <p>
+                    Cost:
+                    <span class="clicker-cost">10</span>
+                  </p>
+
+                  <img src="/skins/food.png" alt="Treats" class="food-img" />
+                </div>
+              </h4>
+            </div>
+
+            <div class="right-section">
+              Level
+              <span class="click-level">0</span>
+            </div>
+
+            <div class="next-level-info">
+              <p>
+                +<span class="click-power">1</span> food
+                <br />
+                per click
+              </p>
+            </div>
+
+            <button type="button" id="buyClickBtn" class="upgrade-button">
+              Buy upgrade
+            </button>
+          </div>
+
+          <div class="generator-section">
+            <h3>Cat generators</h3>
+
+            <div id="generatorList"></div>
+          </div>
+        </div>
+      </div>
     </section>
 
-  <div id="skinsModal" class="skins-modal" aria-hidden="true">
-    <div class="skins-modal-content"
-         role="dialog"
-         aria-modal="true"
-         aria-labelledby="skinsModalTitle">
-
+    <div id="skinsModal" class="skins-modal" aria-hidden="true">
+      <div
+        class="skins-modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="skinsModalTitle"
+      >
         <div class="skins-modal-header">
+          <h2 id="skinsModalTitle">My Skins</h2>
 
-            <h2 id="skinsModalTitle">My Skins</h2>
+          <button
+            type="button"
+            id="closeSkinsBtn"
+            class="close-skins-btn"
+            aria-label="Close skins"
+          >
+            &times;
+          </button>
+        </div>
 
-            <button type="button" id="closeSkinsBtn" class="close-skins-btn" aria-label="Close skins">
-                &times;
-            </button>
+        <div class="skin-rarity-filters">
+          <button
+            type="button"
+            class="rarity-button active"
+            data-rarity="common"
+          >
+            Common
+          </button>
 
+          <button type="button" class="rarity-button" data-rarity="rare">
+            Rare
+          </button>
+
+          <button type="button" class="rarity-button" data-rarity="epic">
+            Epic
+          </button>
+
+          <button type="button" class="rarity-button" data-rarity="legendary">
+            Legendary
+          </button>
         </div>
 
         <div id="ownedSkinsList" class="owned-skins-list"></div>
-
+      </div>
     </div>
-  </div>
 
-        <span class="energy-count">0</span> energy amount <br /> 
-         <span class="dust-count">0</span> dust amount <br /> 
-                     <button id="openBoxBtn" ></button>
-         <p id="lootResult"></p>
+    <div class="energy-display">
+      <div
+        class="energy-bar"
+        role="progressbar"
+        aria-label="Energy"
+        aria-valuemin="0"
+        aria-valuemax="10"
+        aria-valuenow="10"
+      ></div>
+      <span class="energy-count">10 / 10</span>
+    </div>
 
+    <span class="dust-count">0</span> dust amount <br />
+    <button id="openBoxBtn"></button>
+    <p id="lootResult"></p>
 
     <script type="module" src="./src/main.js"></script>
-
-</body>
-
+  </body>
 </html>
