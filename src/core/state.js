@@ -10,4 +10,5 @@ export const state = {
   lastSeen: Date.now(),
   energyUpdatedAt: Date.now(),
   pendingReward: null,
+  adReadyAt: 0,
 };

@@ -7,18 +7,37 @@ import { updateEnergy } from "./loot/energy.js";
 import { openBox, claimReward } from "./loot/lootBox.js";
 import { SKINS } from "./config/skins.js";
 import { initCatAnimation } from "./ui/catAnimation.js";
-import { initCatCardsList } from "./ui/lootBoxCards.js";
 import { buildReelIds, renderReel, spinReel } from "./ui/lootboxreel.js";
 import { initSkinsModal } from "./ui/skinsModal.js";
+import { applyOfflineGains } from "./core/offline.js";
+import { initAdModal } from "./ui/adModal.js";
 import { initLootboxModal } from "./ui/lootboxModal.js";
 
 load();
 if (state.pendingReward) claimReward();
+const offlineGained = applyOfflineGains();
 updateEnergy();
 initGenerators(render);
 
 initCatAnimation();
 render();
+
+let isSpinning = false;
+let spinTimer = null;
+
+const dialog = document.getElementById("dialog");
+const offlineDialog = document.getElementById("offlineDialog");
+
+if (offlineGained.gained > 0 && offlineGained.elapsed > 3) {
+  document.getElementById("offline-amount").textContent = Math.floor(
+    offlineGained.gained,
+  );
+  offlineDialog.showModal();
+}
+
+document.getElementById("offlineCloseBtn").addEventListener("click", () => {
+  offlineDialog.close();
+});
 
 document.getElementById("clickBtn").addEventListener("click", () => {
   clickCat();
@@ -32,10 +51,18 @@ document.getElementById("buyClickBtn").addEventListener("click", () => {
   render();
 });
 
-let isSpinning = false;
-let spinTimer = null;
+document.getElementById("boxBtn").addEventListener("click", () => {
+  dialog.showModal();
+});
 
-const dialog = document.getElementById("dialog");
+document.getElementById("closeBtn").addEventListener("click", () => {
+  if (isSpinning) return;
+  dialog.close();
+});
+
+document.getElementById("dialog").addEventListener("cancel", (e) => {
+  if (isSpinning) e.preventDefault();
+});
 
 document.getElementById("openBoxBtn").addEventListener("click", () => {
   if (isSpinning) {
@@ -103,6 +130,7 @@ function loadReelPreview() {
 window.addEventListener("lootboxOpening", loadReelPreview);
 
 initSkinsModal();
+initAdModal(render);
 initLootboxModal();
 
 window.addEventListener("skinSelected", (event) => {

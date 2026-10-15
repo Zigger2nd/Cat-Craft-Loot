@@ -123,8 +123,11 @@
         <div id="ownedSkinsList" class="owned-skins-list"></div>
       </div>
     </div>
-
     <button id="boxBtn">OPEN BOX</button>
+    <dialog id="adDialog">
+      <video id="adVideo" src="/ad.webm" muted playsinline></video>
+      <p>Watching ad...</p>
+    </dialog>
 
     <dialog id="dialog" class="lootbox-modal">
       <div class="lootbox-modal-content">
@@ -145,7 +148,13 @@
               </div>
               <span class="energy-count">10 / 10</span>
 
-              <button type="button" class="watch-ad-btn">Watch AD</button>
+              <button type="button" class="watch-ad-btn" id="watchAddBtn">
+                Watch AD
+              </button>
+              <dialog id="adDialog">
+                <video id="adVideo" src="/ad.webm" muted playsinline></video>
+                <p>Watching ad...</p>
+              </dialog>
             </div>
           </div>
 
@@ -172,6 +181,14 @@
 
         <p id="lootResult"></p>
       </div>
+    </dialog>
+    <dialog id="offlineDialog">
+      <h2>Welcome back!</h2>
+      <p>
+        While you were away, your cats earned
+        <span id="offline-amount">0</span> treats.
+      </p>
+      <button id="offlineCloseBtn">Nice!</button>
     </dialog>
     <script type="module" src="./src/main.js"></script>
   </body>

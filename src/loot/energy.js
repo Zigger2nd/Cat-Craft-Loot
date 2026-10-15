@@ -11,7 +11,7 @@ const ENERGY_STATES = [
 
 export function updateEnergy() {
   const now = Date.now();
-  const stepMs = ENERGY.regenSeconds * 100;
+  const stepMs = ENERGY.regenSeconds * 1000;
 
   if (!state.energyUpdatedAt) {
     state.energyUpdatedAt = now;
@@ -55,4 +55,8 @@ function renderEnergyBar() {
   if (counter) {
     counter.textContent = `${currentEnergy} / ${maxEnergy}`;
   }
+}
+
+export function addEnergy(amount) {
+  state.energy += amount;
 }

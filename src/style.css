@@ -197,8 +197,6 @@ button {
   border: 2px solid #000;
   border-radius: 8px;
 
-  background-color: #fff;
-
   font-size: 13px;
   font-weight: normal;
 
@@ -229,10 +227,6 @@ button {
   font-size: 12px;
 
   cursor: pointer;
-}
-
-.upgrade-button:hover {
-  background-color: #eaeaea;
 }
 
 .upgrade-button:active {
@@ -647,6 +641,10 @@ button {
   transform: scale(2);
 }
 
+.card-img {
+  width: 32px;
+  height: 32px;
+}
 #catCardList {
   display: flex;
   flex-wrap: wrap;
