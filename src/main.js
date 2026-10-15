@@ -28,13 +28,14 @@ let spinTimer = null;
 const dialog = document.getElementById("dialog");
 const offlineDialog = document.getElementById("offlineDialog");
 
-if (offlineGained.gained > 0 && offlineGained.elapsed > 3) {
+if (offlineGained.gained > 0 && offlineGained.elapsed > 60) {
   document.getElementById("offline-amount").textContent = Math.floor(
     offlineGained.gained,
   );
   offlineDialog.showModal();
 }
 
+loadReelPreview();
 document.getElementById("offlineCloseBtn").addEventListener("click", () => {
   offlineDialog.close();
 });
