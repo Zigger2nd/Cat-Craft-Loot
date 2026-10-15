@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <button type="button" id="openSkinsBtn" class="skins-button">
+      My Skins
+    </button>
     <section class="game">
       <div class="main">
         <div class="left">
@@ -43,11 +46,7 @@
                     <span class="clicker-cost">10</span>
                   </p>
 
-                  <img
-                    src="./public/skins/food.png"
-                    alt="Treats"
-                    class="food-img"
-                  />
+                  <img src="/skins/food.png" alt="Treats" class="food-img" />
                 </div>
               </h4>
             </div>
@@ -79,7 +78,67 @@
       </div>
     </section>
 
-    <span class="energy-count">0</span> energy amount <br />
+    <div id="skinsModal" class="skins-modal" aria-hidden="true">
+      <div
+        class="skins-modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="skinsModalTitle"
+      >
+        <div class="skins-modal-header">
+          <h2 id="skinsModalTitle">My Skins</h2>
+
+          <button
+            type="button"
+            id="closeSkinsBtn"
+            class="close-skins-btn"
+            aria-label="Close skins"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div class="skin-rarity-filters">
+          <button
+            type="button"
+            class="rarity-button active"
+            data-rarity="common"
+          >
+            Common
+          </button>
+
+          <button type="button" class="rarity-button" data-rarity="rare">
+            Rare
+          </button>
+
+          <button type="button" class="rarity-button" data-rarity="epic">
+            Epic
+          </button>
+
+          <button type="button" class="rarity-button" data-rarity="legendary">
+            Legendary
+          </button>
+        </div>
+
+        <div id="ownedSkinsList" class="owned-skins-list"></div>
+      </div>
+    </div>
+
+    <div class="energy-display">
+      <div
+        class="energy-bar"
+        role="progressbar"
+        aria-label="Energy"
+        aria-valuemin="0"
+        aria-valuemax="10"
+        aria-valuenow="10"
+      ></div>
+      <span class="energy-count">10 / 10</span>
+    </div>
+
+    <span class="dust-count">0</span> dust amount <br />
+    <button id="openBoxBtn"></button>
+    <p id="lootResult"></p>
 
     <span class="dust-count">0</span> dust amount <br />
     <p id="lootResult"></p>

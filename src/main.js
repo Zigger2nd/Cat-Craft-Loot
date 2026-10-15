@@ -9,6 +9,7 @@ import { SKINS } from "./config/skins.js";
 import { initCatAnimation } from "./ui/catAnimation.js";
 import { initCatCardsList } from "./ui/lootBoxCards.js";
 import { buildReelIds, renderReel, spinReel } from "./ui/lootboxreel.js";
+import { initSkinsModal } from "./ui/skinsModal.js";
 
 load();
 if (state.pendingReward) claimReward();
@@ -79,6 +80,26 @@ function finishSpin() {
   render();
 }
 
+initSkinsModal();
+
+window.addEventListener("skinSelected", (event) => {
+  const { skinId, imageUrl } = event.detail;
+  const sprite = document.getElementById("clickBtn");
+
+  if (!sprite) {
+    return;
+  }
+
+  sprite.style.backgroundImage = `url("${imageUrl}")`;
+  sprite.style.backgroundSize = "300% 400%";
+  sprite.style.backgroundPosition = "0 0";
+  sprite.style.backgroundRepeat = "no-repeat";
+
+  state.equippedSkin = skinId;
+
+  save();
+});
+
 let last = Date.now();
 
 setInterval(() => {
@@ -92,4 +113,10 @@ setInterval(() => {
 
 setInterval(save, 5000);
 
-//window.addEventListener("beforeunload", save);
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "hidden") {
+    save();
+  }
+});
+
+window.addEventListener("beforeunload", save);
