@@ -50,8 +50,6 @@ export function spinReel() {
   ribbon.style.transform = "translateX(0)";
   ribbon.offsetWidth;
 
-  console.log(targetPosition, card.offsetWidth, view.offsetWidth);
-
   ribbon.style.transition = "transform 5s cubic-bezier(0.1, 0.7, 0.1, 1)";
   ribbon.style.transform = `translateX(-${targetPosition}px)`;
 }

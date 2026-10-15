@@ -15,7 +15,7 @@ load();
 if (state.pendingReward) claimReward();
 updateEnergy();
 initGenerators(render);
-initCatCardsList();
+
 initCatAnimation();
 render();
 
