@@ -30,7 +30,6 @@
             <span class="click-power">1</span>
           </p>
         </div>
-
         <div class="right">
           <div class="upgrade">
             <div class="left-section">
@@ -138,9 +137,19 @@
     </div>
 
     <span class="dust-count">0</span> dust amount <br />
-    <button id="openBoxBtn"></button>
     <p id="lootResult"></p>
 
+    <span class="dust-count">0</span> dust amount <br />
+    <p id="lootResult"></p>
+    <button id="boxBtn">OPEN BOX</button>
+    <dialog id="dialog">
+      <button id="openBoxBtn">OPEN BOX</button>
+      <button id="closeBtn">CLOSE BOX</button>
+      <div class="lootbox-container">
+        <div class="lootbox-line"></div>
+        <div class="lootbox-ribbon"></div>
+      </div>
+    </dialog>
     <script type="module" src="./src/main.js"></script>
   </body>
 </html>

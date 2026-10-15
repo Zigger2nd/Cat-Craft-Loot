@@ -1,6 +1,7 @@
 import { state } from "../core/state.js";
 import { getClickCost, getClickPower } from "../core/economy.js";
 import { renderGenerators } from "../ui/generators.js";
+import { renderCards } from "./lootBoxCards.js";
 import { LOOTBOX, ENERGY } from "../config/balance.js";
 
 export function render() {
@@ -28,4 +29,5 @@ export function render() {
     state.energy < LOOTBOX.energyCost;
 
   renderGenerators();
+  renderCards();
 }

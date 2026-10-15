@@ -595,3 +595,92 @@ button {
     margin-left: 5px;
   }
 }
+
+.lootbox-container {
+  width: 600px;
+  overflow: hidden;
+  position: relative;
+  max-width: 100%;
+}
+
+.lootbox-ribbon {
+  display: flex;
+  width: max-content;
+}
+
+.lootbox-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  transform: translateX(-50%);
+  width: 5px;
+  background: white;
+  z-index: 1;
+}
+
+#catCardList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.card-img {
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  image-rendering: pixelated;
+  transform: scale(2);
+}
+
+.locked .card-img {
+  opacity: 0.4;
+  filter: brightness(0);
+}
+
+.lootbox-ribbon > * {
+  flex-shrink: 0;
+}
+
+.reel-card {
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-bottom: 4px solid var(--rarity-color, #888);
+}
+
+.rarity-common {
+  --rarity-color: #9aa7b5;
+}
+.rarity-rare {
+  --rarity-color: #00ffff;
+}
+.rarity-epic {
+  --rarity-color: #8a2be2;
+}
+.rarity-legendary {
+  --rarity-color: #ff8c00;
+}
+
+#boxBtn {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  z-index: 100;
+
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+
+  background-color: #e6a85c;
+  color: white;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
