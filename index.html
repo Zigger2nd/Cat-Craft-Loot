@@ -11,7 +11,7 @@
 
   <body>
     <button type="button" id="openSkinsBtn" class="skins-button">
-      My Skins
+      MY SKINS
     </button>
     <section class="game">
       <div class="main">
@@ -124,32 +124,62 @@
       </div>
     </div>
 
-    <div class="energy-display">
-      <div
-        class="energy-bar"
-        role="progressbar"
-        aria-label="Energy"
-        aria-valuemin="0"
-        aria-valuemax="10"
-        aria-valuenow="10"
-      ></div>
-      <span class="energy-count">10 / 10</span>
-    </div>
-
-    <span class="dust-count">0</span> dust amount <br />
-    <p id="lootResult"></p>
-    <button id="watchAddBtn">WATCHD ADD</button>
     <dialog id="adDialog">
       <video id="adVideo" src="/ad.webm" muted playsinline></video>
       <p>Watching ad...</p>
     </dialog>
-    <button id="boxBtn">OPEN BOX</button>
-    <dialog id="dialog">
-      <button id="openBoxBtn">OPEN BOX</button>
-      <button id="closeBtn">CLOSE BOX</button>
-      <div class="lootbox-container">
-        <div class="lootbox-line"></div>
-        <div class="lootbox-ribbon"></div>
+
+    <dialog id="dialog" class="lootbox-modal">
+      <div class="lootbox-modal-content">
+        <div class="lootbox-modal-header">
+          <div class="lootbox-header-info">
+            <h2>Open a Loot Box</h2>
+
+            <div class="energy-ad-row">
+              <div class="energy-display">
+                <div
+                  class="energy-bar"
+                  role="progressbar"
+                  aria-label="Energy"
+                  aria-valuemin="0"
+                  aria-valuemax="10"
+                  aria-valuenow="10"
+                ></div>
+              </div>
+              <span class="energy-count">10 / 10</span>
+
+              <button type="button" class="watch-ad-btn" id="watchAddBtn">
+                Watch AD
+              </button>
+              <dialog id="adDialog">
+                <video id="adVideo" src="/ad.webm" muted playsinline></video>
+                <p>Watching ad...</p>
+              </dialog>
+            </div>
+          </div>
+
+          <button
+            id="closeBtn"
+            class="close-lootbox-btn"
+            aria-label="Close loot box"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div class="lootbox-container">
+          <div class="lootbox-line"></div>
+          <div class="lootbox-ribbon"></div>
+        </div>
+
+        <button id="openBoxBtn" class="open-lootbox-btn">OPEN BOX</button>
+
+        <p class="dust-display">
+          Dust: <span class="dust-count">0</span>
+          <img src="/skins/dust.png" alt="Dust" class="dust-icon" />
+        </p>
+
+        <p id="lootResult"></p>
       </div>
     </dialog>
     <dialog id="offlineDialog">

@@ -11,6 +11,7 @@ import { buildReelIds, renderReel, spinReel } from "./ui/lootboxreel.js";
 import { initSkinsModal } from "./ui/skinsModal.js";
 import { applyOfflineGains } from "./core/offline.js";
 import { initAdModal } from "./ui/adModal.js";
+import { initLootboxModal } from "./ui/lootboxModal.js";
 
 load();
 if (state.pendingReward) claimReward();
@@ -69,12 +70,22 @@ document.getElementById("openBoxBtn").addEventListener("click", () => {
   }
 
   const res = openBox();
-  if (!res.ok) return;
+
+  if (!res.ok) {
+    return;
+  }
+
   renderReel(buildReelIds(res.id));
+
   isSpinning = true;
+  dialog.dataset.spinning = "true";
+
   const ribbon = document.querySelector(".lootbox-ribbon");
+
   ribbon.addEventListener("transitionend", finishSpin, { once: true });
+
   spinReel();
+
   spinTimer = setTimeout(finishSpin, 5200);
 });
 
@@ -83,8 +94,14 @@ function finishSpin() {
     return;
   }
   clearTimeout(spinTimer);
-  isSpinning = false;
+
   const result = claimReward();
+
+  if (!result.ok) {
+    isSpinning = false;
+    dialog.dataset.spinning = "false";
+    return;
+  }
   if (!result.ok) {
     return;
   }
@@ -93,10 +110,28 @@ function finishSpin() {
     ? `${skin.name} (${skin.rarity}): duplicate, +${result.dust} dust`
     : `New skin: ${skin.name} (${skin.rarity})!`;
   render();
+
+  document.getElementById("lootResult").textContent =
+    document.getElementById("lootResult").textContent;
+
+  isSpinning = false;
+  dialog.dataset.spinning = "false";
 }
+
+function loadReelPreview() {
+  const previewIds = Array.from({ length: 45 }, () => {
+    const ids = Object.keys(SKINS);
+    return ids[Math.floor(Math.random() * ids.length)];
+  });
+
+  renderReel(previewIds);
+}
+
+window.addEventListener("lootboxOpening", loadReelPreview);
 
 initSkinsModal();
 initAdModal(render);
+initLootboxModal();
 
 window.addEventListener("skinSelected", (event) => {
   const { skinId, imageUrl } = event.detail;
