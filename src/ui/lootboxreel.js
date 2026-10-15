@@ -43,13 +43,23 @@ export function spinReel() {
   const card = document.querySelector(".reel-card");
   const view = document.querySelector(".lootbox-container");
 
+  if (!card || !view || !ribbon) {
+    return;
+  }
+
+  const cardWidth = card.offsetWidth;
+  const gap = 8;
+  const winningIndex = 35;
+
   const targetPosition =
-    35 * card.offsetWidth + card.offsetWidth / 2 - view.offsetWidth / 2;
+    winningIndex * (cardWidth + gap) + cardWidth / 2 - view.clientWidth / 2;
 
   ribbon.style.transition = "none";
   ribbon.style.transform = "translateX(0)";
+
   ribbon.offsetWidth;
 
   ribbon.style.transition = "transform 5s cubic-bezier(0.1, 0.7, 0.1, 1)";
+
   ribbon.style.transform = `translateX(-${targetPosition}px)`;
 }

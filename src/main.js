@@ -10,6 +10,7 @@ import { initCatAnimation } from "./ui/catAnimation.js";
 import { initCatCardsList } from "./ui/lootBoxCards.js";
 import { buildReelIds, renderReel, spinReel } from "./ui/lootboxreel.js";
 import { initSkinsModal } from "./ui/skinsModal.js";
+import { initLootboxModal } from "./ui/lootboxModal.js";
 
 load();
 if (state.pendingReward) claimReward();
@@ -35,31 +36,29 @@ let isSpinning = false;
 let spinTimer = null;
 
 const dialog = document.getElementById("dialog");
-document.getElementById("boxBtn").addEventListener("click", () => {
-  dialog.showModal();
-});
-
-closeBtn.addEventListener("click", () => {
-  if (isSpinning) return;
-  dialog.close();
-});
 
 document.getElementById("openBoxBtn").addEventListener("click", () => {
   if (isSpinning) {
     return;
   }
 
-  dialog.addEventListener("cancel", (e) => {
-    if (isSpinning) e.preventDefault();
-  });
-
   const res = openBox();
-  if (!res.ok) return;
+
+  if (!res.ok) {
+    return;
+  }
+
   renderReel(buildReelIds(res.id));
+
   isSpinning = true;
+  dialog.dataset.spinning = "true";
+
   const ribbon = document.querySelector(".lootbox-ribbon");
+
   ribbon.addEventListener("transitionend", finishSpin, { once: true });
+
   spinReel();
+
   spinTimer = setTimeout(finishSpin, 5200);
 });
 
@@ -68,8 +67,14 @@ function finishSpin() {
     return;
   }
   clearTimeout(spinTimer);
-  isSpinning = false;
+
   const result = claimReward();
+
+  if (!result.ok) {
+    isSpinning = false;
+    dialog.dataset.spinning = "false";
+    return;
+  }
   if (!result.ok) {
     return;
   }
@@ -78,9 +83,27 @@ function finishSpin() {
     ? `${skin.name} (${skin.rarity}): duplicate, +${result.dust} dust`
     : `New skin: ${skin.name} (${skin.rarity})!`;
   render();
+
+  document.getElementById("lootResult").textContent =
+    document.getElementById("lootResult").textContent;
+
+  isSpinning = false;
+  dialog.dataset.spinning = "false";
 }
 
+function loadReelPreview() {
+  const previewIds = Array.from({ length: 45 }, () => {
+    const ids = Object.keys(SKINS);
+    return ids[Math.floor(Math.random() * ids.length)];
+  });
+
+  renderReel(previewIds);
+}
+
+window.addEventListener("lootboxOpening", loadReelPreview);
+
 initSkinsModal();
+initLootboxModal();
 
 window.addEventListener("skinSelected", (event) => {
   const { skinId, imageUrl } = event.detail;

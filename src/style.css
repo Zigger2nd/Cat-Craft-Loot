@@ -492,29 +492,6 @@ button {
   text-align: center;
 }
 
-.energy-display {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.energy-bar {
-  width: 183px;
-  height: 45px;
-  flex: 0 0 183px;
-
-  background-image: url("../public/skins/energy-bar.png");
-  background-repeat: no-repeat;
-  background-size: 576px 96px;
-
-  image-rendering: pixelated;
-}
-
-.energy-count {
-  min-width: 50px;
-  white-space: nowrap;
-}
-
 @media (max-width: 480px) {
   .skins-modal-content {
     padding: 18px;
@@ -597,15 +574,24 @@ button {
 }
 
 .lootbox-container {
-  width: 600px;
-  overflow: hidden;
   position: relative;
+  width: 600px;
   max-width: 100%;
+  height: 130px;
+  overflow: hidden;
+  margin: 20px auto;
+  background: #fff;
+  border: 3px solid #e6a85c;
+  border-radius: 10px;
+  box-sizing: border-box;
 }
 
 .lootbox-ribbon {
   display: flex;
+  align-items: center;
   width: max-content;
+  height: 100%;
+  gap: 8px;
 }
 
 .lootbox-line {
@@ -613,10 +599,52 @@ button {
   top: 0;
   left: 50%;
   height: 100%;
+  width: 4px;
   transform: translateX(-50%);
-  width: 5px;
-  background: white;
-  z-index: 1;
+  background: #e65c4f;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.reel-card {
+  box-sizing: border-box;
+  width: 100px;
+  height: 110px;
+  flex: 0 0 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--rarity-color, #888);
+  border-bottom: 5px solid var(--rarity-color, #888);
+  border-radius: 8px;
+  background: #fff8ed;
+}
+
+.rarity-common {
+  --rarity-color: #9aa7b5;
+}
+
+.rarity-rare {
+  --rarity-color: #00bcd4;
+}
+
+.rarity-epic {
+  --rarity-color: #8a2be2;
+}
+
+.rarity-legendary {
+  --rarity-color: #ff8c00;
+}
+
+.reel-card .card-img {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  image-rendering: pixelated;
+  transform: scale(2);
 }
 
 #catCardList {
@@ -625,13 +653,16 @@ button {
   gap: 10px;
 }
 
-.card-img {
-  width: 32px;
-  height: 32px;
+.lootbox-ribbon .card-img {
+  width: 64px;
+  height: 64px;
+
   background-repeat: no-repeat;
   background-position: 0 0;
+  background-size: 300% 400%;
+
   image-rendering: pixelated;
-  transform: scale(2);
+  transform: none;
 }
 
 .locked .card-img {
@@ -639,48 +670,221 @@ button {
   filter: brightness(0);
 }
 
-.lootbox-ribbon > * {
-  flex-shrink: 0;
-}
-
-.reel-card {
-  width: 96px;
-  height: 96px;
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  border-bottom: 4px solid var(--rarity-color, #888);
-}
-
-.rarity-common {
-  --rarity-color: #9aa7b5;
-}
-.rarity-rare {
-  --rarity-color: #00ffff;
-}
-.rarity-epic {
-  --rarity-color: #8a2be2;
-}
-.rarity-legendary {
-  --rarity-color: #ff8c00;
-}
-
 #boxBtn {
-  position: absolute;
-  top: 70px;
+  position: fixed;
+  top: 80px;
   right: 20px;
-  z-index: 100;
-
   padding: 10px 20px;
-  border: none;
+  border: 2px solid #e6a85c;
   border-radius: 8px;
-
-  background-color: #e6a85c;
+  background: #e6a85c;
   color: white;
-
   font-size: 16px;
   font-weight: bold;
-
   cursor: pointer;
   transition: background-color 0.2s;
+}
+
+#boxBtn:hover {
+  background: #d89440;
+}
+
+.lootbox-modal {
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+
+  padding: 25px;
+
+  background: #fff8ed;
+  color: #704b2b;
+
+  border: 3px solid #e6a85c;
+  border-radius: 16px;
+
+  box-shadow: 0 10px 30px rgb(0 0 0 / 25%);
+  box-sizing: border-box;
+}
+
+.lootbox-modal::backdrop {
+  background: rgb(0 0 0 / 60%);
+}
+
+.lootbox-modal-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.lootbox-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.lootbox-header-info {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.lootbox-header-info h2 {
+  margin: 0;
+  text-align: left;
+}
+
+.energy-ad-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+
+  width: 100%;
+  gap: 12px;
+}
+
+.energy-display {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+
+  flex-wrap: nowrap;
+  white-space: nowrap;
+
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #704b2b;
+}
+
+.energy-bar {
+  display: block;
+  width: 183px;
+  height: 45px;
+  flex: 0 0 183px;
+
+  background-image: url("../public/skins/energy-bar.png");
+  background-repeat: no-repeat;
+  background-size: 576px 96px;
+
+  image-rendering: pixelated;
+}
+
+.energy-count {
+  display: inline-block;
+  flex: 0 0 auto;
+  min-width: 0;
+  white-space: nowrap;
+  margin-left: -5px;
+}
+
+.watch-ad-btn {
+  flex-shrink: 0;
+  margin: 0 0 0 auto;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  background: #e6a85c;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.watch-ad-btn:hover {
+  background: #d89440;
+}
+
+.close-lootbox-btn {
+  flex-shrink: 0;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.open-lootbox-btn {
+  margin-top: 15px;
+}
+
+.dust-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 15px 0 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #704b2b;
+}
+
+.dust-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+#lootResult {
+  align-self: center;
+  text-align: center;
+  min-height: 24px;
+  margin: 8px 0 0;
+  text-align: center;
+  font-weight: bold;
+  color: #704b2b;
+}
+
+.close-lootbox-btn:hover {
+  background: #e6c9a5;
+}
+
+.open-lootbox-btn {
+  display: block;
+  margin: 20px auto 0;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  background: #e6a85c;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.open-lootbox-btn:hover {
+  background: #d89440;
+}
+
+@media (max-width: 600px) {
+  .lootbox-modal-content {
+    padding: 15px;
+  }
+
+  .lootbox-container {
+    height: 120px;
+  }
+
+  .reel-card {
+    width: 85px;
+    flex-basis: 85px;
+    height: 100px;
+  }
 }
