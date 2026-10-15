@@ -17,4 +17,4 @@ export const RARITIES = {
 export const MAXOFFLINETIME = 8 * 3600;
 
 export const AD_REWARD_ENERGY = 5;
-export const AD_COOLDOWN_SECONDS = 5;
+export const AD_COOLDOWN_SECONDS = 30;

@@ -1,7 +1,7 @@
 export const GENERATORS = {
   toy: {
     name: "Toy",
-    image: "./public/skins/ball.png",
+    image: "/skins/ball.png",
     baseCost: 150,
     growth: 1.15,
     cps: 0.1,
@@ -9,7 +9,7 @@ export const GENERATORS = {
 
   bowl: {
     name: "Bowl",
-    image: "./public/skins/food.png",
+    image: "/skins/food.png",
     baseCost: 1500,
     growth: 1.15,
     cps: 1,
@@ -17,7 +17,7 @@ export const GENERATORS = {
 
   bed: {
     name: "Bed",
-    image: "./public/skins/bed.png",
+    image: "/skins/bed.png",
     baseCost: 15000,
     growth: 1.15,
     cps: 8,
