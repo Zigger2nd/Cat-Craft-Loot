@@ -1,81 +1,64 @@
-import { state } from '../core/state.js';
-import { GENERATORS } from '../config/generators.js';
+import { state } from "../core/state.js";
+import { GENERATORS } from "../config/generators.js";
 
-import {
-    getGeneratorCost,
-    buyGenerator
-} from '../core/economy.js';
+import { getGeneratorCost, buyGenerator } from "../core/economy.js";
 
-
-const list = document.getElementById('generatorList');
-
+const list = document.getElementById("generatorList");
 
 export function initGenerators(onChange) {
+  if (!list) {
+    console.error("Generator list not found!");
+    return;
+  }
 
-    if (!list) {
-        console.error('Generator list not found!');
-        return;
-    }
+  for (const [id, generator] of Object.entries(GENERATORS)) {
+    const button = document.createElement("button");
 
-    for (const [id, generator] of Object.entries(GENERATORS)) {
+    button.dataset.id = id;
 
-        const button = document.createElement('button');
+    const image = document.createElement("img");
 
-        button.dataset.id = id;
+    image.src = generator.image;
+    image.alt = generator.name;
+    image.classList.add("generator-img");
 
-        const image = document.createElement('img');
+    const info = document.createElement("span");
 
-        image.src = generator.image;
-        image.alt = generator.name;
-        image.classList.add('generator-img');
+    info.classList.add("generator-info");
 
+    button.appendChild(image);
+    button.appendChild(info);
 
-        const info = document.createElement('span');
+    button.addEventListener("click", () => {
+      const purchased = buyGenerator(id);
 
-        info.classList.add('generator-info');
+      if (purchased) {
+        onChange();
+      }
+    });
 
-        button.appendChild(image);
-        button.appendChild(info);
+    list.appendChild(button);
+  }
 
-        button.addEventListener('click', () => {
-
-            const purchased = buyGenerator(id);
-
-            if (purchased) {
-                onChange();
-            }
-
-        });
-
-        list.appendChild(button);
-
-    }
-
-    renderGenerators();
-
+  renderGenerators();
 }
 
 export function renderGenerators() {
+  if (!list) {
+    return;
+  }
 
-    if (!list) {
-        return;
-    }
+  for (const button of list.children) {
+    const id = button.dataset.id;
+    const generator = GENERATORS[id];
 
-    for (const button of list.children) {
+    const level = state.generators[id] ?? 0;
+    const cost = getGeneratorCost(id);
 
-        const id = button.dataset.id;
-        const generator = GENERATORS[id];
+    const info = button.querySelector(".generator-info");
 
-        const level = state.generators[id] ?? 0;
-        const cost = getGeneratorCost(id);
+    info.textContent = `${generator.name} (${level}) - Cost: ${cost}`;
 
-        const info = button.querySelector('.generator-info');
-
-        info.textContent =
-            `${generator.name} (${level}) - Cost: ${cost}`;
-
-        button.disabled = state.treats < cost;
-
-    }
-
+    button.disabled = state.treats < cost;
+  }
 }

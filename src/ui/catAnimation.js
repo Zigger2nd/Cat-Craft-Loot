@@ -11,30 +11,26 @@ let frame = 0;
 let animationStarted = false;
 
 export function initCatAnimation() {
+  if (animationStarted) {
+    return;
+  }
 
-    if (animationStarted) {
-        return;
-    }
+  const sprite = document.querySelector(".sprite");
 
-    const sprite = document.querySelector('.sprite');
+  if (!sprite) {
+    console.error("Cat sprite not found!");
+    return;
+  }
 
-    if (!sprite) {
-        console.error('Cat sprite not found!');
-        return;
-    }
+  animationStarted = true;
 
-    animationStarted = true;
+  setInterval(() => {
+    const column = frame % columns;
 
-    setInterval(() => {
+    const row = Math.floor(frame / columns);
 
-        const column = frame % columns;
+    sprite.style.backgroundPosition = `-${column * frameWidth}px -${row * frameHeight}px`;
 
-        const row = Math.floor(frame / columns);
-
-        sprite.style.backgroundPosition =
-            `-${column * frameWidth}px -${row * frameHeight}px`;
-
-        frame = (frame + 1) % totalFrames;
-
-    }, 100);
+    frame = (frame + 1) % totalFrames;
+  }, 100);
 }
