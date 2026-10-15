@@ -1,5 +1,6 @@
 import { SKINS } from "../config/skins.js";
 import { rollSkin } from "../loot/lootBox.js";
+import { assetUrl } from "../config/paths.js";
 
 const ribbon = document.querySelector(".lootbox-ribbon");
 
@@ -20,7 +21,7 @@ function createCard(id) {
   const image = document.createElement("div");
 
   image.classList.add("card-img");
-  image.style.backgroundImage = `url(${skin.img})`;
+  image.style.backgroundImage = `url("${assetUrl(skin.img)}")`;
   card.classList.add("reel-card");
   card.classList.add(`rarity-${skin.rarity}`);
   card.appendChild(image);

@@ -1,30 +1,6 @@
 import { state } from "../core/state.js";
-
-const skinImages = {
-  common: import.meta.glob("/public/skins/cats/common/*.png", {
-    eager: true,
-    query: "?url",
-    import: "default",
-  }),
-
-  rare: import.meta.glob("/public/skins/cats/rare/*.png", {
-    eager: true,
-    query: "?url",
-    import: "default",
-  }),
-
-  epic: import.meta.glob("/public/skins/cats/epic/*.png", {
-    eager: true,
-    query: "?url",
-    import: "default",
-  }),
-
-  legendary: import.meta.glob("/public/skins/cats/legendary/*.png", {
-    eager: true,
-    query: "?url",
-    import: "default",
-  }),
-};
+import { SKINS } from "../config/skins.js";
+import { assetUrl } from "../config/paths.js";
 
 const rarities = ["common", "rare", "epic", "legendary"];
 
@@ -104,27 +80,25 @@ export function initSkinsModal() {
 function renderSkins(container) {
   container.replaceChildren();
 
-  const images = skinImages[selectedRarity] ?? {};
-  const imageEntries = Object.entries(images);
+  const entries = Object.entries(SKINS).filter(
+    ([, skin]) => skin.rarity === selectedRarity,
+  );
 
-  if (imageEntries.length === 0) {
+  if (entries.length === 0) {
     const message = document.createElement("p");
-
     message.classList.add("no-owned-skins");
     message.textContent = `No ${selectedRarity} skins found.`;
-
     container.appendChild(message);
     return;
   }
 
   const ownedSkins = state.ownedSkins ?? [];
-  const equippedSkin = state.equippedSkin ?? "catOrigin";
+  const equippedSkin = state.equippedSkin ?? "default";
 
-  for (const [filePath, imageUrl] of imageEntries) {
-    const filename = filePath.split("/").pop();
-    const skinId = filename.replace(/\.png$/i, "");
+  for (const [skinId, skin] of entries) {
+    const imageUrl = assetUrl(skin.img);
 
-    const skinName = skinId
+    const skinName = skin.name
       .replace(/([a-z])([A-Z])/g, "$1 $2")
       .replace(/[_-]/g, " ");
 
@@ -132,59 +106,40 @@ function renderSkins(container) {
     const isEquipped = equippedSkin === skinId;
 
     const card = document.createElement("button");
-
     card.type = "button";
     card.classList.add("owned-skin-card");
     card.classList.toggle("equipped", isEquipped);
     card.disabled = !isOwned;
-
     card.setAttribute(
       "aria-label",
       isOwned ? `Equip ${skinName}` : "Locked skin",
     );
-
-    if (isEquipped) {
-      card.setAttribute("aria-pressed", "true");
-    } else {
-      card.setAttribute("aria-pressed", "false");
-    }
+    card.setAttribute("aria-pressed", String(isEquipped));
 
     const preview = document.createElement("div");
-
     preview.classList.add("owned-skin-preview");
     preview.style.backgroundImage = `url("${imageUrl}")`;
     preview.style.backgroundPosition = "0 0";
     preview.style.backgroundSize = "300% 400%";
     preview.style.backgroundRepeat = "no-repeat";
-
-    if (!isOwned) {
-      preview.classList.add("skin-locked");
-    }
+    if (!isOwned) preview.classList.add("skin-locked");
 
     const name = document.createElement("p");
     name.textContent = isOwned ? skinName : "???";
 
     const rarity = document.createElement("span");
-
     rarity.classList.add("owned-skin-rarity");
     rarity.textContent =
       selectedRarity.charAt(0).toUpperCase() + selectedRarity.slice(1);
 
-    card.appendChild(preview);
-    card.appendChild(name);
-    card.appendChild(rarity);
+    card.append(preview, name, rarity);
 
     if (isOwned) {
       card.addEventListener("click", () => {
         state.equippedSkin = skinId;
 
         window.dispatchEvent(
-          new CustomEvent("skinSelected", {
-            detail: {
-              skinId,
-              imageUrl,
-            },
-          }),
+          new CustomEvent("skinSelected", { detail: { skinId, imageUrl } }),
         );
 
         renderSkins(container);
