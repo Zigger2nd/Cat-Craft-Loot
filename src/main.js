@@ -18,7 +18,7 @@ if (state.pendingReward) claimReward();
 const offlineGained = applyOfflineGains();
 updateEnergy();
 initGenerators(render);
-
+initSkinsModal();
 initCatAnimation();
 render();
 
@@ -130,7 +130,6 @@ function loadReelPreview() {
 
 window.addEventListener("lootboxOpening", loadReelPreview);
 
-initSkinsModal();
 initAdModal(render);
 initLootboxModal();
 
