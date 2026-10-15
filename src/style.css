@@ -619,12 +619,6 @@ button {
   z-index: 1;
 }
 
-#catCardList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
 .card-img {
   width: 32px;
   height: 32px;

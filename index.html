@@ -138,9 +138,11 @@
 
     <span class="dust-count">0</span> dust amount <br />
     <p id="lootResult"></p>
-
-    <span class="dust-count">0</span> dust amount <br />
-    <p id="lootResult"></p>
+    <button id="watchAddBtn">WATCHD ADD</button>
+    <dialog id="adDialog">
+      <video id="adVideo" src="/ad.webm" muted playsinline></video>
+      <p>Watching ad...</p>
+    </dialog>
     <button id="boxBtn">OPEN BOX</button>
     <dialog id="dialog">
       <button id="openBoxBtn">OPEN BOX</button>
@@ -149,6 +151,14 @@
         <div class="lootbox-line"></div>
         <div class="lootbox-ribbon"></div>
       </div>
+    </dialog>
+    <dialog id="offlineDialog">
+      <h2>Welcome back!</h2>
+      <p>
+        While you were away, your cats earned
+        <span id="offline-amount">0</span> treats.
+      </p>
+      <button id="offlineCloseBtn">Nice!</button>
     </dialog>
     <script type="module" src="./src/main.js"></script>
   </body>

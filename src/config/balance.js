@@ -13,3 +13,8 @@ export const RARITIES = {
   epic: "purple",
   legendary: "orange",
 };
+
+export const MAXOFFLINETIME = 8 * 3600;
+
+export const AD_REWARD_ENERGY = 5;
+export const AD_COOLDOWN_SECONDS = 5;

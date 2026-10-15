@@ -1,7 +1,6 @@
 import { state } from "../core/state.js";
 import { getClickCost, getClickPower } from "../core/economy.js";
 import { renderGenerators } from "../ui/generators.js";
-import { renderCards } from "./lootBoxCards.js";
 import { LOOTBOX, ENERGY } from "../config/balance.js";
 
 export function render() {
@@ -28,6 +27,9 @@ export function render() {
   document.getElementById("openBoxBtn").disabled =
     state.energy < LOOTBOX.energyCost;
 
+  let secondsLeft = Math.ceil((state.adReadyAt - Date.now()) / 1000);
+
+  document.getElementById("watchAddBtn").disabled = secondsLeft > 0;
+
   renderGenerators();
-  renderCards();
 }
