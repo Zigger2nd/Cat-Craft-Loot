@@ -51,9 +51,16 @@ export function spinReel() {
   const cardWidth = card.offsetWidth;
   const gap = 8;
   const winningIndex = 35;
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  let positionRandom = getRandomInt(-55, 55);
 
   const targetPosition =
-    winningIndex * (cardWidth + gap) + cardWidth / 2 - view.clientWidth / 2;
+    winningIndex * (cardWidth + gap) +
+    cardWidth / 2 -
+    view.clientWidth / 2 +
+    positionRandom;
 
   ribbon.style.transition = "none";
   ribbon.style.transform = "translateX(0)";

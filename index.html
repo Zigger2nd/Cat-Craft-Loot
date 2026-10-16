@@ -13,6 +13,8 @@
     <button type="button" id="openSkinsBtn" class="skins-button">
       MY SKINS
     </button>
+    <button id="boxBtn">OPEN BOX</button>
+    <button id="openDailyBtn" class="open-daily-btn">OPEN DAILY LIST</button>
     <section class="game">
       <div class="main">
         <div class="left">
@@ -123,7 +125,6 @@
         <div id="ownedSkinsList" class="owned-skins-list"></div>
       </div>
     </div>
-    <button id="boxBtn">OPEN BOX</button>
     <dialog id="adDialog">
       <video id="adVideo" src="/ad.webm" muted playsinline></video>
       <p>Watching ad...</p>
@@ -173,7 +174,6 @@
         </div>
 
         <button id="openBoxBtn" class="open-lootbox-btn">OPEN BOX</button>
-
         <p class="dust-display">
           Dust: <span class="dust-count">0</span>
           <img src="/skins/dust.png" alt="Dust" class="dust-icon" />
@@ -181,6 +181,12 @@
 
         <p id="lootResult"></p>
       </div>
+    </dialog>
+    <dialog id="dailyRewardDialog">
+      <h2>Daily reward</h2>
+      <div id="dailyRewardList"></div>
+      <button id="claimDailyButton">Claim</button>
+      <button id="dailyRewardCloseBtn">Close</button>
     </dialog>
     <dialog id="offlineDialog">
       <h2>Welcome back!</h2>

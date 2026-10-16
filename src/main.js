@@ -12,6 +12,8 @@ import { initSkinsModal } from "./ui/skinsModal.js";
 import { applyOfflineGains } from "./core/offline.js";
 import { initAdModal } from "./ui/adModal.js";
 import { initLootboxModal } from "./ui/lootboxModal.js";
+import { initDailyModal } from "./ui/dailyModal.js";
+import { initDailyList } from "./ui/dailyRewards.js";
 
 load();
 if (state.pendingReward) claimReward();
@@ -35,6 +37,9 @@ if (offlineGained.gained > 0 && offlineGained.elapsed > 60) {
   offlineDialog.showModal();
 }
 
+initDailyList();
+initDailyModal(render);
+
 loadReelPreview();
 document.getElementById("offlineCloseBtn").addEventListener("click", () => {
   offlineDialog.close();
@@ -50,19 +55,6 @@ document.getElementById("buyClickBtn").addEventListener("click", () => {
   buyClick();
 
   render();
-});
-
-document.getElementById("boxBtn").addEventListener("click", () => {
-  dialog.showModal();
-});
-
-document.getElementById("closeBtn").addEventListener("click", () => {
-  if (isSpinning) return;
-  dialog.close();
-});
-
-document.getElementById("dialog").addEventListener("cancel", (e) => {
-  if (isSpinning) e.preventDefault();
 });
 
 document.getElementById("openBoxBtn").addEventListener("click", () => {
