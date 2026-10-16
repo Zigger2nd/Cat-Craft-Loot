@@ -1,6 +1,6 @@
 export const ENERGY = { max: 10, regenSeconds: 30 };
 export const LOOTBOX = { energyCost: 5 };
-export const LOOT_WEIGHTS = { common: 60, rare: 25, epic: 12, legendary: 3 };
+export const LOOT_WEIGHTS = { common: 60, rare: 34, epic: 5, legendary: 1 };
 export const DUST_FOR_DUPLICATE = {
   common: 5,
   rare: 15,

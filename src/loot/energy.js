@@ -11,7 +11,7 @@ const ENERGY_STATES = [
 
 export function updateEnergy() {
   const now = Date.now();
-  const stepMs = ENERGY.regenSeconds * 1000;
+  const stepMs = ENERGY.regenSeconds * 10;
 
   if (!state.energyUpdatedAt) {
     state.energyUpdatedAt = now;
