@@ -33,7 +33,7 @@ export function load() {
     state.generators = {};
   }
 
-  for (const id of ["toy", "bowl", "tower"]) {
+  for (const id of ["toy", "bowl", "bed"]) {
     const level = Number(state.generators[id] ?? 0);
 
     state.generators[id] = Number.isInteger(level) && level >= 0 ? level : 0;

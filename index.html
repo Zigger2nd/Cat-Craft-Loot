@@ -29,11 +29,20 @@
             Treats per click:
             <span class="click-power">1</span>
           </p>
+
+          <p>
+            Treats per second:
+            <span id="totalCps">0</span>
+          </p>
         </div>
         <div class="right">
           <div class="upgrade">
             <div class="left-section">
-              <img src="/skins/click.png" alt="Clicker" class="clicker-img" />
+              <img
+                src="/skins/clicker-white.png"
+                alt="Clicker"
+                class="clicker-img"
+              />
             </div>
 
             <div class="mid-section">
@@ -63,10 +72,6 @@
                 per click
               </p>
             </div>
-
-            <button type="button" id="buyClickBtn" class="upgrade-button">
-              Buy upgrade
-            </button>
           </div>
 
           <div class="generator-section">
@@ -182,13 +187,35 @@
         <p id="lootResult"></p>
       </div>
     </dialog>
+
+    <button id="openShopBtn" type="button">SHOP</button>
+
+    <dialog id="shopDialog" class="shop-dialog">
+      <div class="shop-content">
+        <header class="shop-header">
+          <h2>Background Shop</h2>
+
+          <button id="closeShopBtn" type="button" aria-label="Close shop">
+            &times;
+          </button>
+        </header>
+
+        <div class="shop-balance">
+          <span>Your dust:</span>
+          <strong id="shopDustCount">0</strong>
+          <img src="/skins/dust.png" alt="" class="dust-icon" />
+        </div>
+
+        <p class="shop-description">
+          Buy new backgrounds and give your cat a new place to relax!
+        </p>
+
+        <div id="backgroundList" class="background-list"></div>
+      </div>
+    </dialog>
     <dialog id="offlineDialog">
-      <h2>Welcome back!</h2>
-      <p>
-        While you were away, your cats earned
-        <span id="offline-amount">0</span> treats.
-      </p>
-      <button id="offlineCloseBtn">Nice!</button>
+      <p>You earned <span id="offline-amount">0</span> treats while away!</p>
+      <button id="offlineCloseBtn" type="button">Collect</button>
     </dialog>
     <script type="module" src="./src/main.js"></script>
   </body>

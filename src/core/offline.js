@@ -4,19 +4,34 @@ import { getCps } from "./economy.js";
 
 export function applyOfflineGains() {
   const now = Date.now();
+  const previousLastSeen = Number(state.lastSeen);
 
-  if (!state.lastSeen) {
+  if (
+    !Number.isFinite(previousLastSeen) ||
+    previousLastSeen <= 0 ||
+    previousLastSeen > now
+  ) {
     state.lastSeen = now;
+
+    return {
+      gained: 0,
+      elapsed: 0,
+    };
   }
 
-  let gained;
-  let rawSeconds = (now - state.lastSeen) / 1000;
+  const rawSeconds = (now - previousLastSeen) / 1000;
+
   const elapsed = Math.min(Math.max(0, rawSeconds), MAXOFFLINETIME);
 
-  gained = elapsed * getCps();
+  const cps = getCps();
+  const gained = elapsed * cps;
+
   state.treats += gained;
 
   state.lastSeen = now;
 
-  return { gained, elapsed };
+  return {
+    gained,
+    elapsed,
+  };
 }
