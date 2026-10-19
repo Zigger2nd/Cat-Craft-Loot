@@ -16,6 +16,9 @@ import { initShop } from "./ui/shop.js";
 import { initDailyModal } from "./ui/dailyModal.js";
 import { initDailyList } from "./ui/dailyRewards.js";
 import { assetUrl } from "./config/paths.js";
+import { initInstructions } from "./ui/instructions.js";
+import { showClickEffect } from "./ui/clickEffect.js";
+import { showSkinReward } from "./ui/skinReward.js";
 
 load();
 
@@ -54,6 +57,7 @@ function applyEquippedSkin() {
   sprite.style.backgroundRepeat = "no-repeat";
 }
 
+initInstructions();
 initGenerators(render);
 initShop(render);
 initSkinsModal();
@@ -93,6 +97,12 @@ if (clickBtn) {
   clickBtn.addEventListener("click", () => {
     clickCat();
     render();
+
+    const clickPower = Number(
+      document.querySelector(".click-power")?.textContent ?? 1,
+    );
+
+    showClickEffect(event, clickPower);
   });
 }
 const clickerCard = document.querySelector(".upgrade");
@@ -210,6 +220,13 @@ function finishSpin() {
     lootResult.textContent = result.duplicate
       ? `${skin.name} (${skin.rarity}): duplicate, +${result.dust} dust`
       : `New skin: ${skin.name} (${skin.rarity})!`;
+
+    if (!result.duplicate) {
+      showSkinReward({
+        ...skin,
+        image: assetUrl(skin.img),
+      });
+    }
   }
 
   isSpinning = false;

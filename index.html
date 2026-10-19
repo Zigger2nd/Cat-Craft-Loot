@@ -22,6 +22,16 @@
 
     <button type="button" id="openShopBtn">SHOP</button>
 
+    <button
+      type="button"
+      id="openInstructionsBtn"
+      class="instructions-button"
+      aria-label="Game instructions"
+      title="Game instructions"
+    >
+      ?
+    </button>
+
     <section class="game">
       <div class="main">
         <div class="left">
@@ -46,7 +56,7 @@
         </div>
 
         <div class="right">
-          <div class="upgrade">
+          <div class="upgrade" id="buyClickBtn" role="button" tabindex="0">
             <div class="left-section">
               <img
                 src="/skins/clicker-white.png"
@@ -82,10 +92,6 @@
                 per click
               </p>
             </div>
-
-            <button type="button" id="buyClickBtn" class="upgrade-button">
-              Buy upgrade
-            </button>
           </div>
 
           <div class="generator-section">
@@ -249,6 +255,108 @@
       </p>
 
       <button type="button" id="offlineCloseBtn">Nice!</button>
+    </dialog>
+
+    <dialog id="instructionsDialog" class="instructions-dialog">
+      <div class="instructions-content">
+        <div class="instructions-header">
+          <h2>How to Play</h2>
+
+          <button
+            type="button"
+            id="closeInstructionsBtn"
+            class="close-instructions-btn"
+            aria-label="Close instructions"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div class="instructions-body">
+          <p>
+            Welcome to Cat Clicker! Take care of your cat and collect treats.
+          </p>
+
+          <h3>Collect Treats</h3>
+          <p>
+            Click your cat to earn treats. Each click gives you treats according
+            to your current treats-per-click level.
+          </p>
+
+          <h3>Buy Upgrades</h3>
+          <p>Purchase clicker upgrades to earn more treats with every click.</p>
+
+          <h3>Cat Generators</h3>
+          <p>
+            Buy toys, bowls, and beds to generate treats automatically over
+            time. Each generator produces a different amount of treats per
+            second.
+          </p>
+
+          <h3>Open Loot Boxes</h3>
+          <p>
+            Use energy to open loot boxes and collect cat skins. Duplicate skins
+            can reward you with dust.
+          </p>
+
+          <h3>Collect Skins & Backgrounds</h3>
+          <p>
+            View your collected skins in My Skins and visit the Shop to unlock
+            new backgrounds.
+          </p>
+
+          <h3>Daily Rewards</h3>
+          <p>Check the Daily List regularly to claim your rewards.</p>
+        </div>
+
+        <button type="button" id="startPlayingBtn" class="start-playing-btn">
+          Let's Play!
+        </button>
+      </div>
+    </dialog>
+
+    <dialog id="skinRewardDialog" class="skin-reward-dialog">
+      <div class="skin-reward-content">
+        <div class="reward-confetti" aria-hidden="true">
+          <span>✨</span>
+          <span>⭐</span>
+          <span>🎉</span>
+          <span>✨</span>
+          <span>🌟</span>
+          <span>🎊</span>
+          <span>⭐</span>
+          <span>✨</span>
+        </div>
+
+        <button
+          type="button"
+          id="closeSkinRewardBtn"
+          class="close-skin-reward"
+          aria-label="Close reward"
+        >
+          &times;
+        </button>
+
+        <p class="reward-subtitle">YOU GOT SOMETHING SPECIAL!</p>
+
+        <h2 class="reward-title">CONGRATULATIONS!</h2>
+
+        <div class="reward-sparkle" aria-hidden="true">✦</div>
+
+        <div class="reward-skin-preview">
+          <div id="rewardSkinImage" class="card-img"></div>
+        </div>
+
+        <p class="reward-label">NEW SKIN UNLOCKED</p>
+
+        <h3 id="rewardSkinName">Cat Skin</h3>
+
+        <p id="rewardSkinRarity" class="reward-rarity">COMMON</p>
+
+        <button type="button" id="claimSkinRewardBtn" class="claim-skin-reward">
+          AWESOME!
+        </button>
+      </div>
     </dialog>
 
     <script type="module" src="./src/main.js"></script>
