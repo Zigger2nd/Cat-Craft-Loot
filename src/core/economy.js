@@ -56,11 +56,13 @@ export function buyGenerator(id) {
 }
 
 export function getCps() {
-  let total = 0;
+  let totalCps = 0;
 
   for (const [id, generator] of Object.entries(GENERATORS)) {
-    total += (state.generators[id] ?? 0) * generator.cps;
+    const owned = state.generators[id] ?? 0;
+
+    totalCps += owned * generator.cps;
   }
 
-  return total;
+  return totalCps;
 }

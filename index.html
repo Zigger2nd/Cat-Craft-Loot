@@ -13,8 +13,15 @@
     <button type="button" id="openSkinsBtn" class="skins-button">
       MY SKINS
     </button>
-    <button id="boxBtn">OPEN BOX</button>
-    <button id="openDailyBtn" class="open-daily-btn">OPEN DAILY LIST</button>
+
+    <button type="button" id="boxBtn">OPEN BOX</button>
+
+    <button type="button" id="openDailyBtn" class="open-daily-btn">
+      OPEN DAILY LIST
+    </button>
+
+    <button type="button" id="openShopBtn">SHOP</button>
+
     <section class="game">
       <div class="main">
         <div class="left">
@@ -31,11 +38,21 @@
             Treats per click:
             <span class="click-power">1</span>
           </p>
+
+          <p>
+            Treats per second:
+            <span id="totalCps">0</span>
+          </p>
         </div>
+
         <div class="right">
           <div class="upgrade">
             <div class="left-section">
-              <img src="/skins/click.png" alt="Clicker" class="clicker-img" />
+              <img
+                src="/skins/clicker-white.png"
+                alt="Clicker"
+                class="clicker-img"
+              />
             </div>
 
             <div class="mid-section">
@@ -125,6 +142,7 @@
         <div id="ownedSkinsList" class="owned-skins-list"></div>
       </div>
     </div>
+
     <dialog id="adDialog">
       <video id="adVideo" src="/ad.webm" muted playsinline></video>
       <p>Watching ad...</p>
@@ -147,19 +165,17 @@
                   aria-valuenow="10"
                 ></div>
               </div>
+
               <span class="energy-count">10 / 10</span>
 
               <button type="button" class="watch-ad-btn" id="watchAddBtn">
                 Watch AD
               </button>
-              <dialog id="adDialog">
-                <video id="adVideo" src="/ad.webm" muted playsinline></video>
-                <p>Watching ad...</p>
-              </dialog>
             </div>
           </div>
 
           <button
+            type="button"
             id="closeBtn"
             class="close-lootbox-btn"
             aria-label="Close loot box"
@@ -173,29 +189,68 @@
           <div class="lootbox-ribbon"></div>
         </div>
 
-        <button id="openBoxBtn" class="open-lootbox-btn">OPEN BOX</button>
+        <button type="button" id="openBoxBtn" class="open-lootbox-btn">
+          OPEN BOX
+        </button>
+
         <p class="dust-display">
-          Dust: <span class="dust-count">0</span>
+          Dust:
+          <span class="dust-count">0</span>
+
           <img src="/skins/dust.png" alt="Dust" class="dust-icon" />
         </p>
 
         <p id="lootResult"></p>
       </div>
     </dialog>
+
+    <dialog id="shopDialog" class="shop-dialog">
+      <div class="shop-content">
+        <header class="shop-header">
+          <h2>Background Shop</h2>
+
+          <button type="button" id="closeShopBtn" aria-label="Close shop">
+            &times;
+          </button>
+        </header>
+
+        <div class="shop-balance">
+          <span>Your dust:</span>
+
+          <strong id="shopDustCount">0</strong>
+
+          <img src="/skins/dust.png" alt="" class="dust-icon" />
+        </div>
+
+        <p class="shop-description">
+          Buy new backgrounds and give your cat a new place to relax!
+        </p>
+
+        <div id="backgroundList" class="background-list"></div>
+      </div>
+    </dialog>
+
     <dialog id="dailyRewardDialog">
       <h2>Daily reward</h2>
+
       <div id="dailyRewardList"></div>
-      <button id="claimDailyButton">Claim</button>
-      <button id="dailyRewardCloseBtn">Close</button>
+
+      <button type="button" id="claimDailyButton">Claim</button>
+
+      <button type="button" id="dailyRewardCloseBtn">Close</button>
     </dialog>
+
     <dialog id="offlineDialog">
       <h2>Welcome back!</h2>
+
       <p>
         While you were away, your cats earned
         <span id="offline-amount">0</span> treats.
       </p>
-      <button id="offlineCloseBtn">Nice!</button>
+
+      <button type="button" id="offlineCloseBtn">Nice!</button>
     </dialog>
+
     <script type="module" src="./src/main.js"></script>
   </body>
 </html>
