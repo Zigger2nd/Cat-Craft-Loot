@@ -304,6 +304,26 @@ button {
   cursor: not-allowed;
 }
 
+.open-daily-btn {
+  position: absolute;
+  top: 145px;
+  right: 20px;
+  z-index: 100;
+
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+
+  background-color: #e6a85c;
+  color: white;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
 .skins-button {
   position: absolute;
   top: 20px;
@@ -885,4 +905,36 @@ button {
     flex-basis: 85px;
     height: 100px;
   }
+}
+
+.daily-reward-card.claimed {
+  opacity: 0.5;
+}
+.daily-reward-card.today {
+  outline: 3px solid gold;
+}
+
+.daily-card-img {
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  image-rendering: pixelated;
+}
+
+.daily-reward-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#dailyRewardList {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  overflow-x: auto;
+}
+.daily-reward-card {
+  flex: 0 0 90px;
 }

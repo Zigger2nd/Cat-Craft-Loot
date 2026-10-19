@@ -11,4 +11,6 @@ export const state = {
   energyUpdatedAt: Date.now(),
   pendingReward: null,
   adReadyAt: 0,
+  dailyStreak: 0,
+  lastDailyClaim: "",
 };
