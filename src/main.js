@@ -14,6 +14,10 @@ import { initAdModal } from "./ui/adModal.js";
 import { initLootboxModal } from "./ui/lootboxModal.js";
 import { initDailyModal } from "./ui/dailyModal.js";
 import { initDailyList } from "./ui/dailyRewards.js";
+import { checkAchievements } from "./core/achievements.js";
+import { showToast } from "./ui/toast.js";
+import { initAchievementsList } from "./ui/achievementsList.js";
+import { initAchievementsModal } from "./ui/achievemenetsModal.js";
 
 load();
 if (state.pendingReward) claimReward();
@@ -22,7 +26,10 @@ updateEnergy();
 initGenerators(render);
 initSkinsModal();
 initCatAnimation();
+initAchievementsList();
+initAchievementsModal();
 render();
+notifyAchievements();
 
 let isSpinning = false;
 let spinTimer = null;
@@ -37,8 +44,22 @@ if (offlineGained.gained > 0 && offlineGained.elapsed > 60) {
   offlineDialog.showModal();
 }
 
+function notifyAchievements() {
+  const unlocked = checkAchievements();
+  for (const a of unlocked) {
+    showToast("Achievement unlocked!", a.name);
+  }
+  if (unlocked.length > 0) {
+    save();
+    render();
+  }
+}
+
 initDailyList();
-initDailyModal(render);
+initDailyModal(() => {
+  render();
+  notifyAchievements();
+});
 
 loadReelPreview();
 document.getElementById("offlineCloseBtn").addEventListener("click", () => {
@@ -47,7 +68,7 @@ document.getElementById("offlineCloseBtn").addEventListener("click", () => {
 
 document.getElementById("clickBtn").addEventListener("click", () => {
   clickCat();
-
+  notifyAchievements();
   render();
 });
 
@@ -95,17 +116,12 @@ function finishSpin() {
     dialog.dataset.spinning = "false";
     return;
   }
-  if (!result.ok) {
-    return;
-  }
   const skin = SKINS[result.id];
   document.getElementById("lootResult").textContent = result.duplicate
     ? `${skin.name} (${skin.rarity}): duplicate, +${result.dust} dust`
     : `New skin: ${skin.name} (${skin.rarity})!`;
   render();
-
-  document.getElementById("lootResult").textContent =
-    document.getElementById("lootResult").textContent;
+  notifyAchievements();
 
   isSpinning = false;
   dialog.dataset.spinning = "false";
@@ -144,11 +160,13 @@ window.addEventListener("skinSelected", (event) => {
 });
 
 let last = Date.now();
-
+setInterval(notifyAchievements, 2000);
 setInterval(() => {
   const now = Date.now();
   const elapsed = (now - last) / 1000;
-  state.treats += getCps() * elapsed;
+  let totasCps = getCps() * elapsed;
+  state.treats += totasCps;
+  state.stats.totalTreats += totasCps;
   last = now;
   updateEnergy();
   render();

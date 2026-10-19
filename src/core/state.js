@@ -13,4 +13,6 @@ export const state = {
   adReadyAt: 0,
   dailyStreak: 0,
   lastDailyClaim: "",
+  stats: { totalClicks: 0, boxesOpened: 0, totalTreats: 0 },
+  achievements: [],
 };

@@ -16,6 +16,7 @@ export function applyOfflineGains() {
 
   gained = elapsed * getCps();
   state.treats += gained;
+  state.stats.totalTreats += gained;
 
   state.lastSeen = now;
 
@@ -62,14 +63,17 @@ export function checkDailyCount() {
     state.lastDailyClaim === today || state.lastDailyClaim === yesterday;
   const canClaim = canClaimDaily();
 
-  let claimedCount = streakAlive ? state.dailyStreak : 0;
+  const currentStreak = streakAlive ? state.dailyStreak : 0;
+
+  let claimedCount = 0;
   let todayIndex = -1;
 
   if (canClaim) {
-    claimedCount = claimedCount % len;
+    claimedCount = currentStreak % len;
     todayIndex = claimedCount;
   } else {
-    claimedCount = ((claimedCount - 1) % len) + 1;
+    claimedCount = ((currentStreak - 1) % len) + 1;
+    todayIndex = -1;
   }
 
   return { claimedCount, todayIndex, canClaim };

@@ -15,6 +15,9 @@
     </button>
     <button id="boxBtn">OPEN BOX</button>
     <button id="openDailyBtn" class="open-daily-btn">OPEN DAILY LIST</button>
+    <button id="openAchievementsBtn" class="open-achievements-btn">
+      OPEN ACHIEVEMENTS LIST
+    </button>
     <section class="game">
       <div class="main">
         <div class="left">
@@ -196,6 +199,12 @@
       </p>
       <button id="offlineCloseBtn">Nice!</button>
     </dialog>
+    <dialog id="achievementsDialog">
+      <h2>Daily reward</h2>
+      <div id="achievementsList"></div>
+      <button id="achievementsCloseBtn">Close</button>
+    </dialog>
+    <div id="toastContainer" class="toast-container" popover="manual"></div>
     <script type="module" src="./src/main.js"></script>
   </body>
 </html>
