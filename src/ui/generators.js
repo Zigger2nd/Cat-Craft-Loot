@@ -11,10 +11,17 @@ export function initGenerators(onChange) {
     return;
   }
 
+  list.innerHTML = "";
+
   for (const [id, generator] of Object.entries(GENERATORS)) {
+    const row = document.createElement("div");
+    row.classList.add("generator-row");
+
     const button = document.createElement("button");
 
+    button.type = "button";
     button.dataset.id = id;
+    button.classList.add("generator-button");
 
     const image = document.createElement("img");
 
@@ -22,12 +29,45 @@ export function initGenerators(onChange) {
     image.alt = generator.name;
     image.classList.add("generator-img");
 
-    const info = document.createElement("span");
-
+    const info = document.createElement("div");
     info.classList.add("generator-info");
+
+    const name = document.createElement("span");
+    name.classList.add("generator-name");
+
+    const costInfo = document.createElement("div");
+    costInfo.classList.add("cost-info");
+
+    const costText = document.createElement("p");
+    costText.textContent = "Cost:";
+
+    const costValue = document.createElement("span");
+    costValue.classList.add("generator-cost");
+
+    const foodImage = document.createElement("img");
+    foodImage.src = "/skins/food.png";
+    foodImage.alt = "Treats";
+    foodImage.classList.add("food-img");
+
+    costInfo.appendChild(costText);
+    costInfo.appendChild(costValue);
+    costInfo.appendChild(foodImage);
+
+    info.appendChild(name);
+    info.appendChild(costInfo);
+
+    const level = document.createElement("span");
+    level.classList.add("generator-level");
 
     button.appendChild(image);
     button.appendChild(info);
+    button.appendChild(level);
+
+    const tooltip = document.createElement("div");
+    tooltip.classList.add("next-level-info");
+
+    const tooltipText = document.createElement("p");
+    tooltip.appendChild(tooltipText);
 
     button.addEventListener("click", () => {
       const purchased = buyGenerator(id);
@@ -37,7 +77,10 @@ export function initGenerators(onChange) {
       }
     });
 
-    list.appendChild(button);
+    row.appendChild(button);
+    row.appendChild(tooltip);
+
+    list.appendChild(row);
   }
 
   renderGenerators();
@@ -48,17 +91,24 @@ export function renderGenerators() {
     return;
   }
 
-  for (const button of list.children) {
+  for (const row of list.children) {
+    const button = row.querySelector(".generator-button");
     const id = button.dataset.id;
-    const generator = GENERATORS[id];
 
+    const generator = GENERATORS[id];
     const level = state.generators[id] ?? 0;
     const cost = getGeneratorCost(id);
 
-    const info = button.querySelector(".generator-info");
+    row.querySelector(".generator-name").textContent = generator.name;
 
-    info.textContent = `${generator.name} (${level}) - Cost: ${cost}`;
+    row.querySelector(".generator-cost").textContent = cost.toLocaleString();
+
+    row.querySelector(".generator-level").textContent = `Owned: ${level}`;
 
     button.disabled = state.treats < cost;
+
+    const tooltipText = row.querySelector(".next-level-info p");
+
+    tooltipText.textContent = `Produces ${generator.cps} treats per second.`;
   }
 }
