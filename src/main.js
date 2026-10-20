@@ -1,6 +1,6 @@
 import { state } from "./core/state.js";
 import { load, save } from "./storage/save.js";
-import { clickCat, buyClick, getCps } from "./core/economy.js";
+import { clickCat, buyClick, getCps, getClickPower } from "./core/economy.js";
 import { render } from "./ui/render.js";
 import { initGenerators } from "./ui/generators.js";
 import { updateEnergy } from "./loot/energy.js";
@@ -15,6 +15,10 @@ import { initLootboxModal } from "./ui/lootboxModal.js";
 import { initShop } from "./ui/shop.js";
 import { initDailyModal } from "./ui/dailyModal.js";
 import { initDailyList } from "./ui/dailyRewards.js";
+import { checkAchievements } from "./core/achievements.js";
+import { showToast } from "./ui/toast.js";
+import { initAchievementsList } from "./ui/achievementsList.js";
+import { initAchievementsModal } from "./ui/achievemenetsModal.js";
 import { assetUrl } from "./config/paths.js";
 import { initInstructions } from "./ui/instructions.js";
 import { showClickEffect } from "./ui/clickEffect.js";
@@ -22,17 +26,37 @@ import { showSkinReward } from "./ui/skinReward.js";
 
 load();
 
-window.debugGameState = state;
-window.debugSaveGame = save;
+if (import.meta.env.DEV) {
+  window.debugGameState = state;
+  window.debugSaveGame = save;
+}
 
 if (state.pendingReward) {
   claimReward();
 }
 
 const offlineGained = applyOfflineGains();
-
 updateEnergy();
-save();
+
+// ###################MAIN##########################
+let isSpinning = false;
+let spinTimer = null;
+
+const dialog = document.getElementById("dialog");
+const offlineDialog = document.getElementById("offlineDialog");
+
+function notifyAchievements() {
+  const unlocked = checkAchievements();
+
+  for (const a of unlocked) {
+    showToast("Achievement unlocked!", a.name);
+  }
+
+  if (unlocked.length > 0) {
+    save();
+    render();
+  }
+}
 
 function applyEquippedSkin() {
   const sprite = document.getElementById("clickBtn");
@@ -49,147 +73,124 @@ function applyEquippedSkin() {
     return;
   }
 
-  const imageUrl = assetUrl(skin.img);
-
-  sprite.style.backgroundImage = `url("${imageUrl}")`;
+  sprite.style.backgroundImage = `url("${assetUrl(skin.img)}")`;
   sprite.style.backgroundSize = "300% 400%";
   sprite.style.backgroundPosition = "0 0";
   sprite.style.backgroundRepeat = "no-repeat";
 }
 
+function loadReelPreview() {
+  const skinIds = Object.keys(SKINS);
+
+  if (skinIds.length === 0) {
+    console.error("No skins are configured for the loot box.");
+    return;
+  }
+
+  const previewIds = Array.from({ length: 45 }, () => {
+    return skinIds[Math.floor(Math.random() * skinIds.length)];
+  });
+
+  renderReel(previewIds);
+}
+
+// #############################INTERFACE INTIALIZATION######################
 initInstructions();
 initGenerators(render);
 initShop(render);
 initSkinsModal();
-applyEquippedSkin();
+initAchievementsList();
+initAchievementsModal();
 initCatAnimation();
+applyEquippedSkin();
+initAdModal(render);
+initLootboxModal();
+loadReelPreview();
 render();
+notifyAchievements();
 
-const offlineDialog = document.getElementById("offlineDialog");
 const offlineAmount = document.getElementById("offline-amount");
 const offlineCloseBtn = document.getElementById("offlineCloseBtn");
 
 if (
-  offlineGained.elapsed > 60 &&
   offlineGained.gained > 0 &&
+  offlineGained.elapsed > 60 &&
   offlineDialog &&
   offlineAmount
 ) {
   offlineAmount.textContent = Math.floor(offlineGained.gained);
-
-  if (!offlineDialog.open) {
-    offlineDialog.showModal();
-  }
+  offlineDialog.showModal();
 }
 
 if (offlineCloseBtn && offlineDialog) {
-  offlineCloseBtn.addEventListener("click", () => {
-    offlineDialog.close();
-  });
+  offlineCloseBtn.addEventListener("click", () => offlineDialog.close());
 }
 
+// #####################DAILY##########################
 initDailyList();
-initDailyModal(render);
+initDailyModal(() => {
+  render();
+  notifyAchievements();
+});
 
+// ############CLICKS AND UPGRADES######################
 const clickBtn = document.getElementById("clickBtn");
 
 if (clickBtn) {
-  clickBtn.addEventListener("click", () => {
+  clickBtn.addEventListener("click", (event) => {
+    const power = getClickPower();
     clickCat();
+    showClickEffect(event, power);
+    notifyAchievements();
     render();
-
-    const clickPower = Number(
-      document.querySelector(".click-power")?.textContent ?? 1,
-    );
-
-    showClickEffect(event, clickPower);
   });
 }
-const clickerCard = document.querySelector(".upgrade");
+
 const buyClickBtn = document.getElementById("buyClickBtn");
 
-function purchaseClickUpgrade() {
-  const purchased = buyClick();
-
-  if (purchased) {
-    save();
-    render();
-  }
-}
-
 if (buyClickBtn) {
-  buyClickBtn.addEventListener("click", purchaseClickUpgrade);
-} else if (clickerCard) {
-  clickerCard.addEventListener("click", purchaseClickUpgrade);
-}
-
-let isSpinning = false;
-let spinTimer = null;
-
-const dialog = document.getElementById("dialog");
-
-if (dialog) {
-  const boxBtn = document.getElementById("boxBtn");
-  const closeBtn = document.getElementById("closeBtn");
-  const openBoxBtn = document.getElementById("openBoxBtn");
-
-  if (boxBtn) {
-    boxBtn.addEventListener("click", () => {
-      if (!dialog.open) {
-        dialog.showModal();
-      }
-    });
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener("click", () => {
-      if (isSpinning) {
-        return;
-      }
-
-      dialog.close();
-    });
-  }
-
-  dialog.addEventListener("cancel", (event) => {
-    if (isSpinning) {
-      event.preventDefault();
-    }
-  });
-
-  if (openBoxBtn) {
-    openBoxBtn.addEventListener("click", () => {
-      if (isSpinning) {
-        return;
-      }
-
-      const result = openBox();
-
-      if (!result || !result.ok) {
-        return;
-      }
-
+  buyClickBtn.addEventListener("click", () => {
+    if (buyClick()) {
       save();
       render();
+    }
+  });
+}
 
-      renderReel(buildReelIds(result.id));
+// ######################LOOTBOX##########################
+window.addEventListener("lootboxOpening", loadReelPreview);
 
-      isSpinning = true;
-      dialog.dataset.spinning = "true";
+const openBoxBtn = document.getElementById("openBoxBtn");
 
-      const ribbon = document.querySelector(".lootbox-ribbon");
+if (openBoxBtn && dialog) {
+  openBoxBtn.addEventListener("click", () => {
+    if (isSpinning) {
+      return;
+    }
 
-      if (ribbon) {
-        ribbon.addEventListener("transitionend", finishSpin, {
-          once: true,
-        });
-      }
+    const res = openBox();
 
-      spinReel();
+    if (!res || !res.ok) {
+      return;
+    }
+    save();
+    render();
 
-      spinTimer = setTimeout(finishSpin, 5200);
-    });
-  }
+    renderReel(buildReelIds(res.id));
+
+    isSpinning = true;
+    dialog.dataset.spinning = "true";
+
+    const ribbon = document.querySelector(".lootbox-ribbon");
+
+    if (ribbon) {
+      ribbon.addEventListener("transitionend", finishSpin, { once: true });
+    }
+
+    spinReel();
+
+    spinTimer = setTimeout(finishSpin, 5200);
+  });
 }
 
 function finishSpin() {
@@ -198,16 +199,15 @@ function finishSpin() {
   }
 
   clearTimeout(spinTimer);
+  isSpinning = false;
+
+  if (dialog) {
+    dialog.dataset.spinning = "false";
+  }
 
   const result = claimReward();
 
   if (!result || !result.ok) {
-    isSpinning = false;
-
-    if (dialog) {
-      dialog.dataset.spinning = "false";
-    }
-
     save();
     render();
     return;
@@ -229,36 +229,12 @@ function finishSpin() {
     }
   }
 
-  isSpinning = false;
-
-  if (dialog) {
-    dialog.dataset.spinning = "false";
-  }
-
   save();
   render();
+  notifyAchievements();
 }
 
-function loadReelPreview() {
-  const skinIds = Object.keys(SKINS);
-
-  if (skinIds.length === 0) {
-    console.error("No skins are configured for the loot box.");
-    return;
-  }
-
-  const previewIds = Array.from({ length: 45 }, () => {
-    const randomIndex = Math.floor(Math.random() * skinIds.length);
-    return skinIds[randomIndex];
-  });
-
-  renderReel(previewIds);
-}
-
-loadReelPreview();
-
-window.addEventListener("lootboxOpening", loadReelPreview);
-
+// #####################EQUIP SKIN########################################
 window.addEventListener("skinSelected", (event) => {
   const skinId = event.detail?.skinId;
 
@@ -279,20 +255,19 @@ window.addEventListener("skinSelected", (event) => {
   render();
 });
 
-initAdModal(render);
-initLootboxModal();
-
+// ###########################Timers####################################
 let last = Date.now();
+
+setInterval(notifyAchievements, 2000);
 
 setInterval(() => {
   const now = Date.now();
-  const elapsed = (now - last) / 1000;
-
-  const safeElapsed = Math.min(Math.max(elapsed, 0), 1);
-
-  state.treats += getCps() * safeElapsed;
-
+  const elapsed = Math.max((now - last) / 1000, 0);
   last = now;
+
+  const gained = getCps() * elapsed;
+  state.treats += gained;
+  state.stats.totalTreats += gained;
 
   updateEnergy();
   render();
@@ -300,18 +275,12 @@ setInterval(() => {
 
 setInterval(save, 5000);
 
+// ############################Save Changes##################################
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "hidden") {
     save();
   }
 });
 
-function saveBeforeLeaving() {
-  save();
-}
-
-window.addEventListener("pagehide", saveBeforeLeaving);
-window.addEventListener("beforeunload", saveBeforeLeaving);
-
-window.debugGameState = state;
-window.debugSaveGame = save;
+window.addEventListener("pagehide", save);
+window.addEventListener("beforeunload", save);

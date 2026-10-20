@@ -13,6 +13,9 @@
     <button type="button" id="openSkinsBtn" class="skins-button">
       MY SKINS
     </button>
+    <button id="openAchievementsBtn" class="open-achievements-btn">
+      OPEN ACHIEVEMENTS LIST
+    </button>
 
     <button type="button" id="boxBtn">OPEN BOX</button>
 
@@ -31,7 +34,6 @@
     >
       ?
     </button>
-
     <section class="game">
       <div class="main">
         <div class="left">
@@ -256,6 +258,12 @@
 
       <button type="button" id="offlineCloseBtn">Nice!</button>
     </dialog>
+    <dialog id="achievementsDialog">
+      <h2>Daily reward</h2>
+      <div id="achievementsList"></div>
+      <button id="achievementsCloseBtn">Close</button>
+    </dialog>
+    <div id="toastContainer" class="toast-container" popover="manual"></div>
 
     <dialog id="instructionsDialog" class="instructions-dialog">
       <div class="instructions-content">

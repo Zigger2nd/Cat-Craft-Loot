@@ -53,5 +53,6 @@ export function claimReward() {
     state.ownedSkins.push(id);
   }
   state.pendingReward = null;
+  state.stats.boxesOpened += 1;
   return { ok: true, id, duplicate, dust };
 }

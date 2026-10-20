@@ -4,6 +4,8 @@ import { GENERATORS } from "../config/generators.js";
 
 export function clickCat() {
   state.treats += getClickPower();
+  state.stats.totalTreats += getClickPower();
+  state.stats.totalClicks += 1;
 }
 
 export function getClickPower() {
