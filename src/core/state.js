@@ -7,6 +7,8 @@ export const state = {
   generators: { toy: 0, bowl: 0 },
   ownedSkins: ["default"],
   equippedSkin: "default",
+  ownedBackgrounds: ["cozy_room"],
+  equippedBackground: "cozy_room",
   lastSeen: Date.now(),
   energyUpdatedAt: Date.now(),
   pendingReward: null,
