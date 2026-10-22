@@ -20,6 +20,6 @@ export const GENERATORS = {
     image: "/skins/bed.png",
     baseCost: 15000,
     growth: 1.15,
-    cps: 8,
+    cps: 1,
   },
 };

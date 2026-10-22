@@ -5,6 +5,12 @@ import { getGeneratorCost, buyGenerator } from "../core/economy.js";
 
 const list = document.getElementById("generatorList");
 
+const generatorSounds = {
+  toy: new Audio("/sounds/toy2.mp3"),
+  bowl: new Audio("/sounds/bowl2.mp3"),
+  bed: new Audio("/sounds/sleep.mp3"),
+};
+
 export function initGenerators(onChange) {
   if (!list) {
     console.error("Generator list not found!");
@@ -73,6 +79,16 @@ export function initGenerators(onChange) {
       const purchased = buyGenerator(id);
 
       if (purchased) {
+        const sound = generatorSounds[id];
+
+        if (sound) {
+          sound.currentTime = 0;
+
+          sound.play().catch((error) => {
+            console.warn("Could not play generator sound:", error);
+          });
+        }
+
         onChange();
       }
     });

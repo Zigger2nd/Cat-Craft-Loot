@@ -38,6 +38,16 @@ if (state.pendingReward) {
 const offlineGained = applyOfflineGains();
 updateEnergy();
 
+const catMeow = new Audio("/sounds/cat_meow.mp3");
+catMeow.volume = 0.5;
+let lastMeowTime = 0;
+
+const lootboxSound = new Audio("/sounds/lootbox.mp3");
+lootboxSound.volume = 0.5;
+
+const achievementSound = new Audio("/sounds/achievement.mp3");
+achievementSound.volume = 1;
+
 // ###################MAIN##########################
 let isSpinning = false;
 let spinTimer = null;
@@ -50,6 +60,12 @@ function notifyAchievements() {
 
   for (const a of unlocked) {
     showToast("Achievement unlocked!", a.name);
+
+    achievementSound.currentTime = 0;
+
+    achievementSound.play().catch((error) => {
+      console.warn("Could not play achievement sound:", error);
+    });
   }
 
   if (unlocked.length > 0) {
@@ -139,6 +155,16 @@ const clickBtn = document.getElementById("clickBtn");
 if (clickBtn) {
   clickBtn.addEventListener("click", (event) => {
     const power = getClickPower();
+    const now = Date.now();
+
+    if (now - lastMeowTime >= 300) {
+      lastMeowTime = now;
+      catMeow.currentTime = 0;
+
+      catMeow.play().catch((error) => {
+        console.warn("Could not play cat meow:", error);
+      });
+    }
     clickCat();
     showClickEffect(event, power);
     notifyAchievements();
@@ -222,6 +248,11 @@ function finishSpin() {
       : `New skin: ${skin.name} (${skin.rarity})!`;
 
     if (!result.duplicate) {
+      lootboxSound.currentTime = 0;
+      lootboxSound.play().catch((error) => {
+        console.warn("Could not play lootbox sound:", error);
+      });
+
       showSkinReward({
         ...skin,
         image: assetUrl(skin.img),
@@ -276,11 +307,11 @@ setInterval(() => {
 setInterval(save, 5000);
 
 // ############################Save Changes##################################
-document.addEventListener("visibilitychange", () => {
+/*document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "hidden") {
     save();
   }
 });
 
 window.addEventListener("pagehide", save);
-window.addEventListener("beforeunload", save);
+window.addEventListener("beforeunload", save);*/
