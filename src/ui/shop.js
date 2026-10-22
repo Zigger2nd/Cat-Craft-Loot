@@ -1,7 +1,7 @@
 import { state } from "../core/state.js";
 import { save } from "../storage/save.js";
 import { BACKGROUNDS } from "../config/backgrounds.js";
-
+import { assetUrl } from "../config/paths.js";
 export function initShop(onChange) {
   const shopDialog = document.getElementById("shopDialog");
   const openShopBtn = document.getElementById("openShopBtn");
@@ -51,7 +51,7 @@ export function initShop(onChange) {
       return;
     }
 
-    catContainer.style.backgroundImage = `url("${background.image}")`;
+    catContainer.style.backgroundImage = `url("${assetUrl(background.image)}")`;
 
     catContainer.style.backgroundSize = "cover";
     catContainer.style.backgroundPosition = "center";
@@ -70,7 +70,7 @@ export function initShop(onChange) {
       card.classList.add("background-card");
 
       const image = document.createElement("img");
-      image.src = background.image;
+      image.src = assetUrl(background.image);
       image.alt = background.name;
       image.classList.add("background-preview");
       image.loading = "lazy";

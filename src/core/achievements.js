@@ -2,6 +2,8 @@ import { state } from "./state.js";
 import { ACHIEVEMENTS } from "../config/achievements.js";
 import { SKINS } from "../config/skins.js";
 import { showToast } from "../ui/toast.js";
+import { save } from "../storage/save.js";
+import { assetUrl } from "../config/paths.js";
 
 const STATS = {
   totalClicks: () => state.stats.totalClicks,
@@ -39,10 +41,10 @@ function checkAchievements() {
   return unlocked;
 }
 
-const achievementSound = new Audio("/sounds/achievement.mp3");
+const achievementSound = new Audio(assetUrl("/sounds/achievement.mp3"));
 achievementSound.volume = 1;
 
-export function notifyAchievements() {
+export function notifyAchievements(render) {
   const unlocked = checkAchievements();
 
   for (const a of unlocked) {
