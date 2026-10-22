@@ -10,51 +10,86 @@
   </head>
 
   <body>
-    <button type="button" id="openSkinsBtn" class="skins-button">
-      MY SKINS
-    </button>
-    <button id="openAchievementsBtn" class="open-achievements-btn">
-      OPEN ACHIEVEMENTS LIST
-    </button>
+    <nav class="top-button-bar" aria-label="Game menu">
+      <button type="button" id="openSkinsBtn" class="skins-button">
+        MY SKINS
+      </button>
 
-    <button type="button" id="boxBtn">OPEN BOX</button>
+      <button type="button" id="boxBtn">OPEN BOX</button>
 
-    <button type="button" id="openDailyBtn" class="open-daily-btn">
-      OPEN DAILY LIST
-    </button>
+      <button type="button" id="openShopBtn">SHOP</button>
+      <button
+        type="button"
+        id="openAchievementsBtn"
+        class="open-achievements-btn"
+      >
+        OPEN ACHIEVEMENTS LIST
+      </button>
 
-    <button type="button" id="openShopBtn">SHOP</button>
+      <button type="button" id="openDailyBtn" class="open-daily-btn">
+        OPEN DAILY LIST
+      </button>
 
-    <button
-      type="button"
-      id="openInstructionsBtn"
-      class="instructions-button"
-      aria-label="Game instructions"
-      title="Game instructions"
-    >
-      ?
-    </button>
+      <button
+        type="button"
+        id="openInstructionsBtn"
+        class="instructions-button"
+        aria-label="Game instructions"
+        title="Game instructions"
+      >
+        ?
+      </button>
+    </nav>
+
     <section class="game">
       <div class="main">
         <div class="left">
-          <h3>
-            Treats:
-            <span class="treats-count">0</span>
-          </h3>
+          <div class="generator-collections">
+            <div class="generator-display">
+              <div class="generator-display-title">Ball Collection</div>
 
-          <div class="cat-container">
-            <div class="sprite" id="clickBtn"></div>
+              <div class="generator-display-window" id="ballGeneratorWindow">
+                <div class="generator-balls" id="generatorBalls"></div>
+              </div>
+            </div>
+
+            <div class="generator-display">
+              <div class="generator-display-title">Bowl Collection</div>
+
+              <div class="bowl-generator-window" id="bowlGeneratorWindow">
+                <div class="generator-bowls" id="generatorBowls"></div>
+              </div>
+            </div>
+
+            <div class="generator-display">
+              <div class="generator-display-title">Bed Collection</div>
+
+              <div class="bed-generator-window" id="bedGeneratorWindow">
+                <div class="generator-beds" id="generatorBeds"></div>
+              </div>
+            </div>
           </div>
 
-          <p>
-            Treats per click:
-            <span class="click-power">1</span>
-          </p>
+          <div class="game-area">
+            <h3>
+              Treats:
+              <span class="treats-count">0</span>
+            </h3>
 
-          <p>
-            Treats per second:
-            <span id="totalCps">0</span>
-          </p>
+            <div class="cat-container">
+              <div class="sprite" id="clickBtn"></div>
+            </div>
+
+            <p>
+              Treats per click:
+              <span class="click-power">1</span>
+            </p>
+
+            <p>
+              Treats per second:
+              <span id="totalCps">0</span>
+            </p>
+          </div>
         </div>
 
         <div class="right">
@@ -258,6 +293,7 @@
 
       <button type="button" id="offlineCloseBtn">Nice!</button>
     </dialog>
+
     <dialog id="achievementsDialog" class="achievements-dialog">
       <div class="achievements-content">
         <header class="achievements-header">
@@ -276,6 +312,7 @@
         <div id="achievementsList" class="achievements-list"></div>
       </div>
     </dialog>
+
     <div id="toastContainer" class="toast-container" popover="manual"></div>
 
     <dialog id="instructionsDialog" class="instructions-dialog">
@@ -320,7 +357,7 @@
             can reward you with dust.
           </p>
 
-          <h3>Collect Skins & Backgrounds</h3>
+          <h3>Collect Skins &amp; Backgrounds</h3>
           <p>
             View your collected skins in My Skins and visit the Shop to unlock
             new backgrounds.

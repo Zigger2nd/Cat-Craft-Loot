@@ -21,6 +21,9 @@ import { initEquipSkin, applyEquippedSkin } from "./ui/skins/equipSkin.js";
 import { initClick } from "./ui/click/clickCat.js";
 import { initOfflineModal } from "./ui/offline/offlineModal.js";
 import { startGameLoop } from "./core/gameLoop.js";
+import { renderBallGenerator } from "./ui/generatorMod/ballGenerator.js";
+import { renderBowlGenerator } from "./ui/generatorMod/bowlGenerator.js";
+import { renderBedGenerator } from "./ui/generatorMod/bedGenerator.js";
 
 load();
 
@@ -38,7 +41,12 @@ updateEnergy();
 // #############################INTERFACE INTIALIZATION######################
 initInstructions();
 initClick(render);
-initGenerators(render);
+initGenerators(() => {
+  render();
+  renderBallGenerator();
+  renderBowlGenerator();
+  renderBedGenerator();
+});
 initShop(render);
 initSkinsModal();
 initAchievementsList();
@@ -51,6 +59,9 @@ initEquipSkin(render);
 applyEquippedSkin(render);
 initOfflineModal(offlineGained);
 render();
+renderBallGenerator();
+renderBowlGenerator();
+renderBedGenerator();
 notifyAchievements();
 initDailyList();
 initDailyModal(() => {
