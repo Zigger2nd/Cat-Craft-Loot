@@ -24,7 +24,7 @@ button {
 
 .game {
   width: 100%;
-  max-width: 1100px;
+  max-width: 2000px;
   margin: 0 auto;
 }
 
@@ -32,40 +32,40 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 80px;
+  gap: 120px;
 }
 
 .left {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 150px;
+  min-width: 250px;
 }
 
 .left h3 {
   margin: 0 0 35px;
-  font-size: 30px;
+  font-size: 34px;
   text-align: center;
 }
 
 .left > p {
   margin-top: 25px;
-  font-size: 16px;
+  font-size: 18px;
   text-align: center;
 }
 
 .right {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
 }
 
 .cat-container {
   display: grid;
   place-items: center;
 
-  width: 320px;
-  height: 160px;
+  width: 360px;
+  height: 200px;
 
   background-image: url("/skins/background/cozy_room.png");
   background-size: cover;
@@ -248,10 +248,6 @@ button {
   cursor: not-allowed;
 }
 
-/* =========================
-   GENERATOR SECTION
-========================= */
-
 .generator-section {
   display: flex;
   flex-direction: column;
@@ -272,16 +268,12 @@ button {
   width: 100%;
 }
 
-/* Generator row */
-
 .generator-row {
   display: flex;
   align-items: stretch;
   gap: 10px;
   width: 100%;
 }
-
-/* Generator purchase button */
 
 .generator-button {
   display: flex;
@@ -313,20 +305,14 @@ button {
     opacity 0.2s ease;
 }
 
-/* Hover */
-
 .generator-button:hover:not(:disabled) {
   background-color: #3b3632;
   border-color: #e6a85c;
 }
 
-/* Click animation */
-
 .generator-button:active:not(:disabled) {
   transform: scale(0.98);
 }
-
-/* Unaffordable generators */
 
 .generator-button:disabled {
   background-color: #252525;
@@ -334,8 +320,6 @@ button {
   opacity: 0.65;
   cursor: not-allowed;
 }
-
-/* Generator image */
 
 .generator-button .generator-img {
   display: block;
@@ -349,8 +333,6 @@ button {
   image-rendering: pixelated;
 }
 
-/* Generator information */
-
 .generator-button .generator-info {
   display: flex;
   flex: 1 1 auto;
@@ -361,8 +343,6 @@ button {
 
   min-width: 0;
 }
-
-/* Generator name */
 
 .generator-button .generator-name {
   display: block;
@@ -375,8 +355,6 @@ button {
 
   overflow-wrap: anywhere;
 }
-
-/* Generator cost */
 
 .generator-button .cost-info {
   display: flex;
@@ -411,8 +389,6 @@ button {
   image-rendering: pixelated;
 }
 
-/* Owned generator count */
-
 .generator-button .generator-level {
   flex: 0 0 auto;
 
@@ -424,8 +400,6 @@ button {
 
   white-space: nowrap;
 }
-
-/* Generator production tooltip */
 
 .generator-row > .next-level-info {
   display: flex;
@@ -1799,6 +1773,146 @@ button {
   #rewardSkinImage,
   .reward-confetti span {
     animation: none;
+  }
+}
+
+.achievements-dialog {
+  width: min(600px, calc(100% - 40px));
+  max-height: 80vh;
+
+  padding: 0;
+  overflow: hidden;
+
+  background: #fff8ed;
+  color: #704b2b;
+
+  border: 3px solid #e6a85c;
+  border-radius: 16px;
+
+  box-shadow: 0 10px 35px rgb(0 0 0 / 35%);
+}
+
+.achievements-dialog::backdrop {
+  background: rgb(0 0 0 / 65%);
+}
+
+.achievements-content {
+  display: flex;
+  flex-direction: column;
+
+  max-height: 80vh;
+  overflow: hidden;
+}
+
+.achievements-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 20px 24px;
+
+  background: #fff0d9;
+  border-bottom: 2px solid #e6a85c;
+}
+
+.achievements-header h2 {
+  margin: 0;
+
+  color: #704b2b;
+  font-size: 24px;
+}
+
+.close-achievements-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  width: 36px;
+  height: 36px;
+
+  padding: 0;
+
+  background: #e6a85c;
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 26px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.close-achievements-btn:hover {
+  background: #c9873b;
+  transform: scale(1.05);
+}
+
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  padding: 20px 24px;
+
+  overflow-y: auto;
+}
+
+.achievement-item {
+  padding: 15px;
+
+  background: white;
+
+  border: 2px solid #e6a85c;
+  border-radius: 10px;
+
+  color: #704b2b;
+}
+
+.achievement-item h3 {
+  margin: 0 0 6px;
+}
+
+.achievement-item p {
+  margin: 0;
+
+  color: #80674f;
+  line-height: 1.5;
+}
+
+.achievement-item.unlocked {
+  background: #fff0d9;
+  border-color: #d99a45;
+}
+
+.achievement-item.locked {
+  opacity: 0.65;
+}
+
+@media (max-width: 480px) {
+  .achievements-dialog {
+    width: calc(100% - 24px);
+  }
+
+  .achievements-header {
+    padding: 16px;
+  }
+
+  .achievements-header h2 {
+    font-size: 20px;
+  }
+
+  .achievements-list {
+    padding: 16px;
   }
 }
 
