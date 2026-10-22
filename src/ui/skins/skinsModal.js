@@ -1,6 +1,6 @@
-import { state } from "../core/state.js";
-import { SKINS } from "../config/skins.js";
-import { assetUrl } from "../config/paths.js";
+import { state } from "../../core/state.js";
+import { SKINS } from "../../config/skins.js";
+import { assetUrl } from "../../config/paths.js";
 
 const rarities = ["common", "rare", "epic", "legendary"];
 

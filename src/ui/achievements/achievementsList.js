@@ -1,5 +1,5 @@
-import { ACHIEVEMENTS } from "../config/achievements.js"; // Забыли расширение .js
-import { state } from "../core/state.js";
+import { ACHIEVEMENTS } from "../../config/achievements";
+import { state } from "../../core/state";
 
 const list = document.getElementById("achievementsList");
 
