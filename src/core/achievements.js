@@ -1,6 +1,7 @@
 import { state } from "./state.js";
 import { ACHIEVEMENTS } from "../config/achievements.js";
 import { SKINS } from "../config/skins.js";
+import { showToast } from "../ui/toast.js";
 
 const STATS = {
   totalClicks: () => state.stats.totalClicks,
@@ -16,7 +17,7 @@ export function getStat(name) {
   return STATS[name]?.() ?? 0;
 }
 
-export function checkAchievements() {
+function checkAchievements() {
   const unlocked = [];
 
   for (const a of ACHIEVEMENTS) {
@@ -36,4 +37,17 @@ export function checkAchievements() {
   }
 
   return unlocked;
+}
+
+export function notifyAchievements() {
+  const unlocked = checkAchievements();
+
+  for (const a of unlocked) {
+    showToast("Achievement unlocked!", a.name);
+  }
+
+  if (unlocked.length > 0) {
+    save();
+    render();
+  }
 }
