@@ -1,6 +1,6 @@
-import { DAILY_REWARDS, REWARD_ICONS } from "../config/dailyrewards.js";
-import { checkDailyCount } from "../core/offline.js";
-import { assetUrl } from "../config/paths.js";
+import { DAILY_REWARDS, REWARD_ICONS } from "../../config/dailyrewards.js";
+import { checkDailyCount } from "../../core/offline.js";
+import { assetUrl } from "../../config/paths.js";
 
 const list = document.getElementById("dailyRewardList");
 

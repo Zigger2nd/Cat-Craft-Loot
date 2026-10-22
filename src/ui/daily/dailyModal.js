@@ -1,5 +1,5 @@
-import { save } from "../storage/save.js";
-import { canClaimDaily, claimDaily } from "../core/offline.js";
+import { save } from "../../storage/save.js";
+import { canClaimDaily, claimDaily } from "../../core/offline.js";
 import { renderDailyList } from "./dailyRewards.js";
 
 export function initDailyModal(onChange) {

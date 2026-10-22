@@ -39,11 +39,20 @@ function checkAchievements() {
   return unlocked;
 }
 
+const achievementSound = new Audio("/sounds/achievement.mp3");
+achievementSound.volume = 1;
+
 export function notifyAchievements() {
   const unlocked = checkAchievements();
 
   for (const a of unlocked) {
     showToast("Achievement unlocked!", a.name);
+
+    achievementSound.currentTime = 0;
+
+    achievementSound.play().catch((error) => {
+      console.warn("Could not play achievement sound:", error);
+    });
   }
 
   if (unlocked.length > 0) {

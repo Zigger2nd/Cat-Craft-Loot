@@ -1,10 +1,17 @@
 import { save } from "../storage/save.js";
 import { openBox, claimReward } from "./lootBox.js";
-import { renderReel, buildReelIds, spinReel } from "../ui/lootboxreel.js";
+import {
+  renderReel,
+  buildReelIds,
+  spinReel,
+} from "../ui/lootbox/lootboxreel.js";
 import { SKINS } from "../config/skins.js";
-import { showSkinReward } from "../ui/skinReward.js";
+import { showSkinReward } from "../ui/skins/skinReward.js";
 import { assetUrl } from "../config/paths.js";
 import { notifyAchievements } from "../core/achievements.js";
+
+const lootboxSound = new Audio("/sounds/lootbox.mp3");
+lootboxSound.volume = 0.5;
 
 export function initLootboxFlow(render) {
   window.addEventListener("lootboxOpening", loadReelPreview);
@@ -73,6 +80,11 @@ export function initLootboxFlow(render) {
         : `New skin: ${skin.name} (${skin.rarity})!`;
 
       if (!result.duplicate) {
+        lootboxSound.currentTime = 0;
+        lootboxSound.play().catch((error) => {
+          console.warn("Could not play lootbox sound:", error);
+        });
+
         showSkinReward({
           ...skin,
           image: assetUrl(skin.img),
