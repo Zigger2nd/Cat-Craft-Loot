@@ -23,6 +23,7 @@ import { assetUrl } from "./config/paths.js";
 import { initInstructions } from "./ui/instructions.js";
 import { showClickEffect } from "./ui/clickEffect.js";
 import { showSkinReward } from "./ui/skinReward.js";
+import { renderBallGenerator } from "./ui/ballGenerator.js";
 
 load();
 
@@ -112,7 +113,10 @@ function loadReelPreview() {
 
 // #############################INTERFACE INTIALIZATION######################
 initInstructions();
-initGenerators(render);
+initGenerators(() => {
+  render();
+  renderBallGenerator();
+});
 initShop(render);
 initSkinsModal();
 initAchievementsList();

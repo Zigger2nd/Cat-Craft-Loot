@@ -37,24 +37,31 @@
     <section class="game">
       <div class="main">
         <div class="left">
-          <h3>
-            Treats:
-            <span class="treats-count">0</span>
-          </h3>
-
-          <div class="cat-container">
-            <div class="sprite" id="clickBtn"></div>
+          <div class="generator-display-window" id="ballGeneratorWindow">
+            <div class="generator-display-title">Ball Collection</div>
+            <div class="generator-balls" id="generatorBalls"></div>
           </div>
 
-          <p>
-            Treats per click:
-            <span class="click-power">1</span>
-          </p>
+          <div class="game-area">
+            <h3>
+              Treats:
+              <span class="treats-count">0</span>
+            </h3>
 
-          <p>
-            Treats per second:
-            <span id="totalCps">0</span>
-          </p>
+            <div class="cat-container">
+              <div class="sprite" id="clickBtn"></div>
+            </div>
+
+            <p>
+              Treats per click:
+              <span class="click-power">1</span>
+            </p>
+
+            <p>
+              Treats per second:
+              <span id="totalCps">0</span>
+            </p>
+          </div>
         </div>
 
         <div class="right">

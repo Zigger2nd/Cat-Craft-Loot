@@ -30,30 +30,58 @@ button {
 
 .main {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  gap: 120px;
+  gap: 50px;
 }
 
 .left {
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 40px;
+  min-width: 0;
+}
+
+.game-area {
+  display: flex;
   flex-direction: column;
   align-items: center;
   min-width: 250px;
+  flex-shrink: 0;
 }
 
-.left h3 {
+.game-area h3 {
   margin: 0 0 35px;
   font-size: 34px;
   text-align: center;
 }
 
-.left > p {
+.game-area > p {
   margin-top: 25px;
   font-size: 18px;
   text-align: center;
 }
 
+.generator-display-window {
+  width: 280px;
+  min-height: 180px;
+  margin-top: 70px;
+  padding: 12px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+
+  background-image: url("/skins/generBg/genBg1.png");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
 .right {
   display: flex;
   flex-direction: column;
@@ -2218,4 +2246,42 @@ button {
 .achievement-text {
   font-size: 13px;
   color: #ccc;
+}
+
+.generator-display-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 1px 1px 3px #333;
+  margin-bottom: 12px;
+}
+
+.generator-balls {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.generator-ball {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  image-rendering: pixelated;
+
+  animation: ballSpawn 0.35s ease-out;
+}
+
+@keyframes ballSpawn {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
