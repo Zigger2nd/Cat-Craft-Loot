@@ -1,6 +1,6 @@
-import { ACHIEVEMENTS } from "../../config/achievements";
-import { state } from "../../core/state";
-
+import { ACHIEVEMENTS } from "../../config/achievements.js";
+import { state } from "../../core/state.js";
+import { assetUrl } from "../../config/paths.js";
 const list = document.getElementById("achievementsList");
 
 export function initAchievementsList() {
@@ -21,7 +21,7 @@ export function initAchievementsList() {
 
     if (item.img) {
       const image = document.createElement("img");
-      image.src = item.img;
+      image.src = assetUrl(item.img);
       image.alt = item.name;
       image.classList.add("achievement-img");
       card.appendChild(image);

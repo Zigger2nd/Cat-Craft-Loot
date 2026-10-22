@@ -66,7 +66,7 @@ notifyAchievements();
 initDailyList();
 initDailyModal(() => {
   render();
-  notifyAchievements();
+  notifyAchievements(render);
 });
 startGameLoop({ render, notifyAchievements });
 
