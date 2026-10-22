@@ -2,8 +2,8 @@ import { save } from "../../storage/save.js";
 import { showClickEffect } from "./clickEffect.js";
 import { clickCat, buyClick, getClickPower } from "../../core/economy.js";
 import { notifyAchievements } from "../../core/achievements.js";
-
-const catMeow = new Audio("/sounds/cat_meow.mp3");
+import { assetUrl } from "../../config/paths.js";
+const catMeow = new Audio(assetUrl("/sounds/cat_meow.mp3"));
 catMeow.volume = 0.5;
 let lastMeowTime = 0;
 

@@ -51,11 +51,11 @@ initEquipSkin(render);
 applyEquippedSkin(render);
 initOfflineModal(offlineGained);
 render();
-notifyAchievements();
+notifyAchievements(render);
 initDailyList();
 initDailyModal(() => {
   render();
-  notifyAchievements();
+  notifyAchievements(render);
 });
 startGameLoop({ render, notifyAchievements });
 

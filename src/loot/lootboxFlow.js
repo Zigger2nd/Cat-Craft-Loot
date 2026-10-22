@@ -10,7 +10,7 @@ import { showSkinReward } from "../ui/skins/skinReward.js";
 import { assetUrl } from "../config/paths.js";
 import { notifyAchievements } from "../core/achievements.js";
 
-const lootboxSound = new Audio("/sounds/lootbox.mp3");
+const lootboxSound = new Audio(assetUrl("/sounds/lootbox.mp3"));
 lootboxSound.volume = 0.5;
 
 export function initLootboxFlow(render) {

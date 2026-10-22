@@ -2,13 +2,14 @@ import { state } from "../core/state.js";
 import { GENERATORS } from "../config/generators.js";
 
 import { getGeneratorCost, buyGenerator } from "../core/economy.js";
+import { assetUrl } from "../config/paths.js";
 
 const list = document.getElementById("generatorList");
 
 const generatorSounds = {
-  toy: new Audio("/sounds/toy2.mp3"),
-  bowl: new Audio("/sounds/bowl2.mp3"),
-  bed: new Audio("/sounds/sleep.mp3"),
+  toy: new Audio(assetUrl("/sounds/toy2.mp3")),
+  bowl: new Audio(assetUrl("/sounds/bowl2.mp3")),
+  bed: new Audio(assetUrl("/sounds/sleep.mp3")),
 };
 
 export function initGenerators(onChange) {
@@ -31,7 +32,7 @@ export function initGenerators(onChange) {
 
     const image = document.createElement("img");
 
-    image.src = generator.image;
+    image.src = assetUrl(generator.image);
     image.alt = generator.name;
     image.classList.add("generator-img");
 
@@ -51,7 +52,7 @@ export function initGenerators(onChange) {
     costValue.classList.add("generator-cost");
 
     const foodImage = document.createElement("img");
-    foodImage.src = "/skins/food.png";
+    foodImage.src = assetUrl("/skins/food.png");
     foodImage.alt = "Treats";
     foodImage.classList.add("food-img");
 
