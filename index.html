@@ -258,10 +258,23 @@
 
       <button type="button" id="offlineCloseBtn">Nice!</button>
     </dialog>
-    <dialog id="achievementsDialog">
-      <h2>Daily reward</h2>
-      <div id="achievementsList"></div>
-      <button id="achievementsCloseBtn">Close</button>
+    <dialog id="achievementsDialog" class="achievements-dialog">
+      <div class="achievements-content">
+        <header class="achievements-header">
+          <h2>Achievements</h2>
+
+          <button
+            type="button"
+            id="achievementsCloseBtn"
+            class="close-achievements-btn"
+            aria-label="Close achievements"
+          >
+            &times;
+          </button>
+        </header>
+
+        <div id="achievementsList" class="achievements-list"></div>
+      </div>
     </dialog>
     <div id="toastContainer" class="toast-container" popover="manual"></div>
 

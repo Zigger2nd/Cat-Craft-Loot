@@ -36,6 +36,13 @@ if (state.pendingReward) {
 const offlineGained = applyOfflineGains();
 updateEnergy();
 
+const catMeow = new Audio("/sounds/cat_meow.mp3");
+catMeow.volume = 0.5;
+let lastMeowTime = 0;
+
+const achievementSound = new Audio("/sounds/achievement.mp3");
+achievementSound.volume = 1;
+
 // ###################MAIN##########################
 
 const offlineDialog = document.getElementById("offlineDialog");
@@ -106,6 +113,16 @@ const clickBtn = document.getElementById("clickBtn");
 if (clickBtn) {
   clickBtn.addEventListener("click", (event) => {
     const power = getClickPower();
+    const now = Date.now();
+
+    if (now - lastMeowTime >= 300) {
+      lastMeowTime = now;
+      catMeow.currentTime = 0;
+
+      catMeow.play().catch((error) => {
+        console.warn("Could not play cat meow:", error);
+      });
+    }
     clickCat();
     showClickEffect(event, power);
     notifyAchievements();
@@ -166,11 +183,11 @@ setInterval(() => {
 setInterval(save, 5000);
 
 // ############################Save Changes##################################
-document.addEventListener("visibilitychange", () => {
+/*document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "hidden") {
     save();
   }
 });
 
 window.addEventListener("pagehide", save);
-window.addEventListener("beforeunload", save);
+window.addEventListener("beforeunload", save);*/
