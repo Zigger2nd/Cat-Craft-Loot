@@ -21,7 +21,7 @@ import { initEquipSkin, applyEquippedSkin } from "./ui/skins/equipSkin.js";
 import { initClick } from "./ui/click/clickCat.js";
 import { initOfflineModal } from "./ui/offline/offlineModal.js";
 import { startGameLoop } from "./core/gameLoop.js";
-
+import { initSecretPuzzle } from "./ui/secrets/secretCats.js";
 load();
 
 if (import.meta.env.DEV) {
@@ -50,6 +50,7 @@ initLootboxFlow(render);
 initEquipSkin(render);
 applyEquippedSkin(render);
 initOfflineModal(offlineGained);
+//initSecretPuzzle();
 render();
 notifyAchievements(render);
 initDailyList();
