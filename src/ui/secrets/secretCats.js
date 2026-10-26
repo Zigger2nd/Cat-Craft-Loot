@@ -1,9 +1,12 @@
 import { assetUrl } from "../../config/paths.js";
-import { PUZZLE } from "../../config/puzzle.js";
+import { PUZZLE, PUZZLE_IMG, PUZZLE_REWARD_SKIN } from "../../config/puzzle.js";
 import { findSecretCat } from "../../core/puzzle.js";
 import { state } from "../../core/state.js";
 import { save } from "../../storage/save.js";
-export function initSecretPuzzle() {
+import { showToast } from "../toast.js";
+import { showSkinReward } from "../skins/skinReward.js";
+import { SKINS } from "../../config/skins.js";
+export function initSecretPuzzle({ notifyAchievements, render }) {
   const secretElements = document.querySelectorAll(".hidden-secret-cat");
 
   if (secretElements.length === 0) {
@@ -14,14 +17,13 @@ export function initSecretPuzzle() {
   for (const element of secretElements) {
     const catId = element.dataset.catId;
 
+    const catData = PUZZLE.find((item) => item.id === catId);
     if (!catData) {
       console.error("Unknown secret cat:", catId);
       continue;
     }
 
-    const catData = PUZZLE.find((item) => item.id === catId);
-
-    element.src = assetUrl(catData.img);
+    element.src = assetUrl(PUZZLE_IMG);
 
     const isFound = state.foundSecretCats.includes(catId);
 
@@ -29,19 +31,19 @@ export function initSecretPuzzle() {
       element.style.display = "none";
       continue;
     }
-    findSecretCat(catId);
     element.addEventListener("click", () => {
-      if (!state.foundSecretCats.includes(catId)) {
-        state.foundSecretCats.push(catId);
+      const result = findSecretCat(catId);
+      if (!result.ok) return;
+      showToast("Secret Cat Found!", `${result.count}/${PUZZLE.length}`);
+      if (result.justCompleted) {
+        const skin = SKINS[PUZZLE_REWARD_SKIN];
 
-        element.style.display = "none";
-
-        save();
-
-        console.log(
-          `Секретный кот найден! (${state.foundSecretCats.length}/${PUZZLE.length})`,
-        );
+        showSkinReward({ ...skin, image: assetUrl(skin.img) });
       }
+      element.classList.add("found");
+      notifyAchievements();
+      render();
+      save();
     });
   }
 }

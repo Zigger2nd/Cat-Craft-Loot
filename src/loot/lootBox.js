@@ -19,7 +19,7 @@ export function pickRarity() {
 export function rollSkin() {
   const rarity = pickRarity();
   const pool = Object.keys(SKINS).filter(
-    (id) => id !== "default" && SKINS[id].rarity === rarity,
+    (id) => id !== "default" && SKINS[id].rarity in LOOT_WEIGHTS,
   );
   const ids = pool.length
     ? pool

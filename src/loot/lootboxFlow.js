@@ -9,6 +9,7 @@ import { SKINS } from "../config/skins.js";
 import { showSkinReward } from "../ui/skins/skinReward.js";
 import { assetUrl } from "../config/paths.js";
 import { notifyAchievements } from "../core/achievements.js";
+import { LOOT_WEIGHTS } from "../config/balance.js";
 
 const lootboxSound = new Audio(assetUrl("/sounds/lootbox.mp3"));
 lootboxSound.volume = 0.5;
@@ -97,7 +98,9 @@ export function initLootboxFlow(render) {
     notifyAchievements();
   }
   function loadReelPreview() {
-    const skinIds = Object.keys(SKINS);
+    const skinIds = Object.keys(SKINS).filter(
+      (id) => SKINS[id].rarity in LOOT_WEIGHTS,
+    );
 
     if (skinIds.length === 0) {
       console.error("No skins are configured for the loot box.");
