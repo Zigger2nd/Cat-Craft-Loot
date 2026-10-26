@@ -21,6 +21,7 @@ import { initEquipSkin, applyEquippedSkin } from "./ui/skins/equipSkin.js";
 import { initClick } from "./ui/click/clickCat.js";
 import { initOfflineModal } from "./ui/offline/offlineModal.js";
 import { startGameLoop } from "./core/gameLoop.js";
+import { initSecretPuzzle } from "./ui/secrets/secretCats.js";
 import { renderBallGenerator } from "./ui/generatorMod/ballGenerator.js";
 import { renderBowlGenerator } from "./ui/generatorMod/bowlGenerator.js";
 import { renderBedGenerator } from "./ui/generatorMod/bedGenerator.js";
@@ -58,6 +59,7 @@ initLootboxFlow(render);
 initEquipSkin(render);
 applyEquippedSkin(render);
 initOfflineModal(offlineGained);
+initSecretPuzzle({ render, notifyAchievements });
 render();
 renderBallGenerator();
 renderBowlGenerator();
@@ -66,16 +68,16 @@ notifyAchievements();
 initDailyList();
 initDailyModal(() => {
   render();
-  notifyAchievements(render);
+  notifyAchievements();
 });
 startGameLoop({ render, notifyAchievements });
 
 // ############################Save Changes##################################
-document.addEventListener("visibilitychange", () => {
+/* document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "hidden") {
     save();
   }
 });
 
 window.addEventListener("pagehide", save);
-window.addEventListener("beforeunload", save);
+window.addEventListener("beforeunload", save); */

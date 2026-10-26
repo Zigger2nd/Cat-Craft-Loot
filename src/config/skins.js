@@ -157,4 +157,10 @@ export const SKINS = {
     rarity: "legendary",
     img: "/skins/cats/legendary/pinkpervCat.png",
   },
+  secretCat: {
+    name: "Secret Cat",
+    rarity: "secret",
+    img: "/skins/cats/secret/secretCat.png",
+    frames: { cols: 1, rows: 1 },
+  },
 };

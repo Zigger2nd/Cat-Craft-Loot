@@ -1,5 +1,5 @@
 import { SKINS } from "../../config/skins.js";
-import { assetUrl } from "../../config/paths.js";
+import { assetUrl, skinBackgroundSize } from "../../config/paths.js";
 import { state } from "../../core/state.js";
 import { save } from "../../storage/save.js";
 
@@ -19,7 +19,7 @@ export function applyEquippedSkin() {
   }
 
   sprite.style.backgroundImage = `url("${assetUrl(skin.img)}")`;
-  sprite.style.backgroundSize = "300% 400%";
+  sprite.style.backgroundSize = skinBackgroundSize(skin);
   sprite.style.backgroundPosition = "0 0";
   sprite.style.backgroundRepeat = "no-repeat";
 }

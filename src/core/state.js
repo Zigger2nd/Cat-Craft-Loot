@@ -17,4 +17,6 @@ export const state = {
   lastDailyClaim: "",
   stats: { totalClicks: 0, boxesOpened: 0, totalTreats: 0 },
   achievements: [],
+  foundSecretCats: [],
+  secretPuzzleCompleted: false,
 };

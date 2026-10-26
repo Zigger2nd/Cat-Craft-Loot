@@ -1,4 +1,4 @@
-import { assetUrl } from "../../config/paths.js";
+import { assetUrl, skinBackgroundSize } from "../../config/paths.js";
 
 const rewardDialog = document.getElementById("skinRewardDialog");
 const closeRewardBtn = document.getElementById("closeSkinRewardBtn");
@@ -21,7 +21,7 @@ export function showSkinReward(skin) {
   }
 
   rewardSkinImage.style.backgroundImage = `url(${skin.image})`;
-  rewardSkinImage.style.backgroundSize = "300% 400%";
+  rewardSkinImage.style.backgroundSize = skinBackgroundSize(skin);
   rewardSkinImage.style.backgroundPosition = "0 0";
   rewardSkinImage.style.backgroundRepeat = "no-repeat";
 

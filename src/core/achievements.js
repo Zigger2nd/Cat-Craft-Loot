@@ -44,14 +44,12 @@ function checkAchievements() {
 const achievementSound = new Audio(assetUrl("/sounds/achievement.mp3"));
 achievementSound.volume = 1;
 
-export function notifyAchievements(render) {
+export function notifyAchievements() {
   const unlocked = checkAchievements();
 
   for (const a of unlocked) {
     showToast("Achievement unlocked!", a.name);
-
     achievementSound.currentTime = 0;
-
     achievementSound.play().catch((error) => {
       console.warn("Could not play achievement sound:", error);
     });
@@ -59,6 +57,5 @@ export function notifyAchievements(render) {
 
   if (unlocked.length > 0) {
     save();
-    render();
   }
 }
