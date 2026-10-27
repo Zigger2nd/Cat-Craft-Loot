@@ -1,18 +1,16 @@
 import { state } from "../../core/state.js";
+import { assetUrl } from "../../config/paths.js";
 
 const BOWL_FRAMES = [
-  "/skins/containerBowl/frame1.png",
-  "/skins/containerBowl/frame2.png",
-  "/skins/containerBowl/frame3.png",
+  assetUrl("/skins/containerBowl/frame1.png"),
+  assetUrl("/skins/containerBowl/frame2.png"),
+  assetUrl("/skins/containerBowl/frame3.png"),
 ];
 
-// Higher value = slower animation
 const FRAME_DURATION = 500;
 
-// Bigger bowl
 const BOWL_SIZE = 60;
 
-// Position inside .cat-container
 const BOWL_RIGHT = 20;
 const BOWL_BOTTOM = 40;
 

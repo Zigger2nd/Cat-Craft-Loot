@@ -1,14 +1,15 @@
 import { state } from "../../core/state.js";
+import { assetUrl } from "../../config/paths.js";
 
 const BED_IMAGES = [
-  "/skins/beds/bed1.png",
-  "/skins/beds/bed2.png",
-  "/skins/beds/bed3.png",
-  "/skins/beds/bed4.png",
-  "/skins/beds/bed5.png",
-  "/skins/beds/bed6.png",
-  "/skins/beds/bed7.png",
-  "/skins/beds/bed8.png",
+  assetUrl("/skins/beds/bed1.png"),
+  assetUrl("/skins/beds/bed2.png"),
+  assetUrl("/skins/beds/bed3.png"),
+  assetUrl("/skins/beds/bed4.png"),
+  assetUrl("/skins/beds/bed5.png"),
+  assetUrl("/skins/beds/bed6.png"),
+  assetUrl("/skins/beds/bed7.png"),
+  assetUrl("/skins/beds/bed8.png"),
 ];
 
 const MAX_BEDS = 12;

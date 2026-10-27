@@ -1,6 +1,7 @@
 import { state } from "../../core/state.js";
+import { assetUrl } from "../../config/paths.js";
 
-const BED_IMAGE = "/skins/containerBed/bed.png";
+const BED_IMAGE = assetUrl("/skins/containerBed/bed.png");
 
 const BED_WIDTH = 70;
 const BED_HEIGHT = 50;

@@ -1,44 +1,45 @@
 import { state } from "../../core/state.js";
+import { assetUrl } from "../../config/paths.js";
 
 const BALL_ANIMATIONS = [
   {
     name: "Yellow ball",
     frames: [
-      "/skins/balls/frame1.png",
-      "/skins/balls/frame2.png",
-      "/skins/balls/frame3.png",
-      "/skins/balls/frame4.png",
-      "/skins/balls/frame5.png",
+      assetUrl("/skins/balls/frame1.png"),
+      assetUrl("/skins/balls/frame2.png"),
+      assetUrl("/skins/balls/frame3.png"),
+      assetUrl("/skins/balls/frame4.png"),
+      assetUrl("/skins/balls/frame5.png"),
     ],
   },
   {
     name: "Red ball",
     frames: [
-      "/skins/balls/frame6.png",
-      "/skins/balls/frame7.png",
-      "/skins/balls/frame8.png",
-      "/skins/balls/frame9.png",
-      "/skins/balls/frame10.png",
+      assetUrl("/skins/balls/frame6.png"),
+      assetUrl("/skins/balls/frame7.png"),
+      assetUrl("/skins/balls/frame8.png"),
+      assetUrl("/skins/balls/frame9.png"),
+      assetUrl("/skins/balls/frame10.png"),
     ],
   },
   {
     name: "White ball",
     frames: [
-      "/skins/balls/frame11.png",
-      "/skins/balls/frame12.png",
-      "/skins/balls/frame13.png",
-      "/skins/balls/frame14.png",
-      "/skins/balls/frame15.png",
+      assetUrl("/skins/balls/frame11.png"),
+      assetUrl("/skins/balls/frame12.png"),
+      assetUrl("/skins/balls/frame13.png"),
+      assetUrl("/skins/balls/frame14.png"),
+      assetUrl("/skins/balls/frame15.png"),
     ],
   },
   {
     name: "Green ball",
     frames: [
-      "/skins/balls/frame16.png",
-      "/skins/balls/frame17.png",
-      "/skins/balls/frame18.png",
-      "/skins/balls/frame19.png",
-      "/skins/balls/frame20.png",
+      assetUrl("/skins/balls/frame16.png"),
+      assetUrl("/skins/balls/frame17.png"),
+      assetUrl("/skins/balls/frame18.png"),
+      assetUrl("/skins/balls/frame19.png"),
+      assetUrl("/skins/balls/frame20.png"),
     ],
   },
 ];
