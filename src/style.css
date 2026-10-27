@@ -1848,22 +1848,22 @@ button {
   margin: 0;
   width: 100%;
 }
-
-.generator-balls {
+#generatorBalls {
+  position: relative;
+  display: block;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
+  min-height: 90px;
+  overflow: hidden;
 }
 
 .generator-ball {
-  width: 42px;
-  height: 42px;
+  position: absolute;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
   image-rendering: pixelated;
-  animation: ballSpawn 0.35s ease-out;
+  pointer-events: none;
+  user-select: none;
 }
 
 @keyframes ballSpawn {
@@ -1879,43 +1879,59 @@ button {
 }
 
 .bowl-generator-window {
+  position: relative;
+  min-height: 120px;
+  overflow: hidden;
   background-image: url("/skins/generBg/genBg2.png");
+  background-size: cover;
+  background-position: center;
 }
 
-.generator-bowls {
+#generatorBowls {
+  position: relative;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
+  height: 120px;
+  min-height: 120px;
+  overflow: hidden;
 }
 
 .generator-bowl {
-  width: 45px;
-  height: 45px;
+  position: absolute;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
   image-rendering: pixelated;
+  display: block;
+  pointer-events: none;
+  user-select: none;
 }
 
 .bed-generator-window {
+  position: relative;
+  min-height: 120px;
+  overflow: hidden;
   background-image: url("/skins/generBg/genBg3.png");
+  background-size: cover;
+  background-position: center;
 }
 
-.generator-beds {
+#generatorBeds {
+  position: relative;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
+  height: 120px;
+  min-height: 120px;
+  overflow: hidden;
 }
 
 .generator-bed {
-  width: 65px;
-  height: 55px;
+  position: absolute;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
   image-rendering: pixelated;
+  display: block;
+  pointer-events: none;
+  user-select: none;
 }
 
 .generator-display-window,
@@ -2434,111 +2450,109 @@ button {
   }
 }
 
-.hidden-secret-cat {
-  position: fixed;
-  width: 34px;
-  z-index: 5;
-  opacity: 0.55;
-  cursor: pointer;
+/*EVENTS*/
+.event-bubble {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  z-index: 20;
+
+  width: 64px;
+  height: 64px;
+  padding: 0;
+
+  border: none;
+  background-color: transparent;
+
+  background-repeat: no-repeat;
+  background-size: 300% 100%;
+  background-position: 0 0;
+
   image-rendering: pixelated;
-  transform: rotate(var(--rot, 0deg));
-  transition:
-    opacity 0.2s,
-    transform 0.2s;
+  cursor: pointer;
+
+  animation: bubble-sprite 0.6s steps(1, end) infinite;
 }
 
-.hidden-secret-cat:hover {
-  opacity: 1;
-  transform: rotate(var(--rot, 0deg)) scale(1.2);
+.event-bubble:hover {
+  filter: brightness(1.15);
 }
 
-.hidden-secret-cat:not([src]),
-.hidden-secret-cat.found {
-  display: none;
-}
-
-.cat-container,
-.generator-section,
-.lootbox-modal-content,
-.shop-content,
-.instructions-content,
-.achievements-content {
-  position: relative;
-}
-
-[data-cat-id="secret_1"] {
-  left: 14px;
-  bottom: -9px;
-}
-
-[data-cat-id="secret_2"] {
-  right: 14px;
-  bottom: -9px;
-}
-
-[data-cat-id="secret_3"] {
-  left: -12px;
-  top: 55%;
-  --rot: 90deg;
-}
-
-[data-cat-id="secret_4"] {
-  right: -12px;
-  top: 38%;
-  --rot: -90deg;
-  width: 28px;
-}
-
-[data-cat-id="secret_5"] {
-  position: absolute;
-  right: 4px;
-  bottom: -10px;
-  width: 24px;
-}
-
-[data-cat-id="secret_6"] {
-  position: absolute;
-  left: 4px;
-  bottom: 2px;
-  width: 22px;
-  opacity: 0.35;
-}
-
-[data-cat-id="secret_7"] {
-  position: absolute;
-  right: 10px;
-  bottom: 8px;
-  width: 26px;
-}
-
-[data-cat-id="secret_8"] {
-  position: absolute;
-  left: 8px;
-  bottom: 8px;
-  width: 28px;
-}
-
-[data-cat-id="secret_9"] {
-  position: absolute;
-  right: 12px;
-  bottom: 10px;
-  width: 24px;
-  opacity: 0.4;
-}
-
-[data-cat-id="secret_10"] {
-  position: absolute;
-  left: 12px;
-  bottom: 6px;
-  width: 20px;
-  opacity: 0.35;
-}
-
-@media (max-width: 750px) {
-  [data-cat-id="secret_1"],
-  [data-cat-id="secret_2"],
-  [data-cat-id="secret_3"],
-  [data-cat-id="secret_4"] {
-    width: 26px;
+@keyframes bubble-sprite {
+  0% {
+    background-position: 0 0;
   }
+
+  33.333% {
+    background-position: 50% 0;
+  }
+
+  66.666% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+/*EVENTS END*/
+
+/* Rolling toy inside the cat container */
+.container-toy {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 96px;
+  height: 96px;
+
+  object-fit: contain;
+  image-rendering: pixelated;
+
+  pointer-events: none;
+  user-select: none;
+
+  z-index: 0;
+}
+
+.cat-container .sprite {
+  position: relative;
+  z-index: 1;
+}
+
+.container-bowl {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+
+  right: 20px;
+  bottom: 40px;
+
+  object-fit: contain;
+  image-rendering: pixelated;
+
+  pointer-events: none;
+  user-select: none;
+
+  z-index: 2;
+}
+
+.container-bed {
+  position: absolute;
+
+  width: 130px;
+  height: 110px;
+
+  left: 10px;
+  bottom: 40px;
+
+  object-fit: contain;
+  image-rendering: pixelated;
+
+  pointer-events: none;
+  user-select: none;
+
+  z-index: 1;
 }

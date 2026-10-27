@@ -25,6 +25,10 @@ import { initSecretPuzzle } from "./ui/secrets/secretCats.js";
 import { renderBallGenerator } from "./ui/generatorMod/ballGenerator.js";
 import { renderBowlGenerator } from "./ui/generatorMod/bowlGenerator.js";
 import { renderBedGenerator } from "./ui/generatorMod/bedGenerator.js";
+import { initBubbleEvents } from "./events/bubbleEvents.js";
+import { initContainerToy } from "./ui/container/containerToy.js";
+import { initContainerBowl } from "./ui/container/containerBowl.js";
+import { initContainerBed } from "./ui/container/containerBed.js";
 
 load();
 
@@ -53,6 +57,9 @@ initSkinsModal();
 initAchievementsList();
 initAchievementsModal();
 initCatAnimation();
+initContainerToy();
+initContainerBowl();
+initContainerBed();
 initAdModal(render);
 initLootboxModal();
 initLootboxFlow(render);
@@ -64,6 +71,13 @@ render();
 renderBallGenerator();
 renderBowlGenerator();
 renderBedGenerator();
+initBubbleEvents(() => {
+  render();
+  renderBallGenerator();
+  renderBowlGenerator();
+  renderBedGenerator();
+  notifyAchievements(render);
+});
 notifyAchievements();
 initDailyList();
 initDailyModal(() => {
@@ -72,8 +86,8 @@ initDailyModal(() => {
 });
 startGameLoop({ render, notifyAchievements });
 
-// ############################Save Changes##################################
-/* document.addEventListener("visibilitychange", () => {
+// // ############################Save Changes##################################
+document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "hidden") {
     save();
   }
