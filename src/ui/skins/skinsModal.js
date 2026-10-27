@@ -1,8 +1,8 @@
 import { state } from "../../core/state.js";
 import { SKINS } from "../../config/skins.js";
-import { assetUrl } from "../../config/paths.js";
+import { assetUrl, skinBackgroundSize } from "../../config/paths.js";
 
-const rarities = ["common", "rare", "epic", "legendary"];
+const rarities = ["common", "rare", "epic", "legendary", "secret"];
 
 let selectedRarity = "common";
 
@@ -120,7 +120,7 @@ function renderSkins(container) {
     preview.classList.add("owned-skin-preview");
     preview.style.backgroundImage = `url("${imageUrl}")`;
     preview.style.backgroundPosition = "0 0";
-    preview.style.backgroundSize = "300% 400%";
+    preview.style.backgroundSize = skinBackgroundSize(skin);
     preview.style.backgroundRepeat = "no-repeat";
     if (!isOwned) preview.classList.add("skin-locked");
 

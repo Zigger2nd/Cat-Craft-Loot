@@ -1,3 +1,5 @@
+import { SKINS } from "../config/skins.js";
+import { state } from "../core/state.js";
 const frameWidth = 32;
 const frameHeight = 32;
 
@@ -25,6 +27,13 @@ export function initCatAnimation() {
   animationStarted = true;
 
   setInterval(() => {
+    const currentSkin = SKINS[state.equippedSkin];
+
+    if (!currentSkin || currentSkin.frames) {
+      sprite.style.backgroundPosition = "center";
+      sprite.style.backgroundSize = "contain";
+      return;
+    }
     const column = frame % columns;
 
     const row = Math.floor(frame / columns);
