@@ -86,7 +86,7 @@ initDailyModal(() => {
 });
 startGameLoop({ render, notifyAchievements });
 
-// // ############################Save Changes##################################
+// ############################Save Changes##################################
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "hidden") {
     save();
@@ -94,4 +94,4 @@ document.addEventListener("visibilitychange", () => {
 });
 
 window.addEventListener("pagehide", save);
-window.addEventListener("beforeunload", save); */
+window.addEventListener("beforeunload", save);

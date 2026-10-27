@@ -1,14 +1,15 @@
 import { state } from "../../core/state.js";
+import { assetUrl } from "../../config/paths.js";
 
 const BOWL_IMAGES = [
-  "/skins/bowls/bowl1.png",
-  "/skins/bowls/bowl2.png",
-  "/skins/bowls/bowl3.png",
-  "/skins/bowls/bowl4.png",
-  "/skins/bowls/bowl5.png",
-  "/skins/bowls/bowl6.png",
-  "/skins/bowls/bowl7.png",
-  "/skins/bowls/bowl8.png",
+  assetUrl("/skins/bowls/bowl1.png"),
+  assetUrl("/skins/bowls/bowl2.png"),
+  assetUrl("/skins/bowls/bowl3.png"),
+  assetUrl("/skins/bowls/bowl4.png"),
+  assetUrl("/skins/bowls/bowl5.png"),
+  assetUrl("/skins/bowls/bowl6.png"),
+  assetUrl("/skins/bowls/bowl7.png"),
+  assetUrl("/skins/bowls/bowl8.png"),
 ];
 
 const MAX_BOWLS = 12;

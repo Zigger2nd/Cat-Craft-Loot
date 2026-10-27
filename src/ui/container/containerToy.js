@@ -1,11 +1,12 @@
 import { state } from "../../core/state.js";
+import { assetUrl } from "../../config/paths.js";
 
 const TOY_FRAMES = [
-  "/skins/containerToy/frame1.png",
-  "/skins/containerToy/frame2.png",
-  "/skins/containerToy/frame3.png",
-  "/skins/containerToy/frame4.png",
-  "/skins/containerToy/frame5.png",
+  assetUrl("/skins/containerToy/frame1.png"),
+  assetUrl("/skins/containerToy/frame2.png"),
+  assetUrl("/skins/containerToy/frame3.png"),
+  assetUrl("/skins/containerToy/frame4.png"),
+  assetUrl("/skins/containerToy/frame5.png"),
 ];
 
 const FRAME_DURATION = 100;

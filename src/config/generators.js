@@ -4,7 +4,7 @@ export const GENERATORS = {
     image: "/skins/ball.png",
     baseCost: 150,
     growth: 1.15,
-    cps: 0.1,
+    cps: 10000,
   },
 
   bowl: {
