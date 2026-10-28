@@ -25,7 +25,8 @@ import { initSecretPuzzle } from "./ui/secrets/secretCats.js";
 import { renderBallGenerator } from "./ui/generatorMod/ballGenerator.js";
 import { renderBowlGenerator } from "./ui/generatorMod/bowlGenerator.js";
 import { renderBedGenerator } from "./ui/generatorMod/bedGenerator.js";
-
+import "./styles/index.css";
+import { initMobileMenu } from "./ui/mobileMenu.js";
 load();
 
 if (import.meta.env.DEV) {
@@ -65,6 +66,7 @@ renderBallGenerator();
 renderBowlGenerator();
 renderBedGenerator();
 notifyAchievements();
+initMobileMenu();
 initDailyList();
 initDailyModal(() => {
   render();

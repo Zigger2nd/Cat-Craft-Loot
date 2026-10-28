@@ -163,4 +163,10 @@ export const SKINS = {
     img: "/skins/cats/secret/secretCat.png",
     frames: { cols: 1, rows: 1 },
   },
+  alienCat: {
+    name: "Alien Cat",
+    rarity: "secret",
+    img: "/skins/cats/secret/alienCat.gif",
+    frames: { cols: 1, rows: 1 },
+  },
 };
