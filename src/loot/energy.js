@@ -58,5 +58,6 @@ function renderEnergyBar() {
 }
 
 export function addEnergy(amount) {
-  state.energy += amount;
+  state.energy = Math.min(ENERGY.max, state.energy + amount);
+  updateEnergy();
 }

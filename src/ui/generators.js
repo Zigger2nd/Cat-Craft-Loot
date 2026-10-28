@@ -4,6 +4,15 @@ import { GENERATORS } from "../config/generators.js";
 import { getGeneratorCost, buyGenerator } from "../core/economy.js";
 import { assetUrl } from "../config/paths.js";
 
+import { initContainerToy } from "./container/containerToy.js";
+import { renderBallGenerator } from "./generatorMod/ballGenerator.js";
+
+import { initContainerBowl } from "./container/containerBowl.js";
+import { renderBowlGenerator } from "./generatorMod/bowlGenerator.js";
+
+import { initContainerBed } from "./container/containerBed.js";
+import { renderBedGenerator } from "./generatorMod/bedGenerator.js";
+
 const list = document.getElementById("generatorList");
 
 const generatorSounds = {
@@ -88,6 +97,21 @@ export function initGenerators(onChange) {
           sound.play().catch((error) => {
             console.warn("Could not play generator sound:", error);
           });
+        }
+
+        if (id === "toy") {
+          initContainerToy();
+          renderBallGenerator();
+        }
+
+        if (id === "bowl") {
+          initContainerBowl();
+          renderBowlGenerator();
+        }
+
+        if (id === "bed") {
+          initContainerBed();
+          renderBedGenerator();
         }
 
         onChange();
