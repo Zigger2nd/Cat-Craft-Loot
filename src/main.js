@@ -25,11 +25,12 @@ import { initSecretPuzzle } from "./ui/secrets/secretCats.js";
 import { renderBallGenerator } from "./ui/generatorMod/ballGenerator.js";
 import { renderBowlGenerator } from "./ui/generatorMod/bowlGenerator.js";
 import { renderBedGenerator } from "./ui/generatorMod/bedGenerator.js";
+import { initMobileMenu } from "./ui/mobileMenu.js";
 import { initBubbleEvents } from "./events/bubbleEvents.js";
 import { initContainerToy } from "./ui/container/containerToy.js";
 import { initContainerBowl } from "./ui/container/containerBowl.js";
 import { initContainerBed } from "./ui/container/containerBed.js";
-
+import "./styles/index.css";
 load();
 
 if (import.meta.env.DEV) {
@@ -79,6 +80,7 @@ initBubbleEvents(() => {
   notifyAchievements(render);
 });
 notifyAchievements();
+initMobileMenu();
 initDailyList();
 initDailyModal(() => {
   render();

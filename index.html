@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cat Clicker</title>
-
-    <link rel="stylesheet" href="./src/style.css" />
   </head>
 
   <body>
@@ -13,30 +11,40 @@
     <img class="hidden-secret-cat" data-cat-id="secret_2" alt="Secret Cat" />
     <img class="hidden-secret-cat" data-cat-id="secret_3" alt="Secret Cat" />
     <img class="hidden-secret-cat" data-cat-id="secret_4" alt="Secret Cat" />
-    <nav class="top-button-bar" aria-label="Game menu">
-      <button type="button" id="openSkinsBtn" class="skins-button">
+    <nav class="top-button-bar" id="topMenu" aria-label="Game menu">
+      <button
+        type="button"
+        id="menuToggleBtn"
+        class="menu-toggle"
+        aria-expanded="false"
+        aria-controls="topMenu"
+        aria-label="Menu"
+      >
+        ☰
+      </button>
+      <button type="button" id="openSkinsBtn" class="btn skins-button">
         MY SKINS
       </button>
 
-      <button type="button" id="boxBtn">OPEN BOX</button>
+      <button type="button" id="boxBtn" class="btn">OPEN BOX</button>
 
-      <button type="button" id="openShopBtn">SHOP</button>
+      <button type="button" id="openShopBtn" class="btn">SHOP</button>
       <button
         type="button"
         id="openAchievementsBtn"
-        class="open-achievements-btn"
+        class="btn open-achievements-btn"
       >
         OPEN ACHIEVEMENTS LIST
       </button>
 
-      <button type="button" id="openDailyBtn" class="open-daily-btn">
+      <button type="button" id="openDailyBtn" class="btn open-daily-btn">
         OPEN DAILY LIST
       </button>
 
       <button
         type="button"
         id="openInstructionsBtn"
-        class="instructions-button"
+        class="btn instructions-button"
         aria-label="Game instructions"
         title="Game instructions"
       >
@@ -131,11 +139,7 @@
             </div>
 
             <div class="next-level-info">
-              <p>
-                +<span class="click-power">1</span> food
-                <br />
-                per click
-              </p>
+              <p>+<span class="click-power">1</span> food per click</p>
             </div>
           </div>
 
@@ -166,7 +170,7 @@
           <button
             type="button"
             id="closeSkinsBtn"
-            class="close-skins-btn"
+            class="btn close-btn"
             aria-label="Close skins"
           >
             &times;
@@ -176,24 +180,28 @@
         <div class="skin-rarity-filters">
           <button
             type="button"
-            class="rarity-button active"
+            class="btn rarity-button active"
             data-rarity="common"
           >
             Common
           </button>
 
-          <button type="button" class="rarity-button" data-rarity="rare">
+          <button type="button" class="btn rarity-button" data-rarity="rare">
             Rare
           </button>
 
-          <button type="button" class="rarity-button" data-rarity="epic">
+          <button type="button" class="btn rarity-button" data-rarity="epic">
             Epic
           </button>
 
-          <button type="button" class="rarity-button" data-rarity="legendary">
+          <button
+            type="button"
+            class="btn rarity-button"
+            data-rarity="legendary"
+          >
             Legendary
           </button>
-          <button type="button" class="rarity-button" data-rarity="secret">
+          <button type="button" class="btn rarity-button" data-rarity="secret">
             Secret
           </button>
         </div>
@@ -202,12 +210,12 @@
       </div>
     </div>
 
-    <dialog id="adDialog">
+    <dialog id="adDialog" class="modal">
       <video id="adVideo" src="./ad.webm" muted playsinline></video>
       <p>Watching ad...</p>
     </dialog>
 
-    <dialog id="dialog" class="lootbox-modal">
+    <dialog id="dialog" class="modal lootbox-modal">
       <div class="lootbox-modal-content">
         <img
           class="hidden-secret-cat"
@@ -232,7 +240,7 @@
 
               <span class="energy-count">10 / 10</span>
 
-              <button type="button" class="watch-ad-btn" id="watchAddBtn">
+              <button type="button" class="btn watch-ad-btn" id="watchAddBtn">
                 Watch AD
               </button>
             </div>
@@ -241,7 +249,7 @@
           <button
             type="button"
             id="closeBtn"
-            class="close-lootbox-btn"
+            class="btn close-btn"
             aria-label="Close loot box"
           >
             &times;
@@ -253,7 +261,7 @@
           <div class="lootbox-ribbon"></div>
         </div>
 
-        <button type="button" id="openBoxBtn" class="open-lootbox-btn">
+        <button type="button" id="openBoxBtn" class="btn open-lootbox-btn">
           OPEN BOX
         </button>
 
@@ -268,7 +276,7 @@
       </div>
     </dialog>
 
-    <dialog id="shopDialog" class="shop-dialog">
+    <dialog id="shopDialog" class="modal shop-dialog">
       <div class="shop-content">
         <img
           class="hidden-secret-cat"
@@ -278,7 +286,12 @@
         <header class="shop-header">
           <h2>Background Shop</h2>
 
-          <button type="button" id="closeShopBtn" aria-label="Close shop">
+          <button
+            type="button"
+            id="closeShopBtn"
+            aria-label="Close shop"
+            class="btn close-btn"
+          >
             &times;
           </button>
         </header>
@@ -299,17 +312,17 @@
       </div>
     </dialog>
 
-    <dialog id="dailyRewardDialog">
+    <dialog id="dailyRewardDialog" class="modal">
       <h2>Daily reward</h2>
 
       <div id="dailyRewardList"></div>
 
-      <button type="button" id="claimDailyButton">Claim</button>
+      <button type="button" id="claimDailyButton" class="btn">Claim</button>
 
-      <button type="button" id="dailyRewardCloseBtn">Close</button>
+      <button type="button" id="dailyRewardCloseBtn" class="btn">Close</button>
     </dialog>
 
-    <dialog id="offlineDialog">
+    <dialog id="offlineDialog" class="modal">
       <h2>Welcome back!</h2>
 
       <p>
@@ -317,10 +330,10 @@
         <span id="offline-amount">0</span> treats.
       </p>
 
-      <button type="button" id="offlineCloseBtn">Nice!</button>
+      <button type="button" id="offlineCloseBtn" class="btn">Nice!</button>
     </dialog>
 
-    <dialog id="achievementsDialog" class="achievements-dialog">
+    <dialog id="achievementsDialog" class="modal achievements-dialog">
       <div class="achievements-content">
         <img
           class="hidden-secret-cat"
@@ -333,7 +346,7 @@
           <button
             type="button"
             id="achievementsCloseBtn"
-            class="close-achievements-btn"
+            class="btn close-btn"
             aria-label="Close achievements"
           >
             &times;
@@ -346,7 +359,7 @@
 
     <div id="toastContainer" class="toast-container" popover="manual"></div>
 
-    <dialog id="instructionsDialog" class="instructions-dialog">
+    <dialog id="instructionsDialog" class="modal instructions-dialog">
       <div class="instructions-content">
         <img
           class="hidden-secret-cat"
@@ -359,7 +372,7 @@
           <button
             type="button"
             id="closeInstructionsBtn"
-            class="close-instructions-btn"
+            class="btn close-btn"
             aria-label="Close instructions"
           >
             &times;
@@ -403,13 +416,17 @@
           <p>Check the Daily List regularly to claim your rewards.</p>
         </div>
 
-        <button type="button" id="startPlayingBtn" class="start-playing-btn">
+        <button
+          type="button"
+          id="startPlayingBtn"
+          class="btn start-playing-btn"
+        >
           Let's Play!
         </button>
       </div>
     </dialog>
 
-    <dialog id="skinRewardDialog" class="skin-reward-dialog">
+    <dialog id="skinRewardDialog" class="modal skin-reward-dialog">
       <div class="skin-reward-content">
         <div class="reward-confetti" aria-hidden="true">
           <span>✨</span>
@@ -425,7 +442,7 @@
         <button
           type="button"
           id="closeSkinRewardBtn"
-          class="close-skin-reward"
+          class="btn close-skin-reward"
           aria-label="Close reward"
         >
           &times;
@@ -447,7 +464,11 @@
 
         <p id="rewardSkinRarity" class="reward-rarity">COMMON</p>
 
-        <button type="button" id="claimSkinRewardBtn" class="claim-skin-reward">
+        <button
+          type="button"
+          id="claimSkinRewardBtn"
+          class="btn claim-skin-reward"
+        >
           AWESOME!
         </button>
       </div>
