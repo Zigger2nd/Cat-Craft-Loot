@@ -30,6 +30,7 @@ import { initBubbleEvents } from "./events/bubbleEvents.js";
 import { initContainerToy } from "./ui/container/containerToy.js";
 import { initContainerBowl } from "./ui/container/containerBowl.js";
 import { initContainerBed } from "./ui/container/containerBed.js";
+
 import "./styles/index.css";
 load();
 
