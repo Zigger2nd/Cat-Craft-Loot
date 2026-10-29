@@ -18,3 +18,12 @@ export const MAXOFFLINETIME = 8 * 3600;
 
 export const AD_REWARD_ENERGY = 5;
 export const AD_COOLDOWN_SECONDS = 30;
+
+export const RAGE = {
+  max: 100,
+  cooldownSeconds: 900,
+  perClick: 1,
+  decayPerSecond: 1,
+  activeDecayPerSecond: 10,
+  clickMultiplier: 10,
+};
