@@ -1,6 +1,6 @@
 import { save } from "../../storage/save.js";
 import { showClickEffect } from "./clickEffect.js";
-import { clickCat, buyClick, getClickPower } from "../../core/economy.js";
+import { clickCat, buyClick } from "../../core/economy.js";
 import { notifyAchievements } from "../../core/achievements.js";
 import { assetUrl } from "../../config/paths.js";
 import { state } from "../../core/state.js";
@@ -16,7 +16,6 @@ export function initClick(render) {
   if (clickBtn) {
     clickBtn.addEventListener("click", (event) => {
       const multiplier = state.goldenCatActive ? 10 : 1;
-      const power = getClickPower();
       const now = Date.now();
 
       if (now - lastMeowTime >= 300) {
@@ -28,8 +27,8 @@ export function initClick(render) {
         });
       }
 
-      clickCat(multiplier);
-      showClickEffect(event, power * multiplier);
+      const { amount, isCrit } = clickCat(multiplier);
+      showClickEffect(event, amount, isCrit);
       notifyAchievements();
       render();
     });

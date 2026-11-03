@@ -27,3 +27,5 @@ export const RAGE = {
   activeDecayPerSecond: 10,
   clickMultiplier: 10,
 };
+
+export const CRIT = { baseChance: 0, baseMultiplier: 2, maxChance: 1 };

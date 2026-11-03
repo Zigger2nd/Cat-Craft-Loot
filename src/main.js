@@ -30,6 +30,7 @@ import { initBubbleEvents } from "./events/bubbleEvents.js";
 import { initContainerItems } from "./ui/container/containerItems.js";
 import { initGoldenCoinEvent } from "./events/goldenCoinEvent.js";
 import { initUfoEvent } from "./events/ufoEvent.js";
+import { initSkillTreeModal } from "./ui/skillTree/skillTreeModal.js";
 import "./styles/index.css";
 load();
 
@@ -63,6 +64,7 @@ initContainerItems();
 initAdModal(render);
 initLootboxModal();
 initLootboxFlow(render);
+initSkillTreeModal(render);
 initEquipSkin(render);
 applyEquippedSkin(render);
 initOfflineModal(offlineGained);
@@ -89,11 +91,11 @@ initDailyModal(() => {
 startGameLoop({ render, notifyAchievements });
 
 // ############################Save Changes##################################
-document.addEventListener("visibilitychange", () => {
+/* document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "hidden") {
     save();
   }
 });
 
 window.addEventListener("pagehide", save);
-window.addEventListener("beforeunload", save);
+window.addEventListener("beforeunload", save); */
