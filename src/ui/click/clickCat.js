@@ -14,6 +14,8 @@ export function initClick(render) {
 
   if (clickBtn) {
     clickBtn.addEventListener("click", (event) => {
+      window.setGameCursor?.("pointer");
+
       const now = Date.now();
 
       if (now - lastMeowTime >= 300) {
