@@ -3,7 +3,6 @@ import { showClickEffect } from "./clickEffect.js";
 import { clickCat, buyClick } from "../../core/economy.js";
 import { notifyAchievements } from "../../core/achievements.js";
 import { assetUrl } from "../../config/paths.js";
-import { state } from "../../core/state.js";
 
 const catMeow = new Audio(assetUrl("/sounds/cat_meow.mp3"));
 catMeow.volume = 0.5;
@@ -15,7 +14,6 @@ export function initClick(render) {
 
   if (clickBtn) {
     clickBtn.addEventListener("click", (event) => {
-      const multiplier = state.goldenCatActive ? 10 : 1;
       const now = Date.now();
 
       if (now - lastMeowTime >= 300) {
@@ -27,7 +25,7 @@ export function initClick(render) {
         });
       }
 
-      const { amount, isCrit } = clickCat(multiplier);
+      const { amount, isCrit } = clickCat();
       showClickEffect(event, amount, isCrit);
       notifyAchievements();
       render();
