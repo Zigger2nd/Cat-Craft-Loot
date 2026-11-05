@@ -30,6 +30,7 @@ import { initBubbleEvents } from "./events/bubbleEvents.js";
 import { initContainerItems } from "./ui/container/containerItems.js";
 import { initGoldenCoinEvent } from "./events/goldenCoinEvent.js";
 import { initUfoEvent } from "./events/ufoEvent.js";
+import { initCustomCursor } from "./ui/customCursor.js";
 import { initSkillTreeModal } from "./ui/skillTree/skillTreeModal.js";
 
 import "./styles/index.css";
@@ -49,6 +50,7 @@ const offlineGained = applyOfflineGains();
 updateEnergy();
 
 // #############################INTERFACE INTIALIZATION######################
+initCustomCursor();
 initInstructions();
 initClick(render);
 initGenerators(() => {
