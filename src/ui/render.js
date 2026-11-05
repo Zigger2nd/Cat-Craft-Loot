@@ -12,15 +12,12 @@ export function render() {
 
   document.querySelector(".click-level").textContent = state.clickLevel;
 
-  document.querySelectorAll(".click-power").forEach((element) => {
-    element.textContent = getClickPower();
+  document.querySelectorAll(".click-power").forEach((el) => {
+    el.textContent = Number(getClickPower().toFixed(2));
   });
 
   document.getElementById("buyClickBtn").disabled =
     state.treats < getClickCost();
-
-  document.querySelector(".energy-count").textContent =
-    `${state.energy}/${ENERGY.max}`;
 
   document.querySelector(".dust-count").textContent = state.dust;
 

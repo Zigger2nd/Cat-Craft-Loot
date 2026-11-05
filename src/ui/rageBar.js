@@ -1,12 +1,17 @@
 import { RAGE } from "../config/balance.js";
 import { state } from "../core/state.js";
 import { getRageCooldownLeft } from "../core/rage.js";
+import { assetUrl } from "../config/paths.js";
 const RAGE_STATES = [
-  { min: 0.8, x: 0, y: 291 },
-  { min: 0.6, x: 0, y: 221 },
-  { min: 0.4, x: 0, y: 154 },
-  { min: 0.2, x: 0, y: 89 },
-  { min: 0.0, x: 0, y: 25 },
+  { min: 0.9, img: "/skins/rageBar/bar_8.png" },
+  { min: 0.8, img: "/skins/rageBar/bar_7.png" },
+  { min: 0.7, img: "/skins/rageBar/bar_6.png" },
+  { min: 0.6, img: "/skins/rageBar/bar_5.png" },
+  { min: 0.5, img: "/skins/rageBar/bar_4.png" },
+  { min: 0.4, img: "/skins/rageBar/bar_3.png" },
+  { min: 0.3, img: "/skins/rageBar/bar_2.png" },
+  { min: 0.2, img: "/skins/rageBar/bar_1.png" },
+  { min: 0.1, img: "/skins/rageBar/bar_0.png" },
 ];
 
 export function renderRageBar() {
@@ -21,9 +26,9 @@ export function renderRageBar() {
   const ratio = current / RAGE.max;
 
   const selectedState =
-    RAGE_STATES.find((item) => ratio >= item.min) ?? RAGE_STATES[4];
+    RAGE_STATES.find((item) => ratio >= item.min) ?? RAGE_STATES[8];
 
-  bar.style.backgroundPosition = `-${selectedState.x}px -${selectedState.y}px`;
+  bar.style.backgroundImage = `url(${assetUrl(selectedState.img)})`;
 
   bar.setAttribute("aria-valuemax", maxRage);
   bar.setAttribute("aria-valuenow", Math.floor(current));

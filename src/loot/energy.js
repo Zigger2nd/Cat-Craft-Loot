@@ -1,5 +1,6 @@
 import { state } from "../core/state.js";
 import { ENERGY } from "../config/balance.js";
+import { getSkillBonus } from "../core/skillTree.js";
 
 const ENERGY_STATES = [
   { min: 0.8, x: 0, y: 0 }, // 100%
@@ -9,22 +10,29 @@ const ENERGY_STATES = [
   { min: 0, x: 195, y: 51 }, // 0%
 ];
 
+function getMaxEnergy() {
+  const baseMax = ENERGY.max ?? 10;
+  const bonusMax = getSkillBonus("maxEnergy");
+  return baseMax + bonusMax;
+}
+
 export function updateEnergy() {
   const now = Date.now();
   const stepMs = ENERGY.regenSeconds * 10;
+  const currentMax = getMaxEnergy();
 
   if (!state.energyUpdatedAt) {
     state.energyUpdatedAt = now;
   }
 
-  if (state.energy >= ENERGY.max) {
-    state.energy = ENERGY.max;
+  if (state.energy >= currentMax) {
+    state.energy = currentMax;
     state.energyUpdatedAt = now;
   } else {
     const gained = Math.floor((now - state.energyUpdatedAt) / stepMs);
 
     if (gained > 0) {
-      state.energy = Math.min(ENERGY.max, state.energy + gained);
+      state.energy = Math.min(currentMax, state.energy + gained);
 
       state.energyUpdatedAt += gained * stepMs;
     }
@@ -39,25 +47,26 @@ function renderEnergyBar() {
 
   if (!bar) return;
 
-  const maxEnergy = ENERGY.max;
-  const currentEnergy = Math.max(0, Math.min(state.energy, maxEnergy));
+  const currentMax = getMaxEnergy();
+  const currentEnergy = Math.max(0, Math.min(state.energy, currentMax));
 
-  const ratio = maxEnergy > 0 ? currentEnergy / maxEnergy : 0;
+  const ratio = currentMax > 0 ? currentEnergy / currentMax : 0;
 
   const selectedState =
     ENERGY_STATES.find((item) => ratio >= item.min) ?? ENERGY_STATES[4];
 
   bar.style.backgroundPosition = `-${selectedState.x}px -${selectedState.y}px`;
 
-  bar.setAttribute("aria-valuemax", maxEnergy);
+  bar.setAttribute("aria-valuemax", currentMax);
   bar.setAttribute("aria-valuenow", currentEnergy);
 
   if (counter) {
-    counter.textContent = `${currentEnergy} / ${maxEnergy}`;
+    counter.textContent = `${currentEnergy} / ${currentMax}`;
   }
 }
 
 export function addEnergy(amount) {
-  state.energy = Math.min(ENERGY.max, state.energy + amount);
+  const currentMax = getMaxEnergy();
+  state.energy = Math.min(currentMax, state.energy + amount);
   updateEnergy();
 }
