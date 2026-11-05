@@ -19,9 +19,6 @@ export function render() {
   document.getElementById("buyClickBtn").disabled =
     state.treats < getClickCost();
 
-  document.querySelector(".energy-count").textContent =
-    `${state.energy}/${ENERGY.max}`;
-
   document.querySelector(".dust-count").textContent = state.dust;
 
   document.getElementById("openBoxBtn").disabled =

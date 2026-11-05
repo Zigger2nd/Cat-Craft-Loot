@@ -29,3 +29,5 @@ export const RAGE = {
 };
 
 export const CRIT = { baseChance: 0, baseMultiplier: 2, maxChance: 1 };
+
+export const GOLDEN_CAT_MULTIPLIER = 10;

@@ -28,7 +28,7 @@
     chestEnergyCost   + flat change of chest price     (-1)
     unlock            flag: "generator", "secretEvent", "exponentialClick"
 */
-
+//+
 export const SKILL_TREE = {
   // ---------- tier 1 ----------
   happyCat: {
@@ -40,7 +40,7 @@ export const SKILL_TREE = {
     cost: { dust: 10 },
     effects: [{ type: "clickBonus", value: 0.1 }],
   },
-
+  //+
   // ---------- tier 2 ----------
   fish: {
     name: "Fish",
@@ -51,6 +51,7 @@ export const SKILL_TREE = {
     cost: { dust: 25 },
     effects: [{ type: "cpsBonus", value: 0.1 }],
   },
+  //+
   claw: {
     name: "Sharp Claws",
     desc: "Click crit chance +20%",
@@ -59,9 +60,8 @@ export const SKILL_TREE = {
     pos: { col: 3.5, row: 2 },
     cost: { dust: 25 },
     effects: [{ type: "critChance", value: 0.2 }],
-    wip: true,
   },
-
+  //+
   // ---------- tier 3 ----------
   ball: {
     name: "Blue Ball",
@@ -72,6 +72,7 @@ export const SKILL_TREE = {
     cost: { dust: 50 },
     effects: [{ type: "ballCpsBonus", value: 5 }],
   },
+  //+
   bowl: {
     name: "Breakfast",
     desc: "Bowl CPS +100%",
@@ -81,6 +82,7 @@ export const SKILL_TREE = {
     cost: { dust: 50 },
     effects: [{ type: "bowlCpsBonus", value: 2 }],
   },
+  //+
   criticalDamage: {
     name: "Critical Paw",
     desc: "Critical damage +50%",
@@ -89,8 +91,8 @@ export const SKILL_TREE = {
     pos: { col: 3, row: 3 },
     cost: { dust: 50 },
     effects: [{ type: "critDamage", value: 0.5 }],
-    wip: true,
   },
+  //+
   clickPlus: {
     name: "Strong Paw",
     desc: "Click +50%",
@@ -100,7 +102,7 @@ export const SKILL_TREE = {
     cost: { dust: 50 },
     effects: [{ type: "clickBonus", value: 0.5 }],
   },
-
+  //+
   // ---------- tier 4 ----------
   goldenCatSpeed: {
     name: "Golden Lure",
@@ -110,8 +112,8 @@ export const SKILL_TREE = {
     pos: { col: 1, row: 4 },
     cost: { dust: 100 },
     effects: [{ type: "goldenCatSpeed", value: 0.5 }],
-    wip: true,
   },
+  //+
   bed: {
     name: "Cozy Bed",
     desc: "Bed CPS +30%",
@@ -121,6 +123,7 @@ export const SKILL_TREE = {
     cost: { dust: 100 },
     effects: [{ type: "bedCpsBonus", value: 0.3 }],
   },
+  //+
   criticalStrike: {
     name: "Deadly Stars",
     desc: "Crit chance +30%, crit damage +50%",
@@ -132,8 +135,8 @@ export const SKILL_TREE = {
       { type: "critChance", value: 0.3 },
       { type: "critDamage", value: 0.5 },
     ],
-    wip: true,
   },
+  //+
   rageCooldown: {
     name: "Calm Fire",
     desc: "Rage cooldown -50%",
@@ -141,9 +144,9 @@ export const SKILL_TREE = {
     parent: "clickPlus",
     pos: { col: 4, row: 4 },
     cost: { dust: 100 },
-    effects: [{ type: "rageCooldown", value: -0.5 }],
+    effects: [{ type: "rageCooldown", value: 0.5 }],
   },
-
+  //+
   // ---------- tier 5 ----------
   bubbleEffect: {
     name: "Bubble Potion",
@@ -156,7 +159,7 @@ export const SKILL_TREE = {
   },
   newGenerator: {
     name: "Cardboard Box",
-    desc: "Adds a new generator",
+    desc: "Adds a new generator WIP",
     img: "/skillTree/catSkill5_2.png",
     parent: "bed",
     pos: { col: 2, row: 5 },
@@ -164,6 +167,7 @@ export const SKILL_TREE = {
     effects: [{ type: "unlock", value: "generator" }],
     wip: true,
   },
+  //+
   skinEffect: {
     name: "Royal Crown",
     desc: "Doubles cat skin effect",
@@ -172,8 +176,8 @@ export const SKILL_TREE = {
     pos: { col: 3, row: 5 },
     cost: { dust: 200 },
     effects: [{ type: "skinEffect", value: 2 }],
-    wip: true,
   },
+  //+
   rageEffect: {
     name: "Double Rage",
     desc: "Doubles rage effect",
@@ -187,7 +191,7 @@ export const SKILL_TREE = {
   // ---------- tier 6 ----------
   secretEvent: {
     name: "Shadow Cat",
-    desc: "Unlocks a secret event",
+    desc: "Unlocks a secret event WIP",
     img: "/skillTree/catSkill6_1.png",
     parent: "bubbleEffect",
     pos: { col: 0, row: 6 },
@@ -195,6 +199,7 @@ export const SKILL_TREE = {
     effects: [{ type: "unlock", value: "secretEvent" }],
     wip: true,
   },
+  //+
   maxEnergy: {
     name: "Lucky Collar",
     desc: "Max energy 15",
@@ -211,10 +216,9 @@ export const SKILL_TREE = {
     parent: "skinEffect",
     pos: { col: 3, row: 6 },
     cost: { dust: 400 },
-    effects: [{ type: "unlock", value: "exponentialClick" }],
-    wip: true,
+    effects: [{ type: "exponentialClick", value: 1 }],
   },
-
+  //+
   // ---------- tier 7 ----------
   cheaperChest: {
     name: "Treasure Chest",

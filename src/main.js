@@ -31,6 +31,7 @@ import { initContainerItems } from "./ui/container/containerItems.js";
 import { initGoldenCoinEvent } from "./events/goldenCoinEvent.js";
 import { initUfoEvent } from "./events/ufoEvent.js";
 import { initSkillTreeModal } from "./ui/skillTree/skillTreeModal.js";
+
 import "./styles/index.css";
 load();
 
@@ -38,6 +39,8 @@ if (import.meta.env.DEV) {
   window.debugGameState = state;
   window.debugSaveGame = save;
 }
+/* import { SKINS } from "./config/skins.js";
+state.ownedSkins = Object.keys(SKINS); */
 
 if (state.pendingReward) {
   claimReward();

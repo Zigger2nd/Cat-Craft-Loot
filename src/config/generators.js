@@ -1,5 +1,3 @@
-import { getSkillMultiplier } from "../core/skillTree.js";
-
 export const GENERATORS = {
   toy: {
     name: "Toy",

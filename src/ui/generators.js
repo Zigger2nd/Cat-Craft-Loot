@@ -157,7 +157,7 @@ export function renderGenerators() {
     const tooltipText = row.querySelector(".next-level-info p");
 
     if (tooltipText) {
-      tooltipText.textContent = `Produces ${getGeneratorCps(id)} treats per second.`;
+      tooltipText.textContent = `Produces ${getGeneratorCps(id).toFixed(2)} treats per second.`;
     }
   }
 }

@@ -32,10 +32,20 @@ export function clickCat(multiplier = 1) {
 
 export function getClickPower() {
   const base = 1 + state.clickLevel * CLICK_UPGRADE.powerPerLevel;
+
+  const hasExponentialClick = getSkillBonus("exponentialClick") > 0;
+
+  let totalTreatsBonus = 0;
+  if (hasExponentialClick && state.stats?.totalTreats > 0) {
+    totalTreatsBonus = Math.floor(Math.log10(state.stats.totalTreats + 1) * 15);
+  }
+
   return (
-    base *
+    (base + totalTreatsBonus) *
     (1 + getSkillBonus("clickBonus")) *
-    (isRageActive() ? RAGE.clickMultiplier : 1) *
+    (isRageActive()
+      ? RAGE.clickMultiplier * getSkillMultiplier("rageEffect")
+      : 1) *
     (state.goldenCatActive ? GOLDEN_CAT_MULTIPLIER : 1)
   );
 }
@@ -88,22 +98,22 @@ export function buyGenerator(id) {
 
 export function getGeneratorCps(id) {
   const generator = GENERATORS[id];
-
   if (!generator) return 0;
 
-  let multiplier = 1;
   const bonuses = getSkinBonuses();
-  if (id === "toy") {
-    multiplier *= getSkillMultiplier("ballCpsBonus") || 1;
+  let multiplier = 1;
 
-    multiplier +=
-      (bonuses.toyCpsMultiplier ?? 1) * getSkillMultiplier("skinEffect") || 1;
+  if (id === "toy") {
+    multiplier *=
+      (1 + getSkillBonus("ballCpsBonus")) * (bonuses.toyCpsMultiplier ?? 1);
   }
   if (id === "bowl") {
-    multiplier *= getSkillMultiplier("bowlCpsBonus") || 1;
-    let base =
-      (bonuses.bowlCpsMultiplier ?? 1) * getSkillMultiplier("skinEffect") || 1;
-    multiplier += base;
+    multiplier *=
+      (1 + getSkillBonus("bowlCpsBonus")) * (bonuses.bowlCpsMultiplier ?? 1);
+  }
+  if (id === "bed") {
+    multiplier *=
+      (1 + getSkillBonus("bedCpsBonus")) * (bonuses.bedCpsMultiplier ?? 1);
   }
 
   return generator.cps * multiplier;
@@ -111,11 +121,13 @@ export function getGeneratorCps(id) {
 
 export function getCps() {
   let totalCps = 0;
+  const bonuses = getSkinBonuses();
 
   for (const id of Object.keys(GENERATORS)) {
-    const owned = state.generators[id] ?? 0;
-    totalCps += owned * getGeneratorCps(id);
+    totalCps += (state.generators[id] ?? 0) * getGeneratorCps(id);
   }
 
-  return totalCps;
+  return (
+    totalCps * (1 + getSkillBonus("cpsBonus")) * (bonuses.cpsMultiplier ?? 1)
+  );
 }

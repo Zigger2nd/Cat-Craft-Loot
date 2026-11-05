@@ -1,11 +1,26 @@
 .skill-tree-dialog {
   max-height: 90vh;
-  overflow: auto;
+  overflow-y: auto;
+  position: relative;
+  padding: 25px;
 }
 
 #skillTree {
   position: relative;
   margin: 0 auto;
+}
+
+.skill-tree-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.skill-tree-header h2 {
+  margin: 0;
+  text-align: left;
 }
 
 .skill-tree-card {
