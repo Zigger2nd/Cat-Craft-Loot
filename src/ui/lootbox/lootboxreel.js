@@ -55,7 +55,7 @@ export function spinReel() {
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-  let positionRandom = getRandomInt(-55, 55);
+  let positionRandom = getRandomInt(-45, 45);
 
   const targetPosition =
     winningIndex * (cardWidth + gap) +

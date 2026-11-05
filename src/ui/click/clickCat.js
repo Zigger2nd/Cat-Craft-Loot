@@ -25,10 +25,8 @@ export function initClick(render) {
         });
       }
 
-      const earnedTreats = clickCat();
-
-      showClickEffect(event, earnedTreats);
-
+      const { amount, isCrit } = clickCat();
+      showClickEffect(event, amount, isCrit);
       notifyAchievements();
       render();
     });

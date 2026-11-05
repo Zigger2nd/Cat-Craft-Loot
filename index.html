@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=0"
+    />
     <title>Cat Clicker</title>
   </head>
 
@@ -24,6 +27,9 @@
       </button>
       <button type="button" id="openSkinsBtn" class="btn skins-button">
         MY SKINS
+      </button>
+      <button type="button" id="openSkillTreeBtn" class="btn skill-tree-button">
+        SKILL TREE
       </button>
 
       <button type="button" id="boxBtn" class="btn">OPEN BOX</button>
@@ -484,6 +490,20 @@
           AWESOME!
         </button>
       </div>
+    </dialog>
+    <dialog id="skillTreeDialog" class="modal skill-tree-dialog">
+      <div class="skill-tree-header">
+        <h2>Skill Tree</h2>
+        <button
+          type="button"
+          id="closeSkillTreeBtn"
+          class="btn close-btn"
+          aria-label="Close"
+        >
+          &times;
+        </button>
+      </div>
+      <div id="skillTree"></div>
     </dialog>
 
     <script type="module" src="./src/main.js"></script>
