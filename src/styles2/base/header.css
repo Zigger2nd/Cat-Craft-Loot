@@ -1,0 +1,95 @@
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  padding: var(--space-lg) var(--space-xl);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ---------- Logo ---------- */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.logo-image {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  background-image: url("/skins/logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-title {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 28px;
+  letter-spacing: -0.7px;
+}
+
+.logo-subtitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 3px;
+  color: var(--color-accent);
+}
+
+/* ---------- Resources ---------- */
+
+.resources {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.resource {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-width: 142px;
+  padding: 6px 14px;
+}
+
+.resource-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.resource-label {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.resource-value {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.resource--treats .resource-icon {
+  background-image: url("/skins/food.png");
+}
+.resource--dust .resource-icon {
+  background-image: url("/skins/dust.png");
+}
+.resource--energy .resource-icon {
+  background-image: url("/skins/energy.png");
+}

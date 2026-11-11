@@ -1,0 +1,202 @@
+.home-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-main {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+  flex-grow: 1;
+}
+section[data-view="home"] {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.home-side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.scene {
+  display: grid;
+  place-items: center;
+  position: relative;
+  min-height: 320px;
+  background-size: cover;
+  background-position: center;
+  background-image: url("/skins/background/bluebell_carpet.png");
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.home-head-title {
+  font-weight: 700;
+  font-size: 36px;
+  margin: 0;
+}
+.home-head-subtitle {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.cps-pill {
+  font-weight: 700;
+  padding: 5px 9px;
+  font-size: 12px;
+  text-transform: uppercase;
+  border-radius: var(--radius-md);
+  background-color: var(--color-accent-passive);
+}
+
+.stat-value {
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.home-card {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.home-card-title {
+  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 22px;
+  margin: 0;
+}
+.home-card-hint {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stat-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.stat-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.stat-icon--energy {
+  background-image: url("/skins/energy.png");
+}
+.stat-icon--rage {
+  background-image: url("/skins/rage.png");
+}
+
+.stat-icon--treats {
+  background-image: url("/skins/food.png");
+}
+
+.stat-row--divided {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/*###########################GENERATOR PART##################################*/
+.home-section-head h2 {
+  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  margin: 5px;
+}
+
+.generators {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 333px));
+  gap: 24px;
+}
+
+.gen-card {
+  box-shadow: 0 4px 0 rgba(114, 86, 78, 0.07);
+}
+.gen-info {
+  flex-grow: 1;
+}
+.gen-top {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.gen-bottom {
+  display: flex;
+  text-align: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.gen-level {
+  white-space: nowrap;
+  padding: 5px 9px;
+  background-color: var(--color-track);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-md);
+}
+
+.gen-cps {
+  margin: 0;
+  color: var(--color-energy);
+}
+
+.gen-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+}
+
+/*################################DAILY PART###################################*/
+
+.daily-banner {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-accent-daily);
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border: 1px solid var(--color-accent-border);
+  border-radius: var(--radius-md);
+}
+
+.banner-text {
+  flex-grow: 1;
+  margin: 0;
+}
+.banner-link {
+  background: none;
+  border: none;
+  color: var(--color-accent);
+  cursor: pointer;
+}
+
+.banner-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.banner-icon {
+  background-image: url("/sidebar/daily.png");
+}

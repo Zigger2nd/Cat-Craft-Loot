@@ -1,0 +1,13 @@
+/* Light plate with a thin border: header resources, sidebar collection, cards. */
+.resource,
+.collection-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.home-card {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}

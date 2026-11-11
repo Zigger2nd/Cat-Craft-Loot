@@ -4,22 +4,32 @@ import {
   getGeneratorCost,
   buyGenerator,
   getGeneratorCps,
+  buyClick,
+  getClickCost,
+  getClickPower,
 } from "../core/economy.js";
 import { assetUrl } from "../config/paths.js";
-
+import { save } from "../storage/save.js";
 import { initContainerItems } from "./container/containerItems.js";
 
-import { renderBallGenerator } from "./generatorMod/ballGenerator.js";
-import { renderBowlGenerator } from "./generatorMod/bowlGenerator.js";
-import { renderBedGenerator } from "./generatorMod/bedGenerator.js";
-
 const list = document.getElementById("generatorList");
+const tpl = document.getElementById("generatorCardTpl");
 
 const generatorSounds = {
   toy: new Audio(assetUrl("/sounds/toy2.mp3")),
   bowl: new Audio(assetUrl("/sounds/bowl2.mp3")),
   bed: new Audio(assetUrl("/sounds/sleep.mp3")),
 };
+
+function createCard(id, name, image, onBuy) {
+  const card = tpl.content.firstElementChild.cloneNode(true);
+  card.dataset.id = id;
+
+  card.querySelector(".gen-img").src = assetUrl(image);
+  card.querySelector(".gen-name").textContent = name;
+  card.querySelector(".gen-buy").addEventListener("click", onBuy);
+  list.appendChild(card);
+}
 
 export function initGenerators(onChange) {
   if (!list) {
@@ -29,61 +39,15 @@ export function initGenerators(onChange) {
 
   list.innerHTML = "";
 
+  createCard("click", "Clicker", "/skins/click.png", () => {
+    if (!buyClick()) return;
+    save();
+    onChange();
+    renderGenerators();
+  });
+
   for (const [id, generator] of Object.entries(GENERATORS)) {
-    const row = document.createElement("div");
-    row.classList.add("generator-row");
-
-    const button = document.createElement("button");
-    button.type = "button";
-    button.dataset.id = id;
-    button.classList.add("generator-button");
-
-    const image = document.createElement("img");
-    image.src = assetUrl(generator.image);
-    image.alt = generator.name;
-    image.classList.add("generator-img");
-
-    const info = document.createElement("div");
-    info.classList.add("generator-info");
-
-    const name = document.createElement("span");
-    name.classList.add("generator-name");
-
-    const costInfo = document.createElement("div");
-    costInfo.classList.add("cost-info");
-
-    const costText = document.createElement("p");
-    costText.textContent = "Cost:";
-
-    const costValue = document.createElement("span");
-    costValue.classList.add("generator-cost");
-
-    const foodImage = document.createElement("img");
-    foodImage.src = assetUrl("/skins/food.png");
-    foodImage.alt = "Treats";
-    foodImage.classList.add("food-img");
-
-    costInfo.appendChild(costText);
-    costInfo.appendChild(costValue);
-    costInfo.appendChild(foodImage);
-
-    info.appendChild(name);
-    info.appendChild(costInfo);
-
-    const level = document.createElement("span");
-    level.classList.add("generator-level");
-
-    button.appendChild(image);
-    button.appendChild(info);
-    button.appendChild(level);
-
-    const tooltip = document.createElement("div");
-    tooltip.classList.add("next-level-info");
-
-    const tooltipText = document.createElement("p");
-    tooltip.appendChild(tooltipText);
-
-    button.addEventListener("click", () => {
+    createCard(id, generator.name, generator.image, () => {
       const purchased = buyGenerator(id);
 
       if (!purchased) {
@@ -102,25 +66,12 @@ export function initGenerators(onChange) {
 
       initContainerItems();
 
-      if (id === "toy") {
-        renderBallGenerator();
-      } else if (id === "bowl") {
-        renderBowlGenerator();
-      } else if (id === "bed") {
-        renderBedGenerator();
-      }
-
       if (typeof onChange === "function") {
         onChange();
       }
 
       renderGenerators();
     });
-
-    row.appendChild(button);
-    row.appendChild(tooltip);
-
-    list.appendChild(row);
   }
 
   renderGenerators();
@@ -131,33 +82,25 @@ export function renderGenerators() {
     return;
   }
 
-  for (const row of list.children) {
-    const button = row.querySelector(".generator-button");
+  for (const card of list.querySelectorAll(".gen-card")) {
+    const id = card.dataset.id;
 
-    if (!button) {
-      continue;
+    let level, cost, effectText;
+
+    if (id === "click") {
+      level = state.clickLevel;
+      cost = getClickCost();
+      effectText = `+${getClickPower().toLocaleString("en-US", { maximumFractionDigits: 1 })} treats / click`;
+    } else {
+      level = state.generators[id] ?? 0;
+      cost = getGeneratorCost(id);
+      const totalCps = level * getGeneratorCps(id);
+      effectText = `+${totalCps.toLocaleString("en-US", { maximumFractionDigits: 1 })} treats / sec`;
     }
 
-    const id = button.dataset.id;
-    const generator = GENERATORS[id];
-
-    if (!generator) {
-      continue;
-    }
-
-    const level = Number(state.generators?.[id]) || 0;
-    const cost = getGeneratorCost(id);
-
-    row.querySelector(".generator-name").textContent = generator.name;
-    row.querySelector(".generator-cost").textContent = cost.toLocaleString();
-    row.querySelector(".generator-level").textContent = `Owned: ${level}`;
-
-    button.disabled = state.treats < cost;
-
-    const tooltipText = row.querySelector(".next-level-info p");
-
-    if (tooltipText) {
-      tooltipText.textContent = `Produces ${getGeneratorCps(id).toFixed(2)} treats per second.`;
-    }
+    card.querySelector(".gen-level").textContent = `LV. ${level}`;
+    card.querySelector(".gen-cost").textContent = cost.toLocaleString("en-US");
+    card.querySelector(".gen-cps").textContent = effectText;
+    card.querySelector(".gen-buy").disabled = state.treats < cost;
   }
 }

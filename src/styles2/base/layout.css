@@ -1,0 +1,31 @@
+/* layout.css */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+.game-layout {
+  display: grid;
+  grid-template-columns: 284px 1fr;
+  min-height: 0;
+}
+
+.view-host {
+  padding: 12px 24px 24px 24px;
+  overflow: auto;
+  background-color: var(--color-surface);
+}
+[hidden] {
+  display: none !important;
+}

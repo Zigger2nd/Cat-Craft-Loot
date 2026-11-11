@@ -1,8 +1,8 @@
 import { state } from "../core/state.js";
 import { getClickCost, getClickPower, getCps } from "../core/economy.js";
-import { renderGenerators } from "../ui/generators.js";
+import { renderGenerators } from "./generators.js";
 import { LOOTBOX, ENERGY } from "../config/balance.js";
-import { renderRageBar } from "./rageBar.js";
+import { renderRageBar } from "./renderList/rageBar.js";
 export function render() {
   document.querySelector(".treats-count").textContent = Math.floor(
     state.treats,

@@ -23,8 +23,7 @@ const COIN_FRAME_INTERVAL = 100;
 
 const GOLDEN_CAT_COLUMNS = 3;
 const GOLDEN_CAT_ROWS = 4;
-const GOLDEN_CAT_FRAME_WIDTH = 32;
-const GOLDEN_CAT_FRAME_HEIGHT = 32;
+
 const GOLDEN_CAT_FRAME_INTERVAL = 150;
 
 let spawnTimer = null;
@@ -122,9 +121,7 @@ function animateGoldenCat(sprite) {
 
   let frame = 0;
 
-  sprite.style.backgroundSize =
-    `${GOLDEN_CAT_COLUMNS * GOLDEN_CAT_FRAME_WIDTH}px ` +
-    `${GOLDEN_CAT_ROWS * GOLDEN_CAT_FRAME_HEIGHT}px`;
+  sprite.style.backgroundSize = `${GOLDEN_CAT_COLUMNS * 100}% ${GOLDEN_CAT_ROWS * 100}%`;
 
   sprite.style.backgroundRepeat = "no-repeat";
 
@@ -139,8 +136,8 @@ function animateGoldenCat(sprite) {
     const row = Math.floor(frame / GOLDEN_CAT_COLUMNS);
 
     sprite.style.backgroundPosition =
-      `-${column * GOLDEN_CAT_FRAME_WIDTH}px ` +
-      `-${row * GOLDEN_CAT_FRAME_HEIGHT}px`;
+      `${(column * 100) / (GOLDEN_CAT_COLUMNS - 1)}% ` +
+      `${(row * 100) / (GOLDEN_CAT_ROWS - 1)}%`;
 
     frame = (frame + 1) % (GOLDEN_CAT_COLUMNS * GOLDEN_CAT_ROWS);
   }

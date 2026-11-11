@@ -1,0 +1,19 @@
+/* 1. base */
+@import "./base/variables.css";
+@import "./base/layout.css";
+@import "./base/header.css";
+@import "./base/navBar.css";
+
+@import "./components/button.css";
+@import "./components/icon.css";
+@import "./components/card.css";
+@import "./components/progress.css";
+@import "./components/toasts.css";
+@import "./components/modal.css";
+
+@import "./features/clicker.css";
+@import "./features/home.css";
+@import "./features/bubble-events.css";
+@import "./features/ufoEvents.css";
+@import "./features/skin-reward.css";
+@import "./features/goldencoin.css";

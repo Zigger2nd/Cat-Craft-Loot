@@ -1,0 +1,41 @@
+:root {
+  /* ---------- Colors: surfaces ---------- */
+  --color-bg: #fffcf6; /* page, header, sidebar */
+  --color-surface: #fbf7ef; /* resource chips, cards */
+  --color-border: #e2d5c5;
+
+  /* ----------Colors: tracks --------------*/
+  --color-track: #ece5dc;
+  --color-collection: #84709e;
+  --color-rage: var(--color-accent);
+  --color-energy: #657c50;
+
+  /* ---------- Colors: text ---------- */
+  --color-text: #4b3836; /* titles, values */
+  --color-text-muted: #8d7973; /* labels, captions */
+
+  /* ---------- Colors: accent ---------- */
+  --color-accent: #ad526d; /* pink: subtitle, buttons, links */
+  --color-accent-soft: #f5d9df;
+  --color-accent-border: #e8bbc7;
+  --color-accent-strong: #883e56;
+  --color-accent-passive: #dfe9d2;
+  --shadow-color: rgba(114, 86, 78, 0.25098);
+  --color-accent-daily: #fcecef;
+
+  /* ---------- Fonts ---------- */
+  --font-mono: "Space Mono", monospace; /* titles, numbers */
+  --font-sans: "Inter", sans-serif; /* labels, body text */
+
+  /* ---------- Radius ---------- */
+  --radius-md: 8px;
+
+  /* ---------- Spacing ---------- */
+  --space-sm: 10px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+
+  /* ---------- Icons ---------- */
+  --icon-md: 32px;
+}

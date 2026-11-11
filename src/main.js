@@ -32,7 +32,6 @@ import { initGoldenCoinEvent } from "./events/goldenCoinEvent.js";
 import { initUfoEvent } from "./events/ufoEvent.js";
 import { initCustomCursor } from "./ui/customCursor.js";
 import { initSkillTreeModal } from "./ui/skillTree/skillTreeModal.js";
-
 import "./styles/index.css";
 load();
 

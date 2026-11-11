@@ -1,0 +1,40 @@
+button {
+  font: inherit;
+  color: inherit;
+}
+.btn {
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--btn-shadow);
+}
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--btn-shadow);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  --btn-shadow: var(--color-accent-strong);
+  background: var(--color-accent);
+  color: #fff;
+  padding: 8px 16px;
+}
+
+.btn-secondary {
+  width: 100%;
+  background: var(--color-bg);
+  border-color: var(--color-border);
+  --btn-shadow: var(--shadow-color);
+}

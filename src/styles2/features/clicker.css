@@ -1,0 +1,111 @@
+.sprite {
+  position: relative;
+  z-index: 1;
+  width: 288px; /* размер кота: подберите, лучше кратно 32 — 160, 192, 224 */
+  height: 288px;
+  background-image: url("/skins/cats/common/catOrigin.png");
+  background-size: 300% 400%; /* лист 3×4 → один кадр = ровно размер блока */
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  image-rendering: pixelated;
+  cursor: pointer;
+  transition:
+    opacity 0.1s,
+    transform 0.1s;
+}
+
+.sprite:hover {
+  opacity: 0.9;
+}
+
+.sprite:active {
+  opacity: 0.8;
+  transform: scale(1.05); /* лёгкое «нажатие», а не scale(5.5) */
+}
+/*####################FLOATING TREATS#########################*/
+.floating-treat {
+  position: absolute;
+  z-index: 10;
+  color: #fdfdfd;
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow:
+    1px 1px 2px #000,
+    0 0 6px rgb(255 209 102 / 40%);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  animation: floatingTreat 1.2s ease-out forwards;
+}
+.floating-treat.crit {
+  color: #ffb347;
+  font-size: 30px;
+  text-shadow:
+    1px 1px 2px #000,
+    0 0 10px rgb(255 140 0 / 70%);
+}
+
+@keyframes floatingTreat {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(0.7);
+  }
+
+  20% {
+    transform: translate(-50%, -8px) scale(1.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -65px) scale(1);
+  }
+}
+/*#########################GENERATORS(TOY-BOWL-BED######################*/
+
+.container-bowl {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  right: 20px;
+  bottom: 40px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+}
+
+.container-toy {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 48px;
+  height: 48px;
+
+  object-fit: contain;
+  image-rendering: pixelated;
+
+  pointer-events: none;
+  user-select: none;
+
+  z-index: 0;
+}
+
+.container-bed {
+  position: absolute;
+
+  width: 140px;
+  height: 120px;
+
+  left: 10px;
+  bottom: 40px;
+
+  object-fit: contain;
+  image-rendering: pixelated;
+
+  pointer-events: none;
+  user-select: none;
+
+  z-index: 1;
+}

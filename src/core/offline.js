@@ -47,7 +47,7 @@ export function claimDaily() {
   state.lastDailyClaim = now;
   return { ok: true, reward, streak: state.dailyStreak };
 }
-const DEBUG_OFFSET = 1;
+const DEBUG_OFFSET = 0;
 function dateString(offsetDays = 0) {
   const d = new Date();
   d.setDate(d.getDate() + offsetDays + DEBUG_OFFSET);

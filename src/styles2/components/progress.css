@@ -1,0 +1,30 @@
+.progress-track {
+  height: 7px;
+  background: var(--color-track);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+}
+
+.progress-fill--energy {
+  background: var(--color-energy);
+}
+.progress-fill--rage {
+  background: var(--color-rage);
+}
+.progress-fill--collection {
+  background: var(--color-collection);
+}
+
+.progress-fill--rage.is-active {
+  background: #ff4d2e; /* ярче во время ярости */
+  box-shadow: 0 0 8px #ff4d2e; /* свечение */
+}
+
+.progress-fill--rage.is-cooldown {
+  background: var(--color-text-muted); /* серая на перезарядке */
+}

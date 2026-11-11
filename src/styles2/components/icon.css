@@ -1,0 +1,14 @@
+/* Pixel-art icon drawn as a background image.
+   The image itself is set per place (header resources, sidebar items). */
+.resource-icon,
+.nav-icon,
+.stat-icon,
+.banner-icon {
+  flex-shrink: 0;
+  width: var(--icon-md);
+  height: var(--icon-md);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  image-rendering: pixelated;
+}

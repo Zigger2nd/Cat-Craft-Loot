@@ -46,7 +46,7 @@ export function initCatAnimation() {
     const column = frame % columns;
     const row = Math.floor(frame / columns);
 
-    sprite.style.backgroundPosition = `-${column * frameWidth}px -${row * frameHeight}px`;
+    sprite.style.backgroundPosition = `${(column * 100) / (columns - 1)}% ${(row * 100) / (rows - 1)}%`;
 
     frame = (frame + 1) % totalFrames;
   }, 100);

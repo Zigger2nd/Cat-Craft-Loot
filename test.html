@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=0"
+    />
+    <title>Cat Clicker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="game-header">
+      <div class="logo">
+        <div class="logo-image"></div>
+        <div class="logo-text">
+          <span class="logo-title">CAT CRAFT</span>
+          <span class="logo-subtitle">&amp;LOOT</span>
+        </div>
+      </div>
+
+      <div class="resources">
+        <div class="resource resource--treats">
+          <div class="resource-icon"></div>
+          <div class="resource-info">
+            <span class="resource-label">Treats</span>
+            <span class="resource-value treats-count">1000</span>
+          </div>
+        </div>
+        <div class="resource resource--dust">
+          <div class="resource-icon"></div>
+          <div class="resource-info">
+            <span class="resource-label">Dust</span>
+            <span class="resource-value dust-count">1000</span>
+          </div>
+        </div>
+        <div class="resource resource--energy">
+          <div class="resource-icon"></div>
+          <div class="resource-info">
+            <span class="resource-label">Energy</span>
+            <span class="resource-value energy-count">0 / 10</span>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="game-layout">
+      <aside class="sidebar">
+        <div class="sidebar-top">
+          <p class="sidebar-caption">A little world of cats</p>
+          <nav class="sidebar-nav" aria-label="Game menu">
+            <button type="button" class="nav-item" data-nav="home">
+              <span class="nav-icon"></span>
+              <span class="nav-label">My cozy corner</span>
+            </button>
+            <button type="button" class="nav-item" data-nav="skins">
+              <span class="nav-icon"></span>
+              <span class="nav-label">My Skins</span>
+            </button>
+            <button type="button" class="nav-item" data-nav="box">
+              <span class="nav-icon"></span>
+              <span class="nav-label">Open Box</span>
+            </button>
+            <button type="button" class="nav-item" data-nav="shop">
+              <span class="nav-icon"></span>
+              <span class="nav-label">Shop</span>
+            </button>
+            <button type="button" class="nav-item" data-nav="skilltree">
+              <span class="nav-icon"></span>
+              <span class="nav-label">Skill Tree</span>
+            </button>
+            <button type="button" class="nav-item" data-nav="achievements">
+              <span class="nav-icon"></span>
+              <span class="nav-label">Achievements</span>
+            </button>
+            <button type="button" class="nav-item" data-nav="daily">
+              <span class="nav-icon"></span>
+              <span class="nav-label">Daily Rewards</span>
+            </button>
+            <button type="button" class="nav-item" data-nav="secrets">
+              <span class="nav-icon"></span>
+              <span class="nav-label">Secret Cats</span>
+            </button>
+            <button type="button" class="nav-item" data-nav="instructions">
+              <span class="nav-icon"></span>
+              <span class="nav-label">Instructions</span>
+            </button>
+          </nav>
+        </div>
+        <div class="sidebar-bottom">
+          <div class="collection-card">
+            <div class="collection-row">
+              <span class="collection-label">Cat collector</span>
+              <span class="collection-value collection-value-sidebar"
+                >27 / 33</span
+              >
+            </div>
+            <div class="progress-track">
+              <div
+                class="progress-fill progress-fill--collection"
+                style="width: 80%"
+              ></div>
+            </div>
+            <p class="collection-hint">One cozy collection, growing.</p>
+          </div>
+          <p class="sidebar-version">CAT CRAFT &amp; LOOT · v1.0</p>
+        </div>
+      </aside>
+      <main class="view-host">
+        <section data-view="home">
+          <div class="home-head">
+            <div>
+              <h1 class="home-head-title">Welcome to your cozy corner.</h1>
+              <p class="home-head-subtitle">
+                Make treats, grow your little world, and find your next favorite
+                cat
+              </p>
+            </div>
+            <span class="cps-pill"
+              ><span id="totalCps">58</span> treats / sec</span
+            >
+          </div>
+          <div class="home-main">
+            <div class="scene cat-container">
+              <div class="sprite" id="clickBtn"></div>
+            </div>
+            <div class="home-side">
+              <article class="home-card engine-card">
+                <h2 class="home-card-title">A happy little engine</h2>
+                <div class="stat-row">
+                  <span class="stat-label">
+                    <span class="stat-icon stat-icon--energy"></span>
+                    Energy
+                  </span>
+                  <span class="energy-count stat-value">7 / 10</span>
+                </div>
+
+                <div class="progress-track">
+                  <div class="progress-fill progress-fill--energy"></div>
+                </div>
+
+                <div class="stat-row">
+                  <span class="stat-label">
+                    <span class="stat-icon stat-icon--rage"></span>
+                    Rage
+                  </span>
+                  <span class="rage-count stat-value">0 / 100</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill progress-fill--rage"></div>
+                </div>
+
+                <p class="home-card-hint">
+                  Tiny paws. Big feelings. Rage fills as you click.
+                </p>
+              </article>
+              <article class="home-card stats-card">
+                <div class="stat-row stat-row--divided">
+                  <span>Each click earns</span>
+                  <span class="stat-label">
+                    <span class="stat-icon stat-icon--treats"></span>
+                    <span class="stat-value click-power">12</span>
+                  </span>
+                </div>
+                <div class="stat-row">
+                  <span>Lifetime clicks</span
+                  ><span class="stat-value lifetime-clicks">1,240</span>
+                </div>
+                <div class="stat-row">
+                  <span>Skins collected</span
+                  ><span class="stat-value collection-value">27 / 33</span>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-nav="skins"
+                >
+                  Explore my collection
+                </button>
+              </article>
+            </div>
+          </div>
+
+          <div class="home-section-head">
+            <h2>A little help from your favorites</h2>
+          </div>
+          <div class="generators" id="generatorList"></div>
+          <div class="daily-banner">
+            <span class="banner-icon"></span>
+            <p class="banner-text">
+              A little something is waiting. Your Day 3 reward is ready!
+            </p>
+            <button type="button" class="banner-link" data-nav="daily">
+              Collect daily reward →
+            </button>
+          </div>
+        </section>
+      </main>
+    </div>
+    <template id="generatorCardTpl">
+      <article class="home-card gen-card">
+        <div class="gen-top">
+          <img class="gen-img" alt="" />
+          <div class="gen-info">
+            <h3 class="gen-name"></h3>
+            <p class="gen-cps"></p>
+          </div>
+          <span class="gen-level"></span>
+        </div>
+        <div class="gen-bottom">
+          <span class="stat-label">
+            <span class="stat-icon stat-icon--treats"></span>
+            <span class="stat-value gen-cost"></span>
+          </span>
+          <button type="button" class="btn btn-primary gen-buy">Upgrade</button>
+        </div>
+      </article>
+    </template>
+    <dialog id="offlineDialog" class="modal">
+      <h2>Welcome back!</h2>
+      <p>
+        While you were away, your cats earned
+        <span id="offline-amount">0</span> treats.
+      </p>
+      <button type="button" id="offlineCloseBtn" class="btn btn-primary">
+        Nice!
+      </button>
+    </dialog>
+    <dialog id="skinRewardDialog" class="modal skin-reward-dialog">
+      <div class="skin-reward-content">
+        <div class="reward-confetti" aria-hidden="true">
+          <span>✨</span>
+          <span>⭐</span>
+          <span>🎉</span>
+          <span>✨</span>
+          <span>🌟</span>
+          <span>🎊</span>
+          <span>⭐</span>
+          <span>✨</span>
+        </div>
+
+        <button
+          type="button"
+          id="closeSkinRewardBtn"
+          class="btn close-skin-reward"
+          aria-label="Close reward"
+        >
+          &times;
+        </button>
+
+        <p class="reward-subtitle">YOU GOT SOMETHING SPECIAL!</p>
+
+        <h2 class="reward-title">CONGRATULATIONS!</h2>
+
+        <div class="reward-sparkle" aria-hidden="true">✦</div>
+
+        <div class="reward-skin-preview">
+          <div id="rewardSkinImage" class="card-img"></div>
+        </div>
+
+        <p class="reward-label">NEW SKIN UNLOCKED</p>
+
+        <h3 id="rewardSkinName">Cat Skin</h3>
+
+        <p id="rewardSkinRarity" class="reward-rarity">COMMON</p>
+
+        <button type="button" id="claimSkinRewardBtn" class="btn btn-primary">
+          AWESOME!
+        </button>
+      </div>
+    </dialog>
+
+    <div id="toastContainer" class="toast-container" popover="manual"></div>
+    <script type="module" src="./src/test-main.js"></script>
+  </body>
+</html>
