@@ -199,6 +199,275 @@
             </button>
           </div>
         </section>
+        <section data-view="skins" class="skins-view">
+          <div class="skins-head">
+            <h1 class="skins-head-title">My cozy collection</h1>
+            <p class="skins-head-subtitle">
+              A little world of cats, each with their own story.
+            </p>
+          </div>
+          <div class="skins-modal-content">
+            <div class="skin-rarity-filters">
+              <button
+                type="button"
+                class="btn rarity-button active"
+                data-rarity="all"
+                aria-pressed="true"
+              >
+                All
+              </button>
+              <button
+                type="button"
+                class="btn rarity-button active"
+                data-rarity="common"
+              >
+                Common
+              </button>
+
+              <button
+                type="button"
+                class="btn rarity-button"
+                data-rarity="rare"
+              >
+                Rare
+              </button>
+
+              <button
+                type="button"
+                class="btn rarity-button"
+                data-rarity="epic"
+              >
+                Epic
+              </button>
+
+              <button
+                type="button"
+                class="btn rarity-button"
+                data-rarity="legendary"
+              >
+                Legendary
+              </button>
+            </div>
+
+            <div id="ownedSkinsList" class="owned-skins-list"></div>
+          </div>
+        </section>
+        <section data-view="secrets" class="secrets-page">
+          <div class="secrets-head">
+            <div class="secrets-head-text">
+              <h1 class="secrets-head-title">
+                Some friendships start with a mystery.
+              </h1>
+
+              <p class="secrets-head-subtitle">
+                Follow the clues, watch your progress, and discover the cats
+                hiding just out of sight.
+              </p>
+            </div>
+
+            <div class="secrets-discovered-badge">
+              <span id="secretDiscoveredCount">0/2</span>
+              <span>discovered</span>
+            </div>
+          </div>
+
+          <div class="secrets-discovery-panel">
+            <div class="secrets-discovery-icon">📖</div>
+
+            <div class="secrets-discovery-info">
+              <h2>Your little book of almost-found cats</h2>
+
+              <p>
+                Secret skins can't be bought. Complete their secret task to
+                unlock them. Dust can buy hints to help you find the secret
+                skins.
+              </p>
+            </div>
+
+            <div class="secrets-progress">
+              <div class="secrets-progress-header">
+                <span>Discovery progress</span>
+                <span id="secretProgressText">0%</span>
+              </div>
+
+              <div class="secrets-progress-track">
+                <div
+                  id="secretProgressBar"
+                  class="secrets-progress-fill"
+                  style="width: 0%"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="secrets-content">
+            <div id="secretCatsList" class="secret-cats-list"></div>
+
+            <p
+              id="secretPageFeedback"
+              class="secret-page-feedback"
+              aria-live="polite"
+            ></p>
+          </div>
+        </section>
+        <section data-view="instructions" class="instructions-view">
+          <header class="intro-header">
+            <div class="intro-header-text">
+              <h1>No rush. Just cats.</h1>
+              <p>
+                Everything you need to make yourself at home in Cat Craft &amp;
+                Loot.
+              </p>
+            </div>
+
+            <span class="intro-badge"> A SMALL GUIDE TO BIG PURRS </span>
+          </header>
+
+          <section class="intro-welcome">
+            <div class="intro-welcome-logo">
+              <img src="/skins/logo.png" alt="Cat Craft & Loot logo" />
+            </div>
+
+            <div class="intro-welcome-content">
+              <h2>Click. Collect. Make it cozy.</h2>
+
+              <p>
+                Start with your cat, build up your generators, and grow a
+                collection of tiny companions. The whole little world is one
+                sidebar away.
+              </p>
+
+              <a href="#home" class="intro-home-btn">
+                Back to my cozy corner <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </section>
+
+          <section class="intro-game-guide">
+            <div class="intro-guide-grid">
+              <article class="intro-guide-card">
+                <div class="intro-guide-category">
+                  <img src="/skins/logo.png" alt="" />
+                  <span>THE MAIN GAME</span>
+                </div>
+
+                <h3>A click for a treat</h3>
+
+                <p>
+                  Click the big cat in your cozy corner to earn treats. Your
+                  treat balance stays visible at the top. Keep an eye on the
+                  energy bar and the separate rage progress.
+                </p>
+              </article>
+              <article class="intro-guide-card">
+                <div class="intro-guide-category">
+                  <img src="/skins/ball.png" alt="" />
+                  <span>TOY · BOWL · BED</span>
+                </div>
+
+                <h3>Let the cozy do the work</h3>
+
+                <p>
+                  Your three generators produce treats automatically. Each card
+                  shows its level, production, and next upgrade cost. Spend
+                  treats to upgrade your favorites.
+                </p>
+              </article>
+              <article class="intro-guide-card">
+                <div class="intro-guide-category">
+                  <img src="/sidebar/paw.png" alt="" />
+                  <span>MY SKINS</span>
+                </div>
+
+                <h3>Find your favorite coat</h3>
+
+                <p>
+                  Browse your collection and equip an owned skin to change your
+                  cat's look. Open loot boxes to get new skins.
+                </p>
+              </article>
+              <article class="intro-guide-card">
+                <div class="intro-guide-category">
+                  <img src="public/sidebar/shop.png" alt="" />
+                  <span>OPEN BOX · SHOP</span>
+                </div>
+
+                <h3>A shop &amp; a little surprise</h3>
+
+                <p>
+                  Open a mystery box with treats to reveal a skin. Visit the
+                  Shop for upgrades, backgrounds, and other items. Every
+                  purchase shows its price before you buy.
+                </p>
+              </article>
+              <article class="intro-guide-card">
+                <div class="intro-guide-category">
+                  <img src="/sidebar/achievements.png" alt="" />
+                  <span>ACHIEVEMENTS · DAILY REWARDS</span>
+                </div>
+
+                <h3>Celebrate the little things</h3>
+
+                <p>
+                  Check your achievement progress and claim completed rewards.
+                  Daily Rewards follow a day-by-day sequence, with today's gift
+                  highlighted and future days locked.
+                </p>
+              </article>
+              <article class="intro-guide-card">
+                <div class="intro-guide-category">
+                  <img src="public/sidebar/secret.png" alt="" />
+                  <span>SECRET CATS</span>
+                </div>
+
+                <h3>Follow a curious little clue</h3>
+
+                <p>
+                  Secret cats stay silhouetted until discovered. Read their
+                  mystery clues, track your discovery progress, and spend dust
+                  on a hint when you want a gentle nudge.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="intro-resources">
+            <header class="intro-section-header">
+              <h2>Know your little icons</h2>
+            </header>
+
+            <div class="intro-resource-grid">
+              <article class="intro-resource-card">
+                <img src="/skins/food.png" alt="Treats icon" />
+
+                <h3>Treats</h3>
+
+                <p>Your main currency for boxes, upgrades &amp; shopping.</p>
+              </article>
+              <article class="intro-resource-card">
+                <img src="/skins/dust.png" alt="Dust icon" />
+
+                <h3>Dust</h3>
+
+                <p>For crafting skins and uncovering mystery hints.</p>
+              </article>
+              <article class="intro-resource-card">
+                <img src="/skins/energy.png" alt="Energy icon" />
+
+                <h3>Energy</h3>
+
+                <p>Your cat's energy, shown as a bar and counter.</p>
+              </article>
+              <article class="intro-resource-card">
+                <img src="/skins/rage.png" alt="Rage icon" />
+
+                <h3>Rage</h3>
+
+                <p>A separate progress indicator as you click.</p>
+              </article>
+            </div>
+          </section>
+        </section>
       </main>
     </div>
     <template id="generatorCardTpl">
