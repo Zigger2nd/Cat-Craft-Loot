@@ -19,6 +19,15 @@
 .progress-fill--collection {
   background: var(--color-collection);
 }
+.progress-fill--achievements {
+  background: var(--color-achievements);
+}
+.ach-fill {
+  background: var(--color-rage);
+}
+.ach-card.is-done .ach-fill {
+  background: var(--color-energy);
+}
 
 .progress-fill--rage.is-active {
   background: #ff4d2e; /* ярче во время ярости */
