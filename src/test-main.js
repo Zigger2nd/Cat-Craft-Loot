@@ -21,6 +21,11 @@ import { initBubbleEvents } from "./events/bubbleEvents.js";
 import { applyBackground } from "./ui/renderList/scene.js";
 import { initUfoEvent, triggerUfoEvent } from "./events/ufoEvent.js";
 import { initGoldenCoinEvent } from "./events/goldenCoinEvent.js";
+import {
+  initAchievementsPage,
+  renderAchievements,
+} from "./ui/achievements/achievementsList.js";
+
 function renderAll() {
   renderHeader();
   renderHome();
@@ -28,6 +33,7 @@ function renderAll() {
   renderCollectionBar();
   renderGenerators();
   renderDailyBanner();
+  renderAchievements();
 }
 
 load();
@@ -44,7 +50,7 @@ initGoldenCoinEvent();
 initCatAnimation();
 initGenerators(renderAll);
 initClick(renderAll);
-
+initAchievementsPage();
 initBubbleEvents(() => {
   renderAll();
   notifyAchievements();

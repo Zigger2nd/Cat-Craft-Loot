@@ -3,12 +3,14 @@
   --color-bg: #fffcf6; /* page, header, sidebar */
   --color-surface: #fbf7ef; /* resource chips, cards */
   --color-border: #e2d5c5;
+  --color-achievements-soft: #f3d7a0;
 
   /* ----------Colors: tracks --------------*/
   --color-track: #ece5dc;
   --color-collection: #84709e;
   --color-rage: var(--color-accent);
   --color-energy: #657c50;
+  --color-achievements: #9d733b;
 
   /* ---------- Colors: text ---------- */
   --color-text: #4b3836; /* titles, values */

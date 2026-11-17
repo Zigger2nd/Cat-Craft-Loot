@@ -199,6 +199,57 @@
             </button>
           </div>
         </section>
+        <section data-view="skins" hidden></section>
+        <section data-view="box" hidden></section>
+        <section data-view="shop" hidden></section>
+        <section data-view="skilltree" hidden></section>
+        <section data-view="achievements" hidden>
+          <div class="page-head">
+            <h1 class="home-head-title">Loot at you, making pawgress.</h1>
+            <p class="home-head-subtitle">
+              Every click, every cat, every cozy upgrade counts. Pick up a
+              little reward along the way.
+            </p>
+          </div>
+          <div class="ach-banner">
+            <span class="achievements-banner-icon"></span>
+            <div class="ach-banner-text">
+              <div class="achievements-banner-title">
+                Tiny steps. Lovely rewards.
+              </div>
+              <div class="achievements-banner-subtitle">
+                <span class="ach-done-count">0</span> milestones completed, and
+                plenty more to purr-sue.
+              </div>
+            </div>
+            <div class="ach-banner-progress">
+              <div class="stat-row">
+                <span>Your achievement collection</span>
+                <span class="stat-value ach-count">0 / 0</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill progress-fill--achievements"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ach-tabs">
+            <button type="button" class="ach-tab active" data-filter="all">
+              All achievements · <span class="ach-tab-count"></span>
+            </button>
+            <button type="button" class="ach-tab" data-filter="progress">
+              In progress · <span class="ach-tab-count"></span>
+            </button>
+            <button type="button" class="ach-tab" data-filter="done">
+              Completed · <span class="ach-tab-count"></span>
+            </button>
+          </div>
+
+          <div class="ach-list" id="achievementsList"></div>
+        </section>
+        <section data-view="daily" hidden></section>
+        <section data-view="secrets" hidden></section>
+        <section data-view="instructions" hidden></section>
       </main>
     </div>
     <template id="generatorCardTpl">
@@ -217,6 +268,32 @@
             <span class="stat-value gen-cost"></span>
           </span>
           <button type="button" class="btn btn-primary gen-buy">Upgrade</button>
+        </div>
+      </article>
+    </template>
+    <template id="achievementCardTpl">
+      <article class="home-card ach-card">
+        <div class="ach-top">
+          <img class="ach-img" alt="" />
+          <div class="ach-info">
+            <h3 class="ach-name"></h3>
+            <span class="ach-status"></span>
+          </div>
+        </div>
+
+        <p class="ach-desc"></p>
+
+        <div class="progress-track">
+          <div class="progress-fill ach-fill"></div>
+        </div>
+        <span class="ach-progress-text"></span>
+
+        <div class="ach-reward">
+          <span class="ach-reward-label">REWARD</span>
+          <span class="stat-label">
+            <span class="stat-icon ach-reward-icon"></span>
+            <span class="stat-value ach-reward-value"></span>
+          </span>
         </div>
       </article>
     </template>

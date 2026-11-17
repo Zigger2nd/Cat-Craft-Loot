@@ -3,7 +3,9 @@
 .resource-icon,
 .nav-icon,
 .stat-icon,
-.banner-icon {
+.banner-icon,
+.achievements-banner-icon {
+  display: inline-block;
   flex-shrink: 0;
   width: var(--icon-md);
   height: var(--icon-md);
