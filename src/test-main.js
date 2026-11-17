@@ -21,9 +21,6 @@ import { initBubbleEvents } from "./events/bubbleEvents.js";
 import { applyBackground } from "./ui/renderList/scene.js";
 import { initUfoEvent, triggerUfoEvent } from "./events/ufoEvent.js";
 import { initGoldenCoinEvent } from "./events/goldenCoinEvent.js";
-import { initSkinsModal } from "./ui/skins/skinsModal.js";
-import { initSecretCatsPage } from "./ui/secrets/secretCollection.js";
-import { initIntroductionPage } from "./ui/introduction.js";
 import {
   initAchievementsPage,
   renderAchievements,
@@ -53,16 +50,11 @@ initGoldenCoinEvent();
 initCatAnimation();
 initGenerators(renderAll);
 initClick(renderAll);
-initSkinsModal(renderAll);
 initAchievementsPage();
 initBubbleEvents(() => {
   renderAll();
   notifyAchievements();
 });
-initSecretCatsPage({
-  saveGame: save,
-});
-initIntroductionPage();
 
 startGameLoop({ render: renderAll, notifyAchievements });
 initRouter();
