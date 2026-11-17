@@ -24,6 +24,10 @@ import { initGoldenCoinEvent } from "./events/goldenCoinEvent.js";
 import { initSkinsModal } from "./ui/skins/skinsModal.js";
 import { initSecretCatsPage } from "./ui/secrets/secretCollection.js";
 import { initIntroductionPage } from "./ui/introduction.js";
+import {
+  initAchievementsPage,
+  renderAchievements,
+} from "./ui/achievements/achievementsList.js";
 
 function renderAll() {
   renderHeader();
@@ -32,6 +36,7 @@ function renderAll() {
   renderCollectionBar();
   renderGenerators();
   renderDailyBanner();
+  renderAchievements();
 }
 
 load();
@@ -49,6 +54,7 @@ initCatAnimation();
 initGenerators(renderAll);
 initClick(renderAll);
 initSkinsModal(renderAll);
+initAchievementsPage();
 initBubbleEvents(() => {
   renderAll();
   notifyAchievements();
