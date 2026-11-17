@@ -333,24 +333,28 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 12px;
-
   min-width: 0;
 }
 
 .intro-resource-card > img {
   display: block;
-  flex: 0 0 27px;
-
-  width: 27px;
-  height: 27px;
-
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
   image-rendering: pixelated;
 }
 
-.intro-resource-card h3 {
-  margin: 0;
+.intro-resource-definition {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+}
 
+.intro-resource-definition h3 {
+  margin: 0;
   font-family: "Space Mono", monospace;
   font-size: 13px;
   font-weight: 700;
@@ -358,9 +362,8 @@
   color: #4b3836;
 }
 
-.intro-resource-card p {
-  margin: 6px 0 0;
-
+.intro-resource-definition p {
+  margin: 0;
   font-family: "Inter", sans-serif;
   font-size: 11px;
   font-weight: 400;
