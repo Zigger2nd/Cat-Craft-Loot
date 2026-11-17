@@ -17,4 +17,7 @@
 @import "./features/ufoEvents.css";
 @import "./features/skin-reward.css";
 @import "./features/goldencoin.css";
+@import "./features/skins.css";
+@import "./features/secrets.css";
+@import "./features/introduction.css";
 @import "./features/achievemenets.css";

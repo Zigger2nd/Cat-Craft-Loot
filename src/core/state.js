@@ -23,4 +23,5 @@ export const state = {
   skillTree: [],
   foundSecretCats: [],
   secretPuzzleCompleted: false,
+  secretHints: {},
 };
