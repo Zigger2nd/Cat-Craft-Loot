@@ -1,0 +1,506 @@
+/* ========================================
+   DAILY REWARDS PAGE
+======================================== */
+
+.daily-page {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 32px;
+  width: 100%;
+  min-width: 0;
+  padding: 32px;
+}
+
+.daily-page[hidden] {
+  display: none !important;
+}
+
+/* ========================================
+   PAGE HEADER
+======================================== */
+
+.daily-page-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.daily-page-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+}
+
+.daily-page-title {
+  margin: 0;
+  font-family: "Space Mono", monospace;
+  font-size: 29px;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: -1.3px;
+  color: #4b3836;
+}
+
+.daily-page-subtitle {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 150%;
+  color: #8d7973;
+}
+
+.daily-ready-badge {
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 5px 9px;
+  background: #dfe9d2;
+  border-radius: 4px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: 0.4px;
+  color: #657c50;
+}
+
+/* ========================================
+   CURRENT DAILY REWARD
+======================================== */
+
+.daily-feature {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 28px;
+
+  width: 100%;
+  min-height: 306px;
+  padding: 32px;
+
+  background: #f5d9df;
+  border: 1.5px solid #dbafbe;
+  border-radius: 16px;
+}
+
+/* Feature introduction */
+
+.daily-feature-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+
+  flex: 1;
+  min-width: 0;
+}
+
+.daily-feature-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 9px;
+
+  background: #fcecef;
+  border-radius: 4px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: 0.4px;
+  color: #ad526d;
+}
+
+.daily-feature-title {
+  margin: 0;
+  font-family: "Space Mono", monospace;
+  font-size: 31px;
+  font-weight: 700;
+  line-height: 125%;
+  letter-spacing: -1.1px;
+  color: #4b3836;
+}
+
+.daily-feature-description {
+  max-width: 480px;
+  margin: 0;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  line-height: 150%;
+  color: #72564e;
+}
+
+/* Claim button */
+
+.daily-claim-button {
+  min-height: 44px;
+  padding: 0 18px;
+  background: #ad526d;
+  border: 1.5px solid #883e56;
+  border-radius: 8px;
+  box-shadow: 0 3px 0 rgba(114, 86, 78, 0.25);
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fffcf6;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.daily-claim-button:hover:not(:disabled) {
+  background: #963f5b;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 rgba(114, 86, 78, 0.25);
+}
+
+.daily-claim-button:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.daily-claim-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ========================================
+   REWARD PREVIEW WINDOW
+======================================== */
+
+.daily-feature-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 1 380px;
+  min-width: 0;
+  min-height: 242px;
+}
+
+.daily-preview-window {
+  box-sizing: border-box;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+
+  width: 100%;
+  min-height: 220px;
+  padding: 24px;
+
+  background: #fffcf6;
+  border: 1.5px solid #dbafbe;
+  border-radius: 14px;
+  box-shadow: 0 4px 0 rgba(114, 86, 78, 0.12);
+}
+
+.daily-preview-day {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ad526d;
+  letter-spacing: 0.5px;
+}
+
+.daily-reward-preview {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+}
+
+.daily-preview-reward {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  min-width: 75px;
+}
+
+.daily-reward-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.daily-reward-type {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: #8d7973;
+}
+
+.daily-reward-amount {
+  font-family: "Space Mono", monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: #4b3836;
+}
+
+/* ========================================
+   DAILY SEQUENCE
+======================================== */
+
+.daily-sequence {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 17px;
+  width: 100%;
+  min-width: 0;
+}
+
+.daily-sequence-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.daily-sequence-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.daily-sequence-heading h2 {
+  margin: 0;
+  font-family: "Space Mono", monospace;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 130%;
+  letter-spacing: -0.6px;
+  color: #4b3836;
+}
+
+.daily-sequence-heading p {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  line-height: 150%;
+  color: #8d7973;
+}
+
+/* Sequence progress */
+
+.daily-sequence-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.daily-progress-count {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: #8d7973;
+}
+
+.daily-progress-track {
+  width: 126px;
+  height: 6px;
+  overflow: hidden;
+  background: #e2d5c5;
+  border-radius: 10px;
+}
+
+.daily-progress-fill {
+  height: 100%;
+  background: #657c50;
+  border-radius: inherit;
+  transition: width 0.3s ease;
+}
+
+/* ========================================
+   DAILY REWARD CARDS
+======================================== */
+
+.daily-reward-list {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+.daily-reward-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+
+  min-width: 0;
+  min-height: 186px;
+  padding: 16px 10px;
+
+  background: #fffcf6;
+  border: 1.5px solid #e2d5c5;
+  border-radius: 12px;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Card header */
+
+.daily-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.daily-card-day {
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  color: #8d7973;
+}
+
+.daily-card-status {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 22px;
+  padding: 5px 9px;
+
+  background: #f5f0e8;
+  border-radius: 4px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: 0.4px;
+  color: #8d7973;
+}
+
+/* Card rewards */
+
+.daily-card-rewards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.daily-reward-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.daily-reward-row .daily-reward-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.daily-reward-row .daily-reward-type {
+  display: none;
+}
+
+.daily-reward-row .daily-reward-amount {
+  font-size: 12px;
+}
+
+/* ========================================
+   COLLECTED STATE
+======================================== */
+
+.daily-reward-card.is-claimed {
+  background: #eef0e4;
+  border-color: #e2d5c5;
+}
+
+.daily-reward-card.is-claimed .daily-card-day {
+  color: #657c50;
+}
+
+.daily-reward-card.is-claimed .daily-card-status {
+  background: #dfe9d2;
+  color: #657c50;
+}
+
+/* ========================================
+   TODAY STATE
+======================================== */
+
+.daily-reward-card.is-today {
+  background: #fcecef;
+  border: 2px solid #ad526d;
+  box-shadow: 0 3px 0 rgba(114, 86, 78, 0.25);
+}
+
+.daily-reward-card.is-today .daily-card-day {
+  color: #ad526d;
+}
+
+.daily-reward-card.is-today .daily-card-status {
+  background: #f5d9df;
+  color: #ad526d;
+}
+
+.daily-reward-card.is-today:hover {
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   FUTURE STATE
+======================================== */
+
+.daily-reward-card.is-future {
+  background: #fffcf6;
+  border-color: #e2d5c5;
+}
+
+.daily-reward-card.is-future .daily-card-day {
+  color: #8d7973;
+}
+
+.daily-reward-card.is-future .daily-card-status {
+  background: transparent;
+  color: #8d7973;
+}

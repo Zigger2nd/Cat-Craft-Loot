@@ -28,6 +28,7 @@ import {
   initAchievementsPage,
   renderAchievements,
 } from "./ui/achievements/achievementsList.js";
+import { initDailyPage } from "./ui/daily/dailyRewards.js";
 
 function renderAll() {
   renderHeader();
@@ -63,6 +64,7 @@ initSecretCatsPage({
   saveGame: save,
 });
 initIntroductionPage();
+initDailyPage();
 
 startGameLoop({ render: renderAll, notifyAchievements });
 initRouter();
