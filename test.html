@@ -2,22 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=0"
-    />
-    <title>Cat Clicker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Cat Craft &amp; Loot</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
   </head>
+
   <body>
+    <!-- ==================== HEADER ==================== -->
+
     <header class="game-header">
       <div class="logo">
         <div class="logo-image"></div>
+
         <div class="logo-text">
           <span class="logo-title">CAT CRAFT</span>
           <span class="logo-subtitle">&amp;LOOT</span>
@@ -27,20 +31,25 @@
       <div class="resources">
         <div class="resource resource--treats">
           <div class="resource-icon"></div>
+
           <div class="resource-info">
             <span class="resource-label">Treats</span>
             <span class="resource-value treats-count">1000</span>
           </div>
         </div>
+
         <div class="resource resource--dust">
           <div class="resource-icon"></div>
+
           <div class="resource-info">
             <span class="resource-label">Dust</span>
             <span class="resource-value dust-count">1000</span>
           </div>
         </div>
+
         <div class="resource resource--energy">
           <div class="resource-icon"></div>
+
           <div class="resource-info">
             <span class="resource-label">Energy</span>
             <span class="resource-value energy-count">0 / 10</span>
@@ -48,94 +57,125 @@
         </div>
       </div>
     </header>
+
+    <!-- ==================== GAME LAYOUT ==================== -->
+
     <div class="game-layout">
+      <!-- SIDEBAR -->
+
       <aside class="sidebar">
         <div class="sidebar-top">
           <p class="sidebar-caption">A little world of cats</p>
+
           <nav class="sidebar-nav" aria-label="Game menu">
             <button type="button" class="nav-item" data-nav="home">
               <span class="nav-icon"></span>
               <span class="nav-label">My cozy corner</span>
             </button>
+
             <button type="button" class="nav-item" data-nav="skins">
               <span class="nav-icon"></span>
               <span class="nav-label">My Skins</span>
             </button>
+
             <button type="button" class="nav-item" data-nav="box">
               <span class="nav-icon"></span>
               <span class="nav-label">Open Box</span>
             </button>
+
             <button type="button" class="nav-item" data-nav="shop">
               <span class="nav-icon"></span>
               <span class="nav-label">Shop</span>
             </button>
+
             <button type="button" class="nav-item" data-nav="skilltree">
               <span class="nav-icon"></span>
               <span class="nav-label">Skill Tree</span>
             </button>
+
             <button type="button" class="nav-item" data-nav="achievements">
               <span class="nav-icon"></span>
               <span class="nav-label">Achievements</span>
             </button>
+
             <button type="button" class="nav-item" data-nav="daily">
               <span class="nav-icon"></span>
               <span class="nav-label">Daily Rewards</span>
             </button>
+
             <button type="button" class="nav-item" data-nav="secrets">
               <span class="nav-icon"></span>
               <span class="nav-label">Secret Cats</span>
             </button>
+
             <button type="button" class="nav-item" data-nav="instructions">
               <span class="nav-icon"></span>
               <span class="nav-label">Instructions</span>
             </button>
           </nav>
         </div>
+
         <div class="sidebar-bottom">
           <div class="collection-card">
             <div class="collection-row">
               <span class="collection-label">Cat collector</span>
-              <span class="collection-value collection-value-sidebar"
-                >27 / 33</span
-              >
+              <span class="collection-value collection-value-sidebar">
+                27 / 33
+              </span>
             </div>
+
             <div class="progress-track">
               <div
                 class="progress-fill progress-fill--collection"
                 style="width: 80%"
               ></div>
             </div>
+
             <p class="collection-hint">One cozy collection, growing.</p>
           </div>
+
           <p class="sidebar-version">CAT CRAFT &amp; LOOT · v1.0</p>
         </div>
       </aside>
+
+      <!-- ==================== MAIN CONTENT ==================== -->
+
       <main class="view-host">
+        <!-- HOME -->
+
         <section data-view="home">
-          <div class="home-head">
+          <header class="home-head">
             <div>
               <h1 class="home-head-title">Welcome to your cozy corner.</h1>
+
               <p class="home-head-subtitle">
                 Make treats, grow your little world, and find your next favorite
-                cat
+                cat.
               </p>
             </div>
-            <span class="cps-pill"
-              ><span id="totalCps">58</span> treats / sec</span
-            >
-          </div>
+
+            <span class="cps-pill">
+              <span id="totalCps">58</span> treats / sec
+            </span>
+          </header>
+
           <div class="home-main">
             <div class="scene cat-container">
               <div class="sprite" id="clickBtn"></div>
             </div>
+
             <div class="home-side">
+              <!-- ENERGY AND RAGE -->
+
               <article class="home-card engine-card">
                 <h2 class="home-card-title">A happy little engine</h2>
+
                 <div class="stat-row">
                   <span class="stat-label">
                     <span class="stat-icon stat-icon--energy"></span>
                     Energy
                   </span>
+
                   <span class="energy-count stat-value">7 / 10</span>
                 </div>
 
@@ -148,8 +188,10 @@
                     <span class="stat-icon stat-icon--rage"></span>
                     Rage
                   </span>
+
                   <span class="rage-count stat-value">0 / 100</span>
                 </div>
+
                 <div class="progress-track">
                   <div class="progress-fill progress-fill--rage"></div>
                 </div>
@@ -158,22 +200,29 @@
                   Tiny paws. Big feelings. Rage fills as you click.
                 </p>
               </article>
+
+              <!-- PLAYER STATISTICS -->
+
               <article class="home-card stats-card">
                 <div class="stat-row stat-row--divided">
                   <span>Each click earns</span>
+
                   <span class="stat-label">
                     <span class="stat-icon stat-icon--treats"></span>
                     <span class="stat-value click-power">12</span>
                   </span>
                 </div>
+
                 <div class="stat-row">
-                  <span>Lifetime clicks</span
-                  ><span class="stat-value lifetime-clicks">1,240</span>
+                  <span>Lifetime clicks</span>
+                  <span class="stat-value lifetime-clicks">1,240</span>
                 </div>
+
                 <div class="stat-row">
-                  <span>Skins collected</span
-                  ><span class="stat-value collection-value">27 / 33</span>
+                  <span>Skins collected</span>
+                  <span class="stat-value collection-value">27 / 33</span>
                 </div>
+
                 <button
                   type="button"
                   class="btn btn-secondary"
@@ -185,27 +234,40 @@
             </div>
           </div>
 
+          <!-- GENERATORS -->
+
           <div class="home-section-head">
             <h2>A little help from your favorites</h2>
           </div>
+
           <div class="generators" id="generatorList"></div>
+
+          <!-- DAILY REWARD BANNER -->
+
           <div class="daily-banner">
             <span class="banner-icon"></span>
+
             <p class="banner-text">
               A little something is waiting. Your Day 3 reward is ready!
             </p>
+
             <button type="button" class="banner-link" data-nav="daily">
               Collect daily reward →
             </button>
           </div>
         </section>
+
+        <!-- SKINS -->
+
         <section data-view="skins" class="skins-view">
-          <div class="skins-head">
+          <header class="skins-head">
             <h1 class="skins-head-title">My cozy collection</h1>
+
             <p class="skins-head-subtitle">
               A little world of cats, each with their own story.
             </p>
-          </div>
+          </header>
+
           <div class="skins-modal-content">
             <div class="skin-rarity-filters">
               <button
@@ -216,10 +278,12 @@
               >
                 All
               </button>
+
               <button
                 type="button"
-                class="btn rarity-button active"
+                class="btn rarity-button"
                 data-rarity="common"
+                aria-pressed="false"
               >
                 Common
               </button>
@@ -228,6 +292,7 @@
                 type="button"
                 class="btn rarity-button"
                 data-rarity="rare"
+                aria-pressed="false"
               >
                 Rare
               </button>
@@ -236,6 +301,7 @@
                 type="button"
                 class="btn rarity-button"
                 data-rarity="epic"
+                aria-pressed="false"
               >
                 Epic
               </button>
@@ -244,6 +310,7 @@
                 type="button"
                 class="btn rarity-button"
                 data-rarity="legendary"
+                aria-pressed="false"
               >
                 Legendary
               </button>
@@ -252,8 +319,11 @@
             <div id="ownedSkinsList" class="owned-skins-list"></div>
           </div>
         </section>
+
+        <!-- SECRET CATS -->
+
         <section data-view="secrets" class="secrets-page">
-          <div class="secrets-head">
+          <header class="secrets-head">
             <div class="secrets-head-text">
               <h1 class="secrets-head-title">
                 Some friendships start with a mystery.
@@ -269,7 +339,7 @@
               <span id="secretDiscoveredCount">0/2</span>
               <span>discovered</span>
             </div>
-          </div>
+          </header>
 
           <div class="secrets-discovery-panel">
             <div class="secrets-discovery-icon">📖</div>
@@ -296,36 +366,6 @@
                   class="secrets-progress-fill"
                   style="width: 0%"
                 ></div>
-        <section data-view="skins" hidden></section>
-        <section data-view="box" hidden></section>
-        <section data-view="shop" hidden></section>
-        <section data-view="skilltree" hidden></section>
-        <section data-view="achievements" hidden>
-          <div class="page-head">
-            <h1 class="home-head-title">Loot at you, making pawgress.</h1>
-            <p class="home-head-subtitle">
-              Every click, every cat, every cozy upgrade counts. Pick up a
-              little reward along the way.
-            </p>
-          </div>
-          <div class="ach-banner">
-            <span class="achievements-banner-icon"></span>
-            <div class="ach-banner-text">
-              <div class="achievements-banner-title">
-                Tiny steps. Lovely rewards.
-              </div>
-              <div class="achievements-banner-subtitle">
-                <span class="ach-done-count">0</span> milestones completed, and
-                plenty more to purr-sue.
-              </div>
-            </div>
-            <div class="ach-banner-progress">
-              <div class="stat-row">
-                <span>Your achievement collection</span>
-                <span class="stat-value ach-count">0 / 0</span>
-              </div>
-              <div class="progress-track">
-                <div class="progress-fill progress-fill--achievements"></div>
               </div>
             </div>
           </div>
@@ -340,10 +380,189 @@
             ></p>
           </div>
         </section>
+
+        <!-- OPEN BOX -->
+
+        <section data-view="box" hidden></section>
+
+        <!-- SHOP -->
+
+        <section data-view="shop" hidden></section>
+
+        <!-- SKILL TREE -->
+
+        <section data-view="skilltree" hidden></section>
+
+        <!-- ACHIEVEMENTS -->
+
+        <section data-view="achievements" hidden>
+          <header class="page-head">
+            <h1 class="home-head-title">Loot at you, making pawgress.</h1>
+
+            <p class="home-head-subtitle">
+              Every click, every cat, every cozy upgrade counts. Pick up a
+              little reward along the way.
+            </p>
+          </header>
+
+          <!-- ACHIEVEMENT PROGRESS -->
+
+          <div class="ach-banner">
+            <span class="achievements-banner-icon"></span>
+
+            <div class="ach-banner-text">
+              <div class="achievements-banner-title">
+                Tiny steps. Lovely rewards.
+              </div>
+
+              <div class="achievements-banner-subtitle">
+                <span class="ach-done-count">0</span> milestones completed, and
+                plenty more to purr-sue.
+              </div>
+            </div>
+
+            <div class="ach-banner-progress">
+              <div class="stat-row">
+                <span>Your achievement collection</span>
+                <span class="stat-value ach-count">0 / 0</span>
+              </div>
+
+              <div class="progress-track">
+                <div class="progress-fill progress-fill--achievements"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ACHIEVEMENT FILTERS -->
+
+          <div class="ach-tabs">
+            <button type="button" class="ach-tab active" data-filter="all">
+              All achievements ·
+              <span class="ach-tab-count"></span>
+            </button>
+
+            <button type="button" class="ach-tab" data-filter="progress">
+              In progress ·
+              <span class="ach-tab-count"></span>
+            </button>
+
+            <button type="button" class="ach-tab" data-filter="done">
+              Completed ·
+              <span class="ach-tab-count"></span>
+            </button>
+          </div>
+
+          <!-- ACHIEVEMENT CARDS -->
+
+          <div class="ach-list" id="achievementsList"></div>
+        </section>
+
+        <!-- DAILY REWARDS -->
+
+        <section data-view="daily" class="daily-page" hidden>
+          <!-- PAGE HEADER -->
+
+          <header class="daily-page-header">
+            <div class="daily-page-heading">
+              <h1 class="daily-page-title">Good to see you, littlewhisker.</h1>
+
+              <p class="daily-page-subtitle">
+                A small thank-you for spending a little time in your cozy
+                corner.
+              </p>
+            </div>
+
+            <span id="dailyReadyBadge" class="daily-ready-badge">
+              DAY 1 IS READY
+            </span>
+          </header>
+
+          <!-- TODAY'S REWARD -->
+
+          <section class="daily-feature">
+            <div class="daily-feature-content">
+              <span id="dailyCurrentDayBadge" class="daily-feature-badge">
+                TODAY'S LITTLE GIFT · DAY 1
+              </span>
+
+              <h2 class="daily-feature-title">
+                A little sparkle<br />
+                for your collection.
+              </h2>
+
+              <p class="daily-feature-description">
+                Come back each day to collect a little something special. Seven
+                days, seven little surprises!
+              </p>
+
+              <button
+                type="button"
+                id="dailyClaimButton"
+                class="btn btn-primary daily-claim-button"
+              >
+                Claim my reward
+              </button>
+            </div>
+
+            <!-- REWARD PREVIEW -->
+
+            <div class="daily-feature-preview">
+              <div class="daily-preview-window">
+                <span id="dailyPreviewDay" class="daily-preview-day">
+                  DAY 1
+                </span>
+
+                <div
+                  id="dailyRewardPreview"
+                  class="daily-reward-preview"
+                  aria-live="polite"
+                ></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SEVEN-DAY SEQUENCE -->
+
+          <section class="daily-sequence">
+            <header class="daily-sequence-header">
+              <div class="daily-sequence-heading">
+                <h2>Seven days of small delights</h2>
+
+                <p>A little gift for every day you spend with your cats.</p>
+              </div>
+
+              <div class="daily-sequence-progress">
+                <span id="dailyProgressCount" class="daily-progress-count">
+                  0 of 7 rewards collected
+                </span>
+
+                <div class="progress-track daily-progress-track">
+                  <div
+                    id="dailyProgressFill"
+                    class="progress-fill daily-progress-fill"
+                    style="width: 0%"
+                  ></div>
+                </div>
+              </div>
+            </header>
+
+            <!-- REWARD CARDS ARE GENERATED BY JAVASCRIPT -->
+
+            <div
+              id="dailyRewardList"
+              class="daily-reward-list"
+              aria-label="Seven daily rewards"
+            ></div>
+          </section>
+        </section>
+
+        <!-- INSTRUCTIONS -->
+
         <section data-view="instructions" class="instructions-view">
           <header class="intro-header">
             <div class="intro-header-text">
               <h1>No rush. Just cats.</h1>
+
               <p>
                 Everything you need to make yourself at home in Cat Craft &amp;
                 Loot.
@@ -352,6 +571,8 @@
 
             <span class="intro-badge"> A SMALL GUIDE TO BIG PURRS </span>
           </header>
+
+          <!-- WELCOME BANNER -->
 
           <section class="intro-welcome">
             <div class="intro-welcome-logo">
@@ -366,12 +587,15 @@
                 collection of tiny companions. The whole little world is one
                 sidebar away.
               </p>
-
-              <a href="#home" class="intro-home-btn">
-                Back to my cozy corner <span aria-hidden="true">→</span>
-              </a>
             </div>
+
+            <a href="#home" class="intro-home-btn">
+              Back to my cozy corner
+              <span aria-hidden="true">→</span>
+            </a>
           </section>
+
+          <!-- GAME GUIDE -->
 
           <section class="intro-game-guide">
             <div class="intro-guide-grid">
@@ -389,6 +613,7 @@
                   energy bar and the separate rage progress.
                 </p>
               </article>
+
               <article class="intro-guide-card">
                 <div class="intro-guide-category">
                   <img src="/skins/ball.png" alt="" />
@@ -403,6 +628,7 @@
                   treats to upgrade your favorites.
                 </p>
               </article>
+
               <article class="intro-guide-card">
                 <div class="intro-guide-category">
                   <img src="/sidebar/paw.png" alt="" />
@@ -416,9 +642,10 @@
                   cat's look. Open loot boxes to get new skins.
                 </p>
               </article>
+
               <article class="intro-guide-card">
                 <div class="intro-guide-category">
-                  <img src="public/sidebar/shop.png" alt="" />
+                  <img src="/sidebar/shop.png" alt="" />
                   <span>OPEN BOX · SHOP</span>
                 </div>
 
@@ -430,6 +657,7 @@
                   purchase shows its price before you buy.
                 </p>
               </article>
+
               <article class="intro-guide-card">
                 <div class="intro-guide-category">
                   <img src="/sidebar/achievements.png" alt="" />
@@ -444,9 +672,10 @@
                   highlighted and future days locked.
                 </p>
               </article>
+
               <article class="intro-guide-card">
                 <div class="intro-guide-category">
-                  <img src="public/sidebar/secret.png" alt="" />
+                  <img src="/sidebar/secret.png" alt="" />
                   <span>SECRET CATS</span>
                 </div>
 
@@ -461,6 +690,8 @@
             </div>
           </section>
 
+          <!-- RESOURCE GUIDE -->
+
           <section class="intro-resources">
             <header class="intro-section-header">
               <h2>Know your little icons</h2>
@@ -470,76 +701,79 @@
               <article class="intro-resource-card">
                 <img src="/skins/food.png" alt="Treats icon" />
 
-                <h3>Treats</h3>
-
-                <p>Your main currency for boxes, upgrades &amp; shopping.</p>
+                <div class="intro-resource-definition">
+                  <h3>Treats</h3>
+                  <p>Your main currency for boxes, upgrades &amp; shopping.</p>
+                </div>
               </article>
+
               <article class="intro-resource-card">
                 <img src="/skins/dust.png" alt="Dust icon" />
 
-                <h3>Dust</h3>
-
-                <p>For crafting skins and uncovering mystery hints.</p>
+                <div class="intro-resource-definition">
+                  <h3>Dust</h3>
+                  <p>For crafting skins and uncovering mystery hints.</p>
+                </div>
               </article>
+
               <article class="intro-resource-card">
                 <img src="/skins/energy.png" alt="Energy icon" />
 
-                <h3>Energy</h3>
-
-                <p>Your cat's energy, shown as a bar and counter.</p>
+                <div class="intro-resource-definition">
+                  <h3>Energy</h3>
+                  <p>Your cat's energy, shown as a bar and counter.</p>
+                </div>
               </article>
+
               <article class="intro-resource-card">
                 <img src="/skins/rage.png" alt="Rage icon" />
 
-                <h3>Rage</h3>
-
-                <p>A separate progress indicator as you click.</p>
+                <div class="intro-resource-definition">
+                  <h3>Rage</h3>
+                  <p>A separate progress indicator as you click.</p>
+                </div>
               </article>
             </div>
           </section>
         </section>
-          <div class="ach-tabs">
-            <button type="button" class="ach-tab active" data-filter="all">
-              All achievements · <span class="ach-tab-count"></span>
-            </button>
-            <button type="button" class="ach-tab" data-filter="progress">
-              In progress · <span class="ach-tab-count"></span>
-            </button>
-            <button type="button" class="ach-tab" data-filter="done">
-              Completed · <span class="ach-tab-count"></span>
-            </button>
-          </div>
-
-          <div class="ach-list" id="achievementsList"></div>
-        </section>
-        <section data-view="daily" hidden></section>
-        <section data-view="secrets" hidden></section>
-        <section data-view="instructions" hidden></section>
       </main>
     </div>
+
+    <!-- ==================== TEMPLATES ==================== -->
+
+    <!-- GENERATOR CARD -->
+
     <template id="generatorCardTpl">
       <article class="home-card gen-card">
         <div class="gen-top">
           <img class="gen-img" alt="" />
+
           <div class="gen-info">
             <h3 class="gen-name"></h3>
             <p class="gen-cps"></p>
           </div>
+
           <span class="gen-level"></span>
         </div>
+
         <div class="gen-bottom">
           <span class="stat-label">
             <span class="stat-icon stat-icon--treats"></span>
             <span class="stat-value gen-cost"></span>
           </span>
+
           <button type="button" class="btn btn-primary gen-buy">Upgrade</button>
         </div>
       </article>
     </template>
+
+    <!-- ACHIEVEMENT CARD -->
+
     <template id="achievementCardTpl">
       <article class="home-card ach-card">
         <div class="ach-top">
           <img class="ach-img" alt="" />
+
           <div class="ach-info">
             <h3 class="ach-name"></h3>
             <span class="ach-status"></span>
@@ -551,10 +785,12 @@
         <div class="progress-track">
           <div class="progress-fill ach-fill"></div>
         </div>
+
         <span class="ach-progress-text"></span>
 
         <div class="ach-reward">
           <span class="ach-reward-label">REWARD</span>
+
           <span class="stat-label">
             <span class="stat-icon ach-reward-icon"></span>
             <span class="stat-value ach-reward-value"></span>
@@ -562,16 +798,26 @@
         </div>
       </article>
     </template>
+
+    <!-- ==================== DIALOGS ==================== -->
+
+    <!-- OFFLINE REWARDS -->
+
     <dialog id="offlineDialog" class="modal">
       <h2>Welcome back!</h2>
+
       <p>
         While you were away, your cats earned
         <span id="offline-amount">0</span> treats.
       </p>
+
       <button type="button" id="offlineCloseBtn" class="btn btn-primary">
         Nice!
       </button>
     </dialog>
+
+    <!-- SKIN REWARD -->
+
     <dialog id="skinRewardDialog" class="modal skin-reward-dialog">
       <div class="skin-reward-content">
         <div class="reward-confetti" aria-hidden="true">
@@ -616,7 +862,12 @@
       </div>
     </dialog>
 
+    <!-- TOAST NOTIFICATIONS -->
+
     <div id="toastContainer" class="toast-container" popover="manual"></div>
+
+    <!-- ==================== SCRIPTS ==================== -->
+
     <script type="module" src="./src/test-main.js"></script>
   </body>
 </html>

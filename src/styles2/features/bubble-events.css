@@ -1,13 +1,13 @@
 .event-bubble {
   position: absolute;
-  top: 5px;
+  top: 140px;
   left: 50%;
   transform: translateX(-50%);
 
   z-index: 20;
 
-  width: 64px;
-  height: 64px;
+  width: 128px;
+  height: 128px;
   padding: 0;
 
   border: none;
