@@ -1,0 +1,189 @@
+/* =========================================
+   SHOP PAGE
+========================================= */
+
+.shop-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.shop-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.shop-head-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.shop-head-title {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.shop-head-subtitle {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.shop-dust-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text);
+
+  white-space: nowrap;
+}
+
+.shop-dust-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* =========================================
+   SHOP SECTION
+========================================= */
+
+.shop-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.shop-section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shop-section-title {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.shop-section-description {
+  margin: 4px 0 0;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* =========================================
+   BACKGROUND GRID
+========================================= */
+
+.background-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+
+/* =========================================
+   BACKGROUND CARD
+========================================= */
+
+.background-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  box-shadow: 0 3px 0 var(--shadow-color);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.background-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 var(--shadow-color);
+}
+
+/* =========================================
+   BACKGROUND PREVIEW
+========================================= */
+
+.background-preview {
+  display: block;
+  width: 100%;
+  height: 250px;
+
+  object-fit: cover;
+  background: var(--color-track);
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* =========================================
+   BACKGROUND INFORMATION
+========================================= */
+
+.background-name {
+  margin: var(--space-md) var(--space-md) 4px;
+
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+
+  color: var(--color-text);
+}
+
+.background-price {
+  margin: 0 var(--space-md) var(--space-md);
+
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+
+  color: var(--color-text-muted);
+}
+
+/* =========================================
+   BACKGROUND ACTION
+========================================= */
+
+.background-action {
+  width: calc(100% - 24px);
+  margin: auto 12px 12px;
+  padding: 9px 12px;
+
+  font-family: var(--font-sans);
+  font-size: 13px;
+}
