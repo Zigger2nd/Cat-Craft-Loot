@@ -39,7 +39,7 @@ export function initGenerators(onChange) {
 
   list.innerHTML = "";
 
-  createCard("click", "Clicker", "/skins/click.png", () => {
+  createCard("click", "Clicker", "/skins/cursor/cursor3.png", () => {
     if (!buyClick()) return;
     save();
     onChange();

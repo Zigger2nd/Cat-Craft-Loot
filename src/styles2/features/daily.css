@@ -132,8 +132,8 @@
 }
 
 .daily-reward-icon {
-  width: 40px;
-  height: 40px;
+  width: 96px;
+  height: 96px;
   object-fit: contain;
   image-rendering: pixelated;
 }
@@ -280,7 +280,17 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  margin: auto 0;
+}
+
+.daily-card-rewards:has(.daily-reward-row + .daily-reward-row) {
+  flex-direction: row;
+  gap: 8px;
+}
+
+.daily-card-rewards:has(.daily-reward-row + .daily-reward-row)
+  .daily-reward-icon {
+  width: 96px;
+  height: 96px;
 }
 
 /* ---------- Card states (classes set by JS) ---------- */

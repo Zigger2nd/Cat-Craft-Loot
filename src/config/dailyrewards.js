@@ -8,7 +8,7 @@ export const DAILY_REWARDS = [
   { treats: 2000, dust: 100 },
 ];
 export const REWARD_ICONS = {
-  treats: "/skins/food.png",
+  treats: "/skins/treats.png",
   dust: "/skins/dust.png",
   energy: "/skins/energy.png",
 };

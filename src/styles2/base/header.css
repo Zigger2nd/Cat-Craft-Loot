@@ -17,8 +17,8 @@
 
 .logo-image {
   flex-shrink: 0;
-  width: 60px;
-  height: 60px;
+  width: 72px;
+  height: 72px;
   background-image: url("/skins/logo.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -33,14 +33,14 @@
 .logo-title {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 19px;
+  font-size: 24px;
   line-height: 28px;
   letter-spacing: -0.7px;
 }
 
 .logo-subtitle {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 15px;
   line-height: 16px;
   letter-spacing: 3px;
   color: var(--color-accent);
@@ -85,11 +85,24 @@
 }
 
 .resource--treats .resource-icon {
-  background-image: url("/skins/food.png");
+  background-image: url("/skins/treats.png");
+  width: 42px;
+  height: 42px;
 }
 .resource--dust .resource-icon {
   background-image: url("/skins/dust.png");
+  width: 42px;
+  height: 42px;
 }
 .resource--energy .resource-icon {
   background-image: url("/skins/energy.png");
+  width: 42px;
+  height: 42px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  color: inherit;
+  text-decoration: none;
 }

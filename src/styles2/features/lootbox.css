@@ -242,8 +242,8 @@ section[data-view="box"] {
 }
 
 .pool-card-img {
-  width: 56px;
-  height: 56px;
+  width: 64px;
+  height: 64px;
   background-repeat: no-repeat;
   background-position: 0 0;
   image-rendering: pixelated;
