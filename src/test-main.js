@@ -31,6 +31,7 @@ import {
 import { initDailyPage } from "./ui/daily/dailyRewards.js";
 import { initLootboxFlow } from "./loot/lootboxFlow.js";
 import { initBoxPoolList } from "./ui/boxpoollist.js";
+import { initShop } from "./ui/shop.js";
 
 function renderAll() {
   renderHeader();
@@ -69,6 +70,7 @@ initSecretCatsPage({
 });
 initIntroductionPage();
 initDailyPage();
+initShop(renderAll);
 
 startGameLoop({ render: renderAll, notifyAchievements });
 initRouter();
