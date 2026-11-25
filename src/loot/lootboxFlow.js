@@ -9,49 +9,51 @@ import { SKINS } from "../config/skins.js";
 import { showSkinReward } from "../ui/skins/skinReward.js";
 import { assetUrl } from "../config/paths.js";
 import { notifyAchievements } from "../core/achievements.js";
-import { LOOT_WEIGHTS } from "../config/balance.js";
 
 const lootboxSound = new Audio(assetUrl("/sounds/lootbox.mp3"));
 lootboxSound.volume = 0.5;
 
 export function initLootboxFlow(render) {
-  window.addEventListener("lootboxOpening", loadReelPreview);
-
-  const dialog = document.getElementById("dialog");
+  const dialog = document.getElementById("lootboxDialog");
   const openBoxBtn = document.getElementById("openBoxBtn");
+  const closeBtn = document.getElementById("lootboxCloseBtn");
+  const lootResult = document.getElementById("lootResult");
+
+  if (!dialog || !openBoxBtn || !closeBtn || !lootResult) return;
 
   let isSpinning = false;
   let spinTimer = null;
-  if (openBoxBtn && dialog) {
-    openBoxBtn.addEventListener("click", () => {
-      if (isSpinning) {
-        return;
-      }
 
-      const res = openBox();
+  openBoxBtn.addEventListener("click", () => {
+    if (isSpinning) {
+      return;
+    }
 
-      if (!res || !res.ok) {
-        return;
-      }
-      save();
-      render();
+    const res = openBox();
 
-      renderReel(buildReelIds(res.id));
+    if (!res || !res.ok) {
+      return;
+    }
+    save();
+    render();
+    lootResult.textContent = "";
+    dialog.showModal();
+    renderReel(buildReelIds(res.id));
 
-      isSpinning = true;
-      dialog.dataset.spinning = "true";
+    isSpinning = true;
+    dialog.dataset.spinning = "true";
 
-      const ribbon = document.querySelector(".lootbox-ribbon");
+    const ribbon = document.querySelector(".lootbox-ribbon");
 
-      if (ribbon) {
-        ribbon.addEventListener("transitionend", finishSpin, { once: true });
-      }
+    if (ribbon) {
+      ribbon.addEventListener("transitionend", finishSpin, { once: true });
+    }
 
-      spinReel();
+    spinReel();
 
-      spinTimer = setTimeout(finishSpin, 5200);
-    });
-  }
+    spinTimer = setTimeout(finishSpin, 5200);
+  });
+
   function finishSpin() {
     if (!isSpinning) {
       return;
@@ -59,10 +61,7 @@ export function initLootboxFlow(render) {
 
     clearTimeout(spinTimer);
     isSpinning = false;
-
-    if (dialog) {
-      dialog.dataset.spinning = "false";
-    }
+    dialog.dataset.spinning = "false";
 
     const result = claimReward();
 
@@ -73,9 +72,8 @@ export function initLootboxFlow(render) {
     }
 
     const skin = SKINS[result.id];
-    const lootResult = document.getElementById("lootResult");
 
-    if (skin && lootResult) {
+    if (skin) {
       lootResult.textContent = result.duplicate
         ? `${skin.name} (${skin.rarity}): duplicate, +${result.dust} dust`
         : `New skin: ${skin.name} (${skin.rarity})!`;
@@ -85,7 +83,7 @@ export function initLootboxFlow(render) {
         lootboxSound.play().catch((error) => {
           console.warn("Could not play lootbox sound:", error);
         });
-
+        dialog.close();
         showSkinReward({
           ...skin,
           image: assetUrl(skin.img),
@@ -97,20 +95,14 @@ export function initLootboxFlow(render) {
     render();
     notifyAchievements();
   }
-  function loadReelPreview() {
-    const skinIds = Object.keys(SKINS).filter(
-      (id) => SKINS[id].rarity in LOOT_WEIGHTS,
-    );
 
-    if (skinIds.length === 0) {
-      console.error("No skins are configured for the loot box.");
-      return;
+  dialog.addEventListener("cancel", (event) => {
+    if (dialog.dataset.spinning === "true") {
+      event.preventDefault();
     }
-
-    const previewIds = Array.from({ length: 45 }, () => {
-      return skinIds[Math.floor(Math.random() * skinIds.length)];
-    });
-
-    renderReel(previewIds);
-  }
+  });
+  closeBtn.addEventListener("click", () => {
+    if (dialog.dataset.spinning === "true") return;
+    dialog.close();
+  });
 }

@@ -1,0 +1,31 @@
+.page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.page-title {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 36px;
+  margin: 0;
+}
+.page-subtitle {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+.page-head > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .page-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

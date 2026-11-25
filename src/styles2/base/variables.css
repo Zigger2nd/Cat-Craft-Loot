@@ -4,6 +4,8 @@
   --color-surface: #fbf7ef; /* resource chips, cards */
   --color-border: #e2d5c5;
   --color-achievements-soft: #f3d7a0;
+  --color-lootbox: #f5ebdd;
+  --color-lootbox-skin: #eee5f7;
 
   /* ----------Colors: tracks --------------*/
   --color-track: #ece5dc;
@@ -21,16 +23,37 @@
   --color-accent-soft: #f5d9df;
   --color-accent-border: #e8bbc7;
   --color-accent-strong: #883e56;
-  --color-accent-passive: #dfe9d2;
+  --color-accent-passive: hsl(86, 34%, 87%);
   --shadow-color: rgba(114, 86, 78, 0.25098);
   --color-accent-daily: #fcecef;
+
+  /* ---------- Colors: green (success, intro, discovered) ---------- */
+  --color-success-border: #c5d2b4; /* border of --color-accent-passive plates */
+  --color-success-soft: #eef0e4; /* very light green: collected daily card */
+
+  /* ---------- Colors: purple (secrets, collection) ---------- */
+  --color-collection-soft: #e8e0f5;
+  --color-collection-border: #d1c2df;
+
+  /* ---------- Colors: skin rarity ---------- */
+  --rarity-common: #d8dbdd;
+  --rarity-rare: #97bcc0;
+  --rarity-epic: #b09ec4;
+  --rarity-legendary: #d8bea4;
+  --rarity-secret: #ad526d;
+
+  /* ---------- Shadows ---------- */
+  --shadow-card: 0 4px 0 rgba(114, 86, 78, 0.07); /* soft "3D" edge under cards */
 
   /* ---------- Fonts ---------- */
   --font-mono: "Space Mono", monospace; /* titles, numbers */
   --font-sans: "Inter", sans-serif; /* labels, body text */
 
   /* ---------- Radius ---------- */
-  --radius-md: 8px;
+  --radius-sm: 4px; /* badges */
+  --radius-md: 8px; /* buttons, chips */
+  --radius-lg: 12px; /* cards */
+  --radius-xl: 16px; /* big banners */
 
   /* ---------- Spacing ---------- */
   --space-sm: 10px;

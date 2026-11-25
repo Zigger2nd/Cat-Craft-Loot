@@ -29,6 +29,8 @@ import {
   renderAchievements,
 } from "./ui/achievements/achievementsList.js";
 import { initDailyPage } from "./ui/daily/dailyRewards.js";
+import { initLootboxFlow } from "./loot/lootboxFlow.js";
+import { initBoxPoolList } from "./ui/boxpoollist.js";
 
 function renderAll() {
   renderHeader();
@@ -45,6 +47,7 @@ const offlineGained = applyOfflineGains();
 initOfflineModal(offlineGained);
 updateEnergy();
 renderAll();
+initLootboxFlow(renderAll);
 initContainerItems();
 applyEquippedSkin();
 initEquipSkin(renderAll);
@@ -55,6 +58,7 @@ initCatAnimation();
 initGenerators(renderAll);
 initClick(renderAll);
 initSkinsModal(renderAll);
+initBoxPoolList();
 initAchievementsPage();
 initBubbleEvents(() => {
   renderAll();

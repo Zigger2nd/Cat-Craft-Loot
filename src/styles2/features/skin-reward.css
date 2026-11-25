@@ -1,10 +1,15 @@
+/* ========================================
+   SKIN REWARD POPUP (#skinRewardDialog)
+   Shown by src/ui/skins/skinReward.js after a loot box or the UFO event.
+   Base look (background, text colour, backdrop) comes from components/modal.css.
+======================================== */
+
 .skin-reward-dialog {
-  width: 300px;
+  width: 320px;
   max-width: calc(100% - 40px);
   padding: 0;
-  border: 2px solid #ffd76a;
-  background: #292341;
-  color: white;
+  border-color: var(--color-achievements-soft);
+  border-radius: var(--radius-xl);
   text-align: center;
   overflow: hidden;
 }
@@ -31,40 +36,54 @@
 
 .skin-reward-content {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 28px 22px 22px;
   overflow: hidden;
 }
+
+/* ---------- Close (×) ---------- */
 
 .close-skin-reward {
   position: absolute;
   top: 6px;
   right: 8px;
   z-index: 5;
-  background: transparent;
+  padding: 4px 8px;
+  background: none;
+  border: none;
   font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+  color: var(--color-text-muted);
 }
 
 .close-skin-reward:hover {
-  color: #ffd76a;
+  color: var(--color-text);
 }
 
-.reward-subtitle {
+/* ---------- Texts ---------- */
+
+.reward-subtitle,
+.reward-label {
   margin: 0 0 8px;
-  color: #d8d2e8;
   font-size: 10px;
   letter-spacing: 2px;
+  color: var(--color-text-muted);
 }
 
 .reward-title {
   margin: 0 0 12px;
-  color: #ffd76a;
+  font-family: var(--font-mono);
   font-size: 23px;
+  color: var(--color-achievements);
 }
 
 .reward-sparkle {
-  margin: 0 auto 10px;
-  color: #ffd76a;
+  margin: 0 0 10px;
   font-size: 25px;
+  color: var(--color-achievements);
   animation: sparkle 1.5s ease-in-out infinite;
 }
 
@@ -81,95 +100,77 @@
   }
 }
 
+#rewardSkinName {
+  margin: 0 0 10px;
+  font-family: var(--font-mono);
+  font-size: 20px;
+}
+
+/* ---------- Skin preview ---------- */
+
 .reward-skin-preview {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
-  height: 100px;
-  margin: 0 auto 15px;
+  width: 120px;
+  height: 120px;
+  margin: 0 0 15px;
+  background: var(--color-achievements-soft);
+  border-radius: var(--radius-lg);
 }
 
+/* 96px = 32px frame × 3. background-size is set by JS (skinBackgroundSize),
+   so sprite sheets and single-frame GIFs both fit. */
 .reward-skin-preview .card-img {
-  width: 32px;
-  height: 32px;
-  flex-shrink: 0;
+  width: 96px;
+  height: 96px;
   background-repeat: no-repeat;
   background-position: 0 0;
-  background-size: 300% 400%;
   image-rendering: pixelated;
-  transform: scale(3);
 }
 
-.reward-label {
-  margin: 0 0 6px;
-  color: #d8d2e8;
-  font-size: 10px;
-  letter-spacing: 2px;
-}
-
-#rewardSkinName {
-  margin: 0 0 10px;
-  color: white;
-  font-size: 20px;
-}
+/* ---------- Rarity badge ---------- */
 
 .reward-rarity {
-  display: inline-block;
   margin: 0 0 20px;
   padding: 5px 12px;
-  border: 1px solid #ffd76a;
   border-radius: 12px;
-  color: #ffd76a;
+  background: var(--color-track);
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 700;
   text-transform: uppercase;
+  color: var(--color-text);
 }
 
 .reward-rarity.rarity-common {
-  color: #d8d8d8;
-  border-color: #d8d8d8;
+  background: var(--rarity-common);
 }
 
 .reward-rarity.rarity-rare {
-  color: #64b5ff;
-  border-color: #64b5ff;
+  background: var(--rarity-rare);
 }
 
 .reward-rarity.rarity-epic {
-  color: #d69aff;
-  border-color: #d69aff;
+  background: var(--rarity-epic);
 }
 
 .reward-rarity.rarity-legendary {
-  color: #ffd76a;
-  border-color: #ffd76a;
+  background: var(--rarity-legendary);
 }
 
-.claim-skin-reward {
+.reward-rarity.rarity-secret {
+  background: var(--rarity-secret);
+  color: var(--color-bg);
+}
+
+/* "AWESOME!" (btn btn-primary) stretched to full width */
+.skin-reward-content .btn-primary {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ffd76a;
-  background: transparent;
-  color: #ffd76a;
-  font-weight: bold;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
 }
 
-.claim-skin-reward:hover {
-  background: #ffd76a;
-  color: #292341;
-  transform: translateY(-2px);
-}
-
-.claim-skin-reward:active {
-  transform: scale(0.98);
-}
+/* ---------- Confetti ---------- */
 
 .reward-confetti {
   position: absolute;
@@ -237,14 +238,13 @@
 
   100% {
     opacity: 0;
-    transform: translateY(350px) rotate(180deg);
+    transform: translateY(450px) rotate(180deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .skin-reward-dialog[open],
   .reward-sparkle,
-  #rewardSkinImage,
   .reward-confetti span {
     animation: none;
   }

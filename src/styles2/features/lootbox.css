@@ -1,0 +1,308 @@
+/* Page: header, stages, pool stacked with one gap */
+/* Exactly the height of .view-host, so the pool below is always on screen */
+section[data-view="box"] {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+
+/* Two equal columns; takes whatever height is left after the header and the pool */
+.box-main {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Shared look of both stages; only the background differs */
+.box-stage,
+.skin-stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
+  min-height: 0;
+  padding: 28px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  text-align: center;
+}
+
+.box-stage {
+  background-color: var(--color-lootbox);
+}
+
+.skin-stage {
+  background-color: var(--color-lootbox-skin);
+}
+
+.box-text-border {
+  padding: 0 9px;
+  background: var(--color-achievements-soft);
+  border-radius: var(--radius-sm);
+}
+
+.box-stage-text {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 0.4px;
+
+  color: var(--color-achievements);
+}
+
+/* The chest is the "spring" of the stage: up to 200px tall,
+   shrinks (down to 64px) when the window is low */
+.box-chest {
+  flex: 0 1 200px;
+  width: 100%;
+  min-height: 64px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.box-text-bottom-border {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 24px on small screens, grows with the window up to 36px */
+.box-stage-title {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 700;
+}
+
+.box-stage-subtitle {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: -0.5px;
+  color: var(--color-text-muted);
+}
+
+/* "A peek at what could be inside" */
+.box-pool {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.box-pool-head h2 {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* The pool keeps its own height, only .box-main gives way */
+.box-pool {
+  flex-shrink: 0;
+}
+
+/* Narrow screens: stages one under the other. Two stages + pool can't fit
+   into one screen anymore, so the page scrolls normally again */
+@media (max-width: 1200px) {
+  section[data-view="box"] {
+    height: auto;
+  }
+
+  .box-main {
+    grid-template-columns: 1fr;
+    flex: none;
+  }
+}
+
+/* Very low windows: the stage content no longer fits, fall back to scrolling */
+@media (max-height: 760px) {
+  section[data-view="box"] {
+    height: auto;
+  }
+
+  .box-main {
+    flex: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .box-stage,
+  .skin-stage {
+    padding: 20px 16px;
+  }
+}
+.lootbox-dialog {
+  width: min(640px, calc(100% - 32px));
+}
+.lootbox-dialog[data-spinning="true"] #lootboxCloseBtn {
+  visibility: hidden;
+}
+
+.lootbox-container {
+  position: relative;
+  width: 600px;
+  max-width: 100%;
+  height: 130px;
+  overflow: hidden;
+  margin: 20px auto;
+  background-color: var(--color-bg);
+  border: 3px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+}
+
+.lootbox-ribbon {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  height: 100%;
+  gap: 8px;
+}
+
+.lootbox-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  transform: translateX(-50%);
+  background: #e65c4f;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.reel-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 100px;
+  width: 100px;
+  height: 110px;
+  border: 2px solid var(--rarity-color, #888);
+  border-bottom: 5px solid var(--rarity-color, #888);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+.reel-card.rarity-common,
+.pool-card.rarity-common {
+  --rarity-color: var(--rarity-common);
+}
+
+.reel-card.rarity-rare,
+.pool-card.rarity-rare {
+  --rarity-color: var(--rarity-rare);
+}
+
+.reel-card.rarity-epic,
+.pool-card.rarity-epic {
+  --rarity-color: var(--rarity-epic);
+}
+
+.reel-card.rarity-legendary,
+.pool-card.rarity-legendary {
+  --rarity-color: var(--rarity-legendary);
+}
+
+.lootbox-ribbon .card-img {
+  width: 64px;
+  height: 64px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  image-rendering: pixelated;
+  transform: none;
+}
+
+#lootResult {
+  align-self: center;
+  min-height: 24px;
+  margin: 8px 0 0;
+  font-weight: bold;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.pool-card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* otherwise the badge stretches to full width */
+  gap: 10px;
+  min-width: 0;
+}
+
+.pool-card-name {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.pool-card-img {
+  width: 56px;
+  height: 56px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  image-rendering: pixelated;
+}
+
+.pool-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 110px;
+  padding: 16px;
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.pool-card-thumb {
+  display: grid;
+  place-items: center;
+  width: 78px;
+  height: 78px;
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--rarity-color) 35%, var(--color-bg));
+  border-radius: var(--radius-md);
+}
+
+.box-pool-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.pool-card-rarity {
+  padding: 5px 9px;
+  background: var(--color-track);
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  background: color-mix(in srgb, var(--rarity-color) 30%, var(--color-bg));
+  color: var(--color-text);
+}
+
+@media (max-width: 1200px) {
+  .box-pool-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 768px) {
+  .box-pool-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 750px) {
+  .reel-card {
+    width: 85px;
+    flex-basis: 85px;
+    height: 100px;
+  }
+}

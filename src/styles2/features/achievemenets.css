@@ -117,30 +117,7 @@ section[data-view="achievements"] {
   border-bottom: 1px solid var(--color-border);
 }
 
-.ach-tab {
-  display: inline-flex;
-  align-items: center;
-  height: 42px;
-  padding: 0 16px;
-  border-radius: var(--radius-md);
-
-  background: none;
-  border: none;
-  cursor: pointer;
-  gap: 4px;
-  font-size: 16px;
-  color: var(--color-text-muted);
-  white-space: nowrap;
-}
-
-.ach-tab:hover {
-  color: var(--color-text);
-}
-
-.ach-tab.active {
-  background: var(--color-text);
-  color: var(--color-bg);
-}
+/* Tab buttons use the shared .tab style (components/button.css) */
 
 .ach-desc {
   margin: 0;

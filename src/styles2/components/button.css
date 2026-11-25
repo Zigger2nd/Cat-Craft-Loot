@@ -1,124 +1,132 @@
+/* ========================================
+   BUTTONS — shared look for every button in the game.
+   Pages add only what is really theirs (position, a special colour state).
+
+   Usage in HTML/JS:
+     class="btn btn-primary"              pink, main action   (Upgrade, Claim, Reveal Hint)
+     class="btn btn-secondary"            light with border   (Explore my collection, Equip)
+     class="btn btn-muted"                grey, unavailable   (Locked)
+     + btn-block   → full width of the parent
+     + btn-lg      → taller (44px) for big page actions
+     class="tab"  (+ .active)             filter tabs         (skins rarity, achievements)
+
+   Works on <button> and on <a> (a link that looks like a button).
+======================================== */
+
 button {
   font: inherit;
   color: inherit;
 }
+
+/* ---------- Base ---------- */
+
 .btn {
-  font-weight: 700;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 16px;
+  min-height: 40px;
+  padding: 0 18px;
+  border: 1.5px solid transparent;
   border-radius: var(--radius-md);
-  border: 1px solid transparent;
+  box-shadow: 0 3px 0 var(--btn-shadow, transparent);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none; /* <a class="btn"> — links are underlined by default */
   cursor: pointer;
-  box-shadow: 0 3px 0 var(--btn-shadow);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
 }
-.btn:active {
+
+/* Pressed: the button "sinks" into its shadow */
+.btn:not(:disabled):active {
   transform: translateY(2px);
-  box-shadow: 0 1px 0 var(--btn-shadow);
+  box-shadow: 0 1px 0 var(--btn-shadow, transparent);
 }
 
 .btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  transform: none;
 }
 
+/* ---------- Variants (colour only) ---------- */
+
 .btn-primary {
-  --btn-shadow: var(--color-accent-strong);
+  --btn-shadow: var(--shadow-color);
   background: var(--color-accent);
-  color: #fff;
-  padding: 8px 16px;
+  border-color: var(--color-accent-strong);
+  color: var(--color-bg);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: var(--color-accent-strong);
 }
 
 .btn-secondary {
-  width: 100%;
+  --btn-shadow: var(--shadow-color);
   background: var(--color-bg);
   border-color: var(--color-border);
-  --btn-shadow: var(--shadow-color);
+  color: var(--color-text);
 }
 
-.rarity-button {
-  height: 40px;
-  padding: 0 16px;
-
-  border: none;
-  border-radius: 7px;
-
-  background: transparent;
-  color: #8d7973;
-
-  font-family: "Inter", sans-serif;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 15px;
-
-  white-space: nowrap;
-  box-shadow: none;
-  flex: none;
+.btn-secondary:not(:disabled):hover {
+  background: var(--color-surface);
+  border-color: var(--color-accent-border);
 }
 
-.rarity-button.active,
-.rarity-button[aria-pressed="true"] {
-  background: #4b3836;
-  color: #fffcf6;
+.btn-muted {
+  background: var(--color-track);
+  border-color: var(--color-border);
+  color: var(--color-text-muted);
 }
 
-.rarity-button:active {
-  transform: none;
-}
-.equip-skin-btn {
-  box-sizing: border-box;
+/* ---------- Size helpers ---------- */
 
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-
+.btn-block {
   width: 100%;
-  height: 40px;
-  min-height: 36px;
-
-  padding: 0 12px;
-  gap: 8px;
-
-  border: 1.5px solid #e2d5c5;
-  border-radius: 8px;
-
-  font-size: 15px;
-  font-weight: 700;
-
-  flex: none;
-  align-self: stretch;
-
-  box-shadow: 0px 3px 0px rgba(114, 86, 78, 0.25098);
 }
 
-.equip-skin-btn.available {
-  background: #fffcf6;
-  color: #422727;
+.btn-lg {
+  min-height: 44px;
+}
+
+/* A disabled button that shows a state ("Locked", "Equipped", "Hint Revealed")
+   instead of a dead action: stays fully visible, no "not allowed" cursor.
+   Used by the card buttons on the Skins and Secret cats pages. */
+.btn-status:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+/* ========================================
+   TABS — filter buttons; the active one is a dark pill.
+   JS toggles .active (achievements) or aria-pressed (skins).
+======================================== */
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 36px;
+  padding: 0 16px;
+  background: none;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
   cursor: pointer;
 }
 
-.equip-skin-btn.available:hover {
-  background: #f5eee5;
-  border-color: #c9b8a5;
+.tab:hover {
+  color: var(--color-text);
 }
 
-.equip-skin-btn.locked {
-  background: #ece5dc;
-  border-color: #e2d5c5;
-  box-shadow: none;
-  color: #99918a;
-  cursor: not-allowed;
-  opacity: 1;
-}
-
-.equip-skin-btn.currently-equipped {
-  background: #ad526d;
-  border-color: #883e56;
-  color: #fff;
-  cursor: default;
-  opacity: 1;
+.tab.active,
+.tab[aria-pressed="true"] {
+  background: var(--color-text);
+  color: var(--color-bg);
 }

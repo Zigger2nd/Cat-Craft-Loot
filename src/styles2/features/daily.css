@@ -1,190 +1,80 @@
 /* ========================================
-   DAILY REWARDS PAGE
+   DAILY REWARDS PAGE (section[data-view="daily"])
+   Cards are built by src/ui/daily/dailyRewards.js.
+   Claim button is the shared .btn .btn-primary .btn-lg (components/button.css).
 ======================================== */
 
 .daily-page {
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
   gap: 32px;
-  width: 100%;
-  min-width: 0;
-  padding: 32px;
 }
 
-.daily-page[hidden] {
-  display: none !important;
-}
-
-/* ========================================
-   PAGE HEADER
-======================================== */
-
-.daily-page-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-  width: 100%;
-}
-
-.daily-page-heading {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  min-width: 0;
-}
-
-.daily-page-title {
-  margin: 0;
-  font-family: "Space Mono", monospace;
-  font-size: 29px;
-  font-weight: 700;
-  line-height: 120%;
-  letter-spacing: -1.3px;
-  color: #4b3836;
-}
-
-.daily-page-subtitle {
-  margin: 0;
-  font-family: "Inter", sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 150%;
-  color: #8d7973;
-}
+/* ---------- Page header ---------- */
 
 .daily-ready-badge {
-  box-sizing: border-box;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
   flex-shrink: 0;
   padding: 5px 9px;
-  background: #dfe9d2;
-  border-radius: 4px;
-
-  font-family: "Inter", sans-serif;
+  background: var(--color-accent-passive);
+  border-radius: var(--radius-sm);
   font-size: 10px;
   font-weight: 700;
   line-height: 12px;
   letter-spacing: 0.4px;
-  color: #657c50;
+  color: var(--color-energy);
 }
 
-/* ========================================
-   CURRENT DAILY REWARD
-======================================== */
+/* ---------- Today's reward (big pink block) ---------- */
 
 .daily-feature {
-  box-sizing: border-box;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 28px;
-
-  width: 100%;
-  min-height: 306px;
   padding: 32px;
-
-  background: #f5d9df;
-  border: 1.5px solid #dbafbe;
-  border-radius: 16px;
+  background: var(--color-accent-soft);
+  border: 1.5px solid var(--color-accent-border);
+  border-radius: var(--radius-xl);
 }
-
-/* Feature introduction */
 
 .daily-feature-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
   gap: 20px;
-
   flex: 1;
   min-width: 0;
 }
 
 .daily-feature-badge {
-  display: inline-flex;
-  align-items: center;
   padding: 5px 9px;
-
-  background: #fcecef;
-  border-radius: 4px;
-
-  font-family: "Inter", sans-serif;
+  background: var(--color-accent-daily);
+  border-radius: var(--radius-sm);
   font-size: 10px;
   font-weight: 700;
   line-height: 12px;
   letter-spacing: 0.4px;
-  color: #ad526d;
+  color: var(--color-accent);
 }
 
 .daily-feature-title {
   margin: 0;
-  font-family: "Space Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 31px;
   font-weight: 700;
   line-height: 125%;
   letter-spacing: -1.1px;
-  color: #4b3836;
 }
 
 .daily-feature-description {
   max-width: 480px;
   margin: 0;
-
-  font-family: "Inter", sans-serif;
   font-size: 12px;
   line-height: 150%;
-  color: #72564e;
+  color: var(--color-text-muted);
 }
 
-/* Claim button */
-
-.daily-claim-button {
-  min-height: 44px;
-  padding: 0 18px;
-  background: #ad526d;
-  border: 1.5px solid #883e56;
-  border-radius: 8px;
-  box-shadow: 0 3px 0 rgba(114, 86, 78, 0.25);
-
-  font-family: "Inter", sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: #fffcf6;
-
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.daily-claim-button:hover:not(:disabled) {
-  background: #963f5b;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 0 rgba(114, 86, 78, 0.25);
-}
-
-.daily-claim-button:active:not(:disabled) {
-  transform: translateY(2px);
-  box-shadow: none;
-}
-
-.daily-claim-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-/* ========================================
-   REWARD PREVIEW WINDOW
-======================================== */
+/* ---------- Reward preview window (right side) ---------- */
 
 .daily-feature-preview {
   display: flex;
@@ -192,39 +82,32 @@
   align-items: center;
   flex: 0 1 380px;
   min-width: 0;
-  min-height: 242px;
 }
 
 .daily-preview-window {
-  box-sizing: border-box;
   position: relative;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 18px;
-
   width: 100%;
   min-height: 220px;
   padding: 24px;
-
-  background: #fffcf6;
-  border: 1.5px solid #dbafbe;
-  border-radius: 14px;
-  box-shadow: 0 4px 0 rgba(114, 86, 78, 0.12);
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-accent-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
 }
 
 .daily-preview-day {
   position: absolute;
   top: 14px;
   left: 16px;
-
-  font-family: "Space Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
-  color: #ad526d;
   letter-spacing: 0.5px;
+  color: var(--color-accent);
 }
 
 .daily-reward-preview {
@@ -233,14 +116,18 @@
   justify-content: center;
   align-items: center;
   gap: 18px;
-  width: 100%;
 }
 
-.daily-preview-reward {
+/* One reward (icon + type + amount): big in the preview, small in the cards */
+.daily-preview-reward,
+.daily-reward-row {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 7px;
+}
+
+.daily-preview-reward {
   min-width: 75px;
 }
 
@@ -252,39 +139,39 @@
 }
 
 .daily-reward-type {
-  font-family: "Inter", sans-serif;
   font-size: 11px;
-  font-weight: 400;
-  color: #8d7973;
+  color: var(--color-text-muted);
 }
 
 .daily-reward-amount {
-  font-family: "Space Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 15px;
   font-weight: 700;
-  color: #4b3836;
 }
 
-/* ========================================
-   DAILY SEQUENCE
-======================================== */
+/* Inside the small day cards: no label, smaller number */
+.daily-reward-row .daily-reward-type {
+  display: none;
+}
+
+.daily-reward-row .daily-reward-amount {
+  font-size: 12px;
+}
+
+/* ---------- 7-day sequence ---------- */
 
 .daily-sequence {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
   gap: 17px;
-  width: 100%;
   min-width: 0;
 }
 
 .daily-sequence-header {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 24px;
-  width: 100%;
 }
 
 .daily-sequence-heading {
@@ -296,23 +183,19 @@
 
 .daily-sequence-heading h2 {
   margin: 0;
-  font-family: "Space Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 18px;
   font-weight: 700;
   line-height: 130%;
   letter-spacing: -0.6px;
-  color: #4b3836;
 }
 
 .daily-sequence-heading p {
   margin: 0;
-  font-family: "Inter", sans-serif;
   font-size: 11px;
   line-height: 150%;
-  color: #8d7973;
+  color: var(--color-text-muted);
 }
-
-/* Sequence progress */
 
 .daily-sequence-progress {
   display: flex;
@@ -323,53 +206,41 @@
 }
 
 .daily-progress-count {
-  font-family: "Inter", sans-serif;
   font-size: 11px;
-  font-weight: 400;
-  color: #8d7973;
+  color: var(--color-text-muted);
 }
 
+/* Shared .progress-track / .progress-fill (components/progress.css);
+   here only the size and colour. Fill width is set by JS. */
 .daily-progress-track {
   width: 126px;
   height: 6px;
-  overflow: hidden;
-  background: #e2d5c5;
-  border-radius: 10px;
 }
 
 .daily-progress-fill {
-  height: 100%;
-  background: #657c50;
-  border-radius: inherit;
+  background: var(--color-energy);
   transition: width 0.3s ease;
 }
 
-/* ========================================
-   DAILY REWARD CARDS
-======================================== */
+/* ---------- Day cards ---------- */
 
 .daily-reward-list {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 12px;
-  width: 100%;
 }
 
 .daily-reward-card {
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 13px;
-
   min-width: 0;
   min-height: 186px;
   padding: 16px 10px;
-
-  background: #fffcf6;
-  border: 1.5px solid #e2d5c5;
-  border-radius: 12px;
-
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
   transition:
     background 0.2s ease,
     border-color 0.2s ease,
@@ -377,130 +248,110 @@
     box-shadow 0.2s ease;
 }
 
-/* Card header */
-
 .daily-card-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  width: 100%;
 }
 
 .daily-card-day {
-  font-family: "Space Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 700;
   line-height: 18px;
-  color: #8d7973;
+  color: var(--color-text-muted);
 }
 
 .daily-card-status {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-
-  min-height: 22px;
   padding: 5px 9px;
-
-  background: #f5f0e8;
-  border-radius: 4px;
-
-  font-family: "Inter", sans-serif;
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
   font-size: 10px;
   font-weight: 700;
   line-height: 12px;
   letter-spacing: 0.4px;
-  color: #8d7973;
+  color: var(--color-text-muted);
 }
 
-/* Card rewards */
-
+/* Rewards sit in the middle of the free space */
 .daily-card-rewards {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  width: 100%;
-  margin-top: auto;
-  margin-bottom: auto;
+  margin: auto 0;
 }
 
-.daily-reward-row {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-}
+/* ---------- Card states (classes set by JS) ---------- */
 
-.daily-reward-row .daily-reward-icon {
-  width: 40px;
-  height: 40px;
-}
-
-.daily-reward-row .daily-reward-type {
-  display: none;
-}
-
-.daily-reward-row .daily-reward-amount {
-  font-size: 12px;
-}
-
-/* ========================================
-   COLLECTED STATE
-======================================== */
-
+/* Collected: green */
 .daily-reward-card.is-claimed {
-  background: #eef0e4;
-  border-color: #e2d5c5;
+  background: var(--color-success-soft);
 }
 
 .daily-reward-card.is-claimed .daily-card-day {
-  color: #657c50;
+  color: var(--color-energy);
 }
 
 .daily-reward-card.is-claimed .daily-card-status {
-  background: #dfe9d2;
-  color: #657c50;
+  background: var(--color-accent-passive);
+  color: var(--color-energy);
 }
 
-/* ========================================
-   TODAY STATE
-======================================== */
-
+/* Today: pink, raised */
 .daily-reward-card.is-today {
-  background: #fcecef;
-  border: 2px solid #ad526d;
-  box-shadow: 0 3px 0 rgba(114, 86, 78, 0.25);
+  background: var(--color-accent-daily);
+  border: 2px solid var(--color-accent);
+  box-shadow: 0 3px 0 var(--shadow-color);
 }
 
 .daily-reward-card.is-today .daily-card-day {
-  color: #ad526d;
+  color: var(--color-accent);
 }
 
 .daily-reward-card.is-today .daily-card-status {
-  background: #f5d9df;
-  color: #ad526d;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
 }
 
 .daily-reward-card.is-today:hover {
   transform: translateY(-2px);
 }
 
-/* ========================================
-   FUTURE STATE
-======================================== */
-
-.daily-reward-card.is-future {
-  background: #fffcf6;
-  border-color: #e2d5c5;
-}
-
-.daily-reward-card.is-future .daily-card-day {
-  color: #8d7973;
-}
-
+/* Future: default look, status without background */
 .daily-reward-card.is-future .daily-card-status {
   background: transparent;
-  color: #8d7973;
+}
+
+/* ---------- Narrow screens ---------- */
+
+@media (max-width: 1200px) {
+  .daily-feature {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .daily-feature-preview {
+    flex-basis: auto;
+  }
+
+  .daily-reward-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .daily-sequence-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .daily-sequence-progress {
+    align-items: flex-start;
+  }
+
+  .daily-reward-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

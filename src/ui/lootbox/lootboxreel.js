@@ -2,6 +2,7 @@ import { SKINS } from "../../config/skins.js";
 import { rollSkin } from "../../loot/lootBox.js";
 import { assetUrl } from "../../config/paths.js";
 import { skinBackgroundSize } from "../../config/paths.js";
+
 const ribbon = document.querySelector(".lootbox-ribbon");
 
 export function buildReelIds(winnerId) {

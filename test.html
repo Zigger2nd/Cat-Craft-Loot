@@ -144,11 +144,11 @@
         <!-- HOME -->
 
         <section data-view="home">
-          <header class="home-head">
+          <header class="page-head">
             <div>
-              <h1 class="home-head-title">Welcome to your cozy corner.</h1>
+              <h1 class="page-title">Welcome to your cozy corner.</h1>
 
-              <p class="home-head-subtitle">
+              <p class="page-subtitle">
                 Make treats, grow your little world, and find your next favorite
                 cat.
               </p>
@@ -225,7 +225,7 @@
 
                 <button
                   type="button"
-                  class="btn btn-secondary"
+                  class="btn btn-secondary btn-block btn-lg"
                   data-nav="skins"
                 >
                   Explore my collection
@@ -236,11 +236,13 @@
 
           <!-- GENERATORS -->
 
-          <div class="home-section-head">
-            <h2>A little help from your favorites</h2>
-          </div>
+          <section class="home-generators">
+            <header class="home-section-head">
+              <h2>A little help from your favorites</h2>
+            </header>
 
-          <div class="generators" id="generatorList"></div>
+            <div class="generators" id="generatorList"></div>
+          </section>
 
           <!-- DAILY REWARD BANNER -->
 
@@ -260,19 +262,21 @@
         <!-- SKINS -->
 
         <section data-view="skins" class="skins-view">
-          <header class="skins-head">
-            <h1 class="skins-head-title">My cozy collection</h1>
+          <header class="page-head">
+            <div>
+              <h1 class="page-title">My cozy collection</h1>
 
-            <p class="skins-head-subtitle">
-              A little world of cats, each with their own story.
-            </p>
+              <p class="page-subtitle">
+                A little world of cats, each with their own story.
+              </p>
+            </div>
           </header>
 
           <div class="skins-modal-content">
             <div class="skin-rarity-filters">
               <button
                 type="button"
-                class="btn rarity-button active"
+                class="tab rarity-button active"
                 data-rarity="all"
                 aria-pressed="true"
               >
@@ -281,7 +285,7 @@
 
               <button
                 type="button"
-                class="btn rarity-button"
+                class="tab rarity-button"
                 data-rarity="common"
                 aria-pressed="false"
               >
@@ -290,7 +294,7 @@
 
               <button
                 type="button"
-                class="btn rarity-button"
+                class="tab rarity-button"
                 data-rarity="rare"
                 aria-pressed="false"
               >
@@ -299,7 +303,7 @@
 
               <button
                 type="button"
-                class="btn rarity-button"
+                class="tab rarity-button"
                 data-rarity="epic"
                 aria-pressed="false"
               >
@@ -308,7 +312,7 @@
 
               <button
                 type="button"
-                class="btn rarity-button"
+                class="tab rarity-button"
                 data-rarity="legendary"
                 aria-pressed="false"
               >
@@ -323,13 +327,11 @@
         <!-- SECRET CATS -->
 
         <section data-view="secrets" class="secrets-page">
-          <header class="secrets-head">
-            <div class="secrets-head-text">
-              <h1 class="secrets-head-title">
-                Some friendships start with a mystery.
-              </h1>
+          <header class="page-head">
+            <div>
+              <h1 class="page-title">Some friendships start with a mystery.</h1>
 
-              <p class="secrets-head-subtitle">
+              <p class="page-subtitle">
                 Follow the clues, watch your progress, and discover the cats
                 hiding just out of sight.
               </p>
@@ -383,7 +385,56 @@
 
         <!-- OPEN BOX -->
 
-        <section data-view="box" hidden></section>
+        <section data-view="box" hidden>
+          <header class="page-head">
+            <div>
+              <h1 class="page-title">Good things come in little boxes</h1>
+              <p class="page-subtitle">
+                Spend energy on a mystery box and see which skin is waiting
+                inside
+              </p>
+            </div>
+          </header>
+          <div class="box-main">
+            <div class="box-stage">
+              <div class="box-text-border">
+                <p class="box-stage-text">Your next little surprise</p>
+              </div>
+              <img class="box-chest" src="/sidebar/chest.png" alt="" />
+              <div class="box-text-bottom-border">
+                <h2 class="box-stage-title">The cozy mystery box</h2>
+                <p class="box-stage-subtitle">
+                  One box. One skin. A whole lot of possibility
+                </p>
+              </div>
+
+              <button type="button" id="openBoxBtn" class="btn btn-primary">
+                OPEN BOX <span class="energy-cost"></span>
+              </button>
+              <p class="box-stage-subtitle">
+                Uses energy from your balance above
+              </p>
+            </div>
+            <div class="skin-stage">
+              <div class="box-text-border">
+                <p class="box-stage-text">Your next little surprise</p>
+              </div>
+              <img class="box-chest" src="/sidebar/chest.png" alt="" />
+              <div class="box-text-bottom-border">
+                <h2 class="box-stage-title">Coming soon...</h2>
+                <p class="box-stage-subtitle">
+                  One box. One skin. A whole lot of possibility
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="box-pool">
+            <header class="box-pool-head">
+              <h2>A peek at what could be inside</h2>
+            </header>
+            <div class="box-pool-list" id="boxPoolList"></div>
+          </div>
+        </section>
 
         <!-- SHOP -->
 
@@ -397,12 +448,14 @@
 
         <section data-view="achievements" hidden>
           <header class="page-head">
-            <h1 class="home-head-title">Loot at you, making pawgress.</h1>
+            <div>
+              <h1 class="page-title">Loot at you, making pawgress.</h1>
 
-            <p class="home-head-subtitle">
-              Every click, every cat, every cozy upgrade counts. Pick up a
-              little reward along the way.
-            </p>
+              <p class="page-subtitle">
+                Every click, every cat, every cozy upgrade counts. Pick up a
+                little reward along the way.
+              </p>
+            </div>
           </header>
 
           <!-- ACHIEVEMENT PROGRESS -->
@@ -436,17 +489,17 @@
           <!-- ACHIEVEMENT FILTERS -->
 
           <div class="ach-tabs">
-            <button type="button" class="ach-tab active" data-filter="all">
+            <button type="button" class="tab ach-tab active" data-filter="all">
               All achievements ·
               <span class="ach-tab-count"></span>
             </button>
 
-            <button type="button" class="ach-tab" data-filter="progress">
+            <button type="button" class="tab ach-tab" data-filter="progress">
               In progress ·
               <span class="ach-tab-count"></span>
             </button>
 
-            <button type="button" class="ach-tab" data-filter="done">
+            <button type="button" class="tab ach-tab" data-filter="done">
               Completed ·
               <span class="ach-tab-count"></span>
             </button>
@@ -462,11 +515,11 @@
         <section data-view="daily" class="daily-page" hidden>
           <!-- PAGE HEADER -->
 
-          <header class="daily-page-header">
-            <div class="daily-page-heading">
-              <h1 class="daily-page-title">Good to see you, littlewhisker.</h1>
+          <header class="page-head">
+            <div>
+              <h1 class="page-title">Good to see you, littlewhisker.</h1>
 
-              <p class="daily-page-subtitle">
+              <p class="page-subtitle">
                 A small thank-you for spending a little time in your cozy
                 corner.
               </p>
@@ -498,7 +551,7 @@
               <button
                 type="button"
                 id="dailyClaimButton"
-                class="btn btn-primary daily-claim-button"
+                class="btn btn-primary btn-lg daily-claim-button"
               >
                 Claim my reward
               </button>
@@ -559,11 +612,11 @@
         <!-- INSTRUCTIONS -->
 
         <section data-view="instructions" class="instructions-view">
-          <header class="intro-header">
-            <div class="intro-header-text">
-              <h1>No rush. Just cats.</h1>
+          <header class="page-head">
+            <div>
+              <h1 class="page-title">No rush. Just cats.</h1>
 
-              <p>
+              <p class="page-subtitle">
                 Everything you need to make yourself at home in Cat Craft &amp;
                 Loot.
               </p>
@@ -589,7 +642,7 @@
               </p>
             </div>
 
-            <a href="#home" class="intro-home-btn">
+            <a href="#home" class="btn btn-primary btn-lg intro-home-btn">
               Back to my cozy corner
               <span aria-hidden="true">→</span>
             </a>
@@ -799,6 +852,20 @@
       </article>
     </template>
 
+    <!-- LOOTBOX CARD -->
+
+    <template id="boxPoolCardTpl">
+      <article class="pool-card">
+        <div class="pool-card-thumb">
+          <div class="pool-card-img"></div>
+        </div>
+        <div class="pool-card-info">
+          <p class="pool-card-name"></p>
+          <span class="pool-card-rarity"></span>
+        </div>
+      </article>
+    </template>
+
     <!-- ==================== DIALOGS ==================== -->
 
     <!-- OFFLINE REWARDS -->
@@ -813,6 +880,21 @@
 
       <button type="button" id="offlineCloseBtn" class="btn btn-primary">
         Nice!
+      </button>
+    </dialog>
+
+    <!-- LOOTBOXREEL -->
+    <dialog id="lootboxDialog" class="modal lootbox-dialog">
+      <h2 class="lootbox-dialog-title">Opening your box…</h2>
+
+      <div class="lootbox-container">
+        <div class="lootbox-line"></div>
+        <div class="lootbox-ribbon"></div>
+      </div>
+
+      <p id="lootResult" class="lootbox-result"></p>
+      <button type="button" id="lootboxCloseBtn" class="btn btn-secondary">
+        Close
       </button>
     </dialog>
 
@@ -834,7 +916,7 @@
         <button
           type="button"
           id="closeSkinRewardBtn"
-          class="btn close-skin-reward"
+          class="close-skin-reward"
           aria-label="Close reward"
         >
           &times;
