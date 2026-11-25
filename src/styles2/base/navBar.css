@@ -56,31 +56,31 @@
 }
 
 .nav-item[data-nav="home"] .nav-icon {
-  background-image: url("/sidebar/paw.png");
+  background-image: url("/sidebar/cozy_corner.png");
 }
 .nav-item[data-nav="box"] .nav-icon {
-  background-image: url("/sidebar/chest.png");
+  background-image: url("/sidebar/box.png");
 }
 .nav-item[data-nav="skins"] .nav-icon {
-  background-image: url("/sidebar/ball.png");
+  background-image: url("/sidebar/skins.png");
 }
 .nav-item[data-nav="shop"] .nav-icon {
-  background-image: url("/sidebar/shop.png");
+  background-image: url("/sidebar/shops.png");
 }
 .nav-item[data-nav="skilltree"] .nav-icon {
-  background-image: url("/sidebar/tree1.png");
+  background-image: url("/sidebar/skill.png");
 }
 .nav-item[data-nav="achievements"] .nav-icon {
-  background-image: url("/sidebar/achievements.png");
+  background-image: url("/sidebar/achieve.png");
 }
 .nav-item[data-nav="daily"] .nav-icon {
-  background-image: url("/sidebar/daily.png");
+  background-image: url("/sidebar/dailies.png");
 }
 .nav-item[data-nav="secrets"] .nav-icon {
-  background-image: url("/sidebar/secret.png");
+  background-image: url("/sidebar/secrets.png");
 }
 .nav-item[data-nav="instructions"] .nav-icon {
-  background-image: url("/sidebar/instruction.png");
+  background-image: url("/sidebar/instruct.png");
 }
 
 /*###########################LOWER SIDEBAR###########################*/

@@ -5,31 +5,18 @@ import { assetUrl } from "../config/paths.js";
 import { triggerUfoEvent } from "../events/ufoEvent.js";
 
 export function initShop(onChange) {
-  const shopDialog = document.getElementById("shopDialog");
-  const openShopBtn = document.getElementById("openShopBtn");
-  const closeShopBtn = document.getElementById("closeShopBtn");
+  const shopPage = document.querySelector('[data-view="shop"]');
   const backgroundList = document.getElementById("backgroundList");
   const shopDustCount = document.getElementById("shopDustCount");
   const catContainer = document.querySelector(".cat-container");
 
-  if (
-    !shopDialog ||
-    !openShopBtn ||
-    !closeShopBtn ||
-    !backgroundList ||
-    !shopDustCount ||
-    !catContainer
-  ) {
-    console.error("Shop elements are missing from index.html.");
-    return;
-  }
-
-  if (shopDialog) {
-    shopDialog.addEventListener("click", (event) => {
-      if (event.target === shopDialog) {
-        shopDialog.close();
-      }
+  if (!shopPage || !backgroundList || !shopDustCount) {
+    console.error("Shop elements are missing from index.html.", {
+      shopPage,
+      backgroundList,
+      shopDustCount,
     });
+    return;
   }
 
   if (!Array.isArray(state.ownedBackgrounds)) {
@@ -53,7 +40,9 @@ export function initShop(onChange) {
     state.equippedBackground = "cozy_room";
   }
 
-  function applyBackground() {
+  function applyShopBackground() {
+    if (!catContainer) return;
+
     const background = BACKGROUNDS[state.equippedBackground];
 
     if (!background) {
@@ -70,41 +59,51 @@ export function initShop(onChange) {
 
   function renderShop() {
     shopDustCount.textContent = Math.floor(state.dust);
-    backgroundList.innerHTML = "";
+
+    backgroundList.replaceChildren();
 
     for (const [id, background] of Object.entries(BACKGROUNDS)) {
       const owned = state.ownedBackgrounds.includes(id);
       const equipped = state.equippedBackground === id;
 
+      // Card
       const card = document.createElement("article");
       card.classList.add("background-card");
 
+      // Preview
       const image = document.createElement("img");
+
       image.src = assetUrl(background.image);
       image.alt = background.name;
       image.classList.add("background-preview");
       image.loading = "lazy";
 
       image.addEventListener("error", () => {
-        console.error(`Could not load background image: ${background.image}`);
+        console.error(
+          "Background image failed to load:",
+          background.image,
+          "Resolved URL:",
+          image.src,
+        );
       });
 
+      // Name
       const name = document.createElement("h3");
       name.classList.add("background-name");
       name.textContent = background.name;
 
+      // Price
       const price = document.createElement("p");
       price.classList.add("background-price");
 
-      if (background.price === 0) {
-        price.textContent = "Free";
-      } else {
-        price.textContent = `${background.price} dust`;
-      }
+      price.textContent =
+        background.price === 0 ? "Free" : `${background.price} dust`;
 
+      // Action button
       const button = document.createElement("button");
+
       button.type = "button";
-      button.classList.add("background-action");
+      button.classList.add("btn", "btn-primary", "background-action");
 
       if (equipped) {
         button.textContent = "Equipped";
@@ -125,13 +124,12 @@ export function initShop(onChange) {
           }
 
           state.dust -= background.price;
-
           state.ownedBackgrounds.push(id);
         }
 
         state.equippedBackground = id;
 
-        applyBackground();
+        applyShopBackground();
 
         triggerUfoEvent();
 
@@ -144,30 +142,17 @@ export function initShop(onChange) {
         }
       });
 
-      card.appendChild(image);
-      card.appendChild(name);
-      card.appendChild(price);
-      card.appendChild(button);
+      // Assemble card
+      card.append(image, name, price, button);
 
       backgroundList.appendChild(card);
     }
   }
 
-  openShopBtn.addEventListener("click", () => {
-    renderShop();
-
-    if (!shopDialog.open) {
-      shopDialog.showModal();
-    }
-  });
-
-  closeShopBtn.addEventListener("click", () => {
-    if (shopDialog.open) {
-      shopDialog.close();
-    }
-  });
-
-  applyBackground();
-
+  applyShopBackground();
   renderShop();
+
+  return {
+    render: renderShop,
+  };
 }

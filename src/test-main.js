@@ -29,6 +29,7 @@ import {
   renderAchievements,
 } from "./ui/achievements/achievementsList.js";
 import { initDailyPage } from "./ui/daily/dailyRewards.js";
+import { initShop } from "./ui/shop.js";
 
 function renderAll() {
   renderHeader();
@@ -65,6 +66,7 @@ initSecretCatsPage({
 });
 initIntroductionPage();
 initDailyPage();
+initShop(renderAll);
 
 startGameLoop({ render: renderAll, notifyAchievements });
 initRouter();
