@@ -32,6 +32,7 @@ import { initDailyPage } from "./ui/daily/dailyRewards.js";
 import { initLootboxFlow } from "./loot/lootboxFlow.js";
 import { initBoxPoolList } from "./ui/boxpoollist.js";
 import { initShop } from "./ui/shop.js";
+import { claimReward } from "./loot/lootBox.js";
 
 function renderAll() {
   renderHeader();
@@ -44,6 +45,7 @@ function renderAll() {
 }
 
 load();
+if (state.pendingReward) claimReward();
 const offlineGained = applyOfflineGains();
 initOfflineModal(offlineGained);
 updateEnergy();

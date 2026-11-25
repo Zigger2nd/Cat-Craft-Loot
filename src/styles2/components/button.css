@@ -115,7 +115,6 @@ button {
   background: none;
   border: none;
   border-radius: var(--radius-md);
-  font-size: 15px;
   color: var(--color-text-muted);
   white-space: nowrap;
   cursor: pointer;
