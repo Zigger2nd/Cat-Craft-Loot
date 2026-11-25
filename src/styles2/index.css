@@ -10,6 +10,7 @@
 @import "./components/progress.css";
 @import "./components/toasts.css";
 @import "./components/modal.css";
+@import "./components/page-head.css";
 
 @import "./features/clicker.css";
 @import "./features/home.css";
@@ -22,4 +23,5 @@
 @import "./features/introduction.css";
 @import "./features/achievemenets.css";
 @import "./features/daily.css";
+@import "./features/lootbox.css";
 @import "./features/shop.css";

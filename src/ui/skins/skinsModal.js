@@ -136,19 +136,19 @@ function renderSkins(container) {
 
     const equipButton = document.createElement("button");
     equipButton.type = "button";
-    equipButton.classList.add("btn", "equip-skin-btn");
+    equipButton.classList.add("btn", "btn-block", "btn-status", "equip-skin-btn");
 
     if (!isOwned) {
       equipButton.textContent = "Locked";
       equipButton.disabled = true;
-      equipButton.classList.add("locked");
+      equipButton.classList.add("btn-muted");
     } else if (isEquipped) {
       equipButton.textContent = "Equipped";
       equipButton.disabled = true;
-      equipButton.classList.add("currently-equipped");
+      equipButton.classList.add("btn-primary");
     } else {
       equipButton.textContent = "Equip";
-      equipButton.classList.add("available");
+      equipButton.classList.add("btn-secondary");
     }
 
     infoSection.append(infoTop, equipButton);

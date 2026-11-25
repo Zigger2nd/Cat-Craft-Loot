@@ -2,7 +2,7 @@ import { state } from "../core/state.js";
 import { assetUrl } from "../config/paths.js";
 import { getSkinBonuses } from "../core/skinBonuses.js";
 import { getSkillBonus } from "../core/skillTree.js";
-
+import { getCurrentView } from "../ui/router.js";
 const GOLDEN_CAT = assetUrl("/skins/cats/secret/goldenCat.png");
 const GOLD_COIN = assetUrl("/skins/coins/catCoin.png");
 const SPINNING_COIN = assetUrl("/skins/coins/gold_spin.png");
@@ -56,7 +56,11 @@ function scheduleNextCoin() {
 
     const spawnChance = BASE_GOLDEN_CAT_SPAWN_CHANCE + skinBonus + skillBonus;
 
-    if (!activeCoin && Math.random() < spawnChance) {
+    if (
+      !activeCoin &&
+      getCurrentView() === "home" &&
+      Math.random() < spawnChance
+    ) {
       spawnGoldCoin();
     }
 
@@ -84,7 +88,7 @@ function spawnGoldCoin() {
   coin.style.left = `${Math.random() * maxX}px`;
   coin.style.top = `${Math.random() * maxY}px`;
 
-  document.body.appendChild(coin);
+  document.querySelector('[data-view="home"]').appendChild(coin);
   activeCoin = coin;
 
   coin.addEventListener("click", () => {

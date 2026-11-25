@@ -141,16 +141,26 @@ function renderSecretCats(container, options = {}) {
     const actionButton = document.createElement("button");
 
     actionButton.type = "button";
-    actionButton.classList.add("secret-skin-action");
+    actionButton.classList.add(
+      "btn",
+      "btn-block",
+      "btn-status",
+      "secret-skin-action",
+    );
 
     if (!isDiscovered) {
       actionButton.textContent = hint ? "Hint Revealed" : "Reveal Hint";
 
       if (hint) {
+        // same look as "Locked" on the Skins page
         actionButton.disabled = true;
+        actionButton.classList.add("btn-muted");
       } else {
+        actionButton.classList.add("btn-primary");
+
+        // .btn is a flex row: its gap separates the two parts, a leading space would be trimmed
         const cost = document.createElement("span");
-        cost.textContent = ` · ${HINT_COST} Dust`;
+        cost.textContent = `· ${HINT_COST} Dust`;
 
         actionButton.appendChild(cost);
 
@@ -163,8 +173,9 @@ function renderSecretCats(container, options = {}) {
     } else if (isEquipped) {
       actionButton.textContent = "Equipped";
       actionButton.disabled = true;
-      actionButton.classList.add("currently-equipped");
+      actionButton.classList.add("btn-primary");
     } else {
+      actionButton.classList.add("btn-secondary");
       actionButton.textContent = "Equip";
 
       actionButton.addEventListener("click", (event) => {

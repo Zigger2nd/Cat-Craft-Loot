@@ -1,146 +1,108 @@
-.skins-head {
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-  padding: 0 12px;
+/* ========================================
+   MY SKINS PAGE (section[data-view="skins"])
+   Cards are built by src/ui/skins/skinsModal.js.
+   Filter tabs (.tab) and card buttons (.btn ...) live in components/button.css.
+======================================== */
+
+/* ---------- Rarity filters ---------- */
+
+.skin-rarity-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.skins-head-title {
-  font-weight: 700;
-  font-size: 36px;
-  margin: 0;
+/* ---------- Card grid ---------- */
+
+/* Same rule as the achievements grid: equal columns that share the width */
+.owned-skins-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  padding-top: 20px;
 }
-.skins-head-subtitle {
-  font-family: var(--font-mono);
-  font-size: 14px;
+
+@media (max-width: 1200px) {
+  .owned-skins-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .owned-skins-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* "No skins found." */
+.no-owned-skins {
+  grid-column: 1 / -1;
+  margin: 0;
   color: var(--color-text-muted);
 }
 
-.skin-rarity-filters {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 8px;
-
-  width: 100%;
-  height: 48px;
-  padding: 0 0 12px;
-
-  border-bottom: 1px solid #e2d5c5;
-
-  flex: none;
-  align-self: stretch;
-}
-
-.owned-skins-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  padding: 20px 0 0 0;
-  gap: 18px;
-
-  width: 100%;
-  height: 100%;
-
-  flex: none;
-  order: 2;
-  align-self: stretch;
-  flex-grow: 0;
-}
+/* ---------- Skin card ---------- */
 
 .owned-skin-card {
-  box-sizing: border-box;
-
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-
-  width: 410px;
-  height: 340px;
-  padding: 0;
-
-  background: #fffcf6;
-  border: 1.5px solid #e2d5c5;
-  border-radius: 12px;
-
-  box-shadow: 0px 4px 0px rgba(114, 86, 78, 0.07);
-
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
   overflow: hidden;
-  cursor: pointer;
-
-  flex: 0 0 410px;
-
   transition:
     transform 0.2s ease,
     border-color 0.2s ease;
 }
 
-.owned-skin-card:hover:not(:disabled) {
-  border-color: #422727;
+.owned-skin-card:hover {
+  border-color: var(--color-accent-border);
   transform: translateY(-2px);
 }
 
-.owned-skin-card:disabled {
-  cursor: not-allowed;
+.owned-skin-card.equipped {
+  border: 2px solid var(--color-accent);
 }
 
-.owned-skin-card.equipped {
-  border: 2px solid #ad526d;
-  background: #fffcf6;
-}
+/* Top half: coloured by rarity */
 
 .owned-skin-preview-section {
-  box-sizing: border-box;
-
+  position: relative;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-
-  position: relative;
-  isolation: isolate;
-
-  width: 100%;
   height: 210px;
-  min-height: 142px;
-
-  padding: 0;
-
-  background: var(--rarity-color, #ede6e0);
-
-  flex: none;
+  background: var(--rarity-color, var(--color-track));
 }
 
-.rarity-common {
-  --rarity-color: #d8dbdd;
+/* Scoped to the skins card on purpose: the loot box reel and the
+   skin reward popup also put rarity-* classes on their elements. */
+.owned-skin-preview-section.rarity-common {
+  --rarity-color: var(--rarity-common);
+}
+.owned-skin-preview-section.rarity-rare {
+  --rarity-color: var(--rarity-rare);
+}
+.owned-skin-preview-section.rarity-epic {
+  --rarity-color: var(--rarity-epic);
+}
+.owned-skin-preview-section.rarity-legendary {
+  --rarity-color: var(--rarity-legendary);
+}
+.owned-skin-preview-section.rarity-secret {
+  --rarity-color: var(--rarity-secret);
 }
 
-.rarity-rare {
-  --rarity-color: #97bcc0;
-}
-
-.rarity-epic {
-  --rarity-color: #b09ec4;
-}
-
-.rarity-legendary {
-  --rarity-color: #d8bea4;
-}
-
-.rarity-secret {
-  --rarity-color: #ad526d;
-}
-
+/* The cat sprite sheet: one frame fills the box (see catAnimation.js) */
 .owned-skin-preview {
   width: 192px;
   height: 192px;
-
   background-repeat: no-repeat;
   background-position: 0 0;
   background-size: 300% 400%;
-
   image-rendering: pixelated;
 }
 
@@ -152,57 +114,50 @@
   position: absolute;
   top: 10px;
   left: 10px;
-
   font-size: 12px;
   font-weight: 700;
-  color: #1f1a1a;
+  color: var(--color-text);
 }
 
+/* Bottom half: name, status, equip button */
+
 .owned-skin-info {
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  justify-content: space-between;
-
-  width: 100%;
-  height: 98px;
-  min-height: 98px;
-
-  padding: 10px 14px;
-
-  background: #fffcf6;
-  flex: none;
+  gap: 10px;
+  padding: 12px 14px 14px;
 }
 
 .owned-skin-info-top {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
-  width: 100%;
   gap: 8px;
 }
 
 .owned-skin-name {
   margin: 0;
+  min-width: 0;
   font-size: 20px;
   font-weight: 700;
-  color: #422727;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .owned-skin-status {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 700;
-  color: #609e7f;
+  color: var(--color-energy);
   white-space: nowrap;
 }
 
 .owned-skin-status.locked-status {
-  color: #999;
+  color: var(--color-text-muted);
 }
 
 .owned-skin-status.equipped-status {
-  color: #ad526d;
+  color: var(--color-accent);
 }
+
+/* Equip button: shared .btn .btn-block .btn-status + variant (skinsModal.js) */
